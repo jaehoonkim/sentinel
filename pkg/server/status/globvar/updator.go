@@ -18,26 +18,27 @@ import (
 	"github.com/pkg/errors"
 )
 
-type GlobalVariantUpdate struct {
+type GlobalVariableUpdate struct {
 	*sql.DB
 	dialect excute.SqlExcutor
 	offset  time.Time //updated column
 }
 
-func NewGlobalVariablesUpdate(db *sql.DB, dialect excute.SqlExcutor) *GlobalVariantUpdate {
-	return &GlobalVariantUpdate{
+func NewGlobalVariablesUpdate(db *sql.DB, dialect excute.SqlExcutor) *GlobalVariableUpdate {
+	return &GlobalVariableUpdate{
 		DB:      db,
 		dialect: dialect,
 	}
 }
 
-// func (worker *GlobalVariantUpdate) Dialect() string {
+// func (worker *GlobalVariableUpdate) Dialect() string {
 // 	return worker.dialect
 // }
 
 // Update
-//  Update = read db -> global_variables
-func (worker *GlobalVariantUpdate) Update() (err error) {
+//
+//	Update = read db -> global_variables
+func (worker *GlobalVariableUpdate) Update() (err error) {
 	records := make([]globvarv2.GlobalVariables, 0, state.ENV__INIT_SLICE_CAPACITY__())
 	globvar := globvarv2.GlobalVariables{}
 	globvar.Updated = *vanilla.NewNullTime(worker.offset)
@@ -88,8 +89,9 @@ func (worker *GlobalVariantUpdate) Update() (err error) {
 }
 
 // WhiteListCheck
-//  리스트 체크
-func (worker *GlobalVariantUpdate) WhiteListCheck() (err error) {
+//
+//	리스트 체크
+func (worker *GlobalVariableUpdate) WhiteListCheck() (err error) {
 	records := make([]globvarv2.GlobalVariables, 0, state.ENV__INIT_SLICE_CAPACITY__())
 
 	globvar := globvarv2.GlobalVariables{}
@@ -136,7 +138,7 @@ func (worker *GlobalVariantUpdate) WhiteListCheck() (err error) {
 	return nil
 }
 
-func (worker *GlobalVariantUpdate) Merge() (err error) {
+func (worker *GlobalVariableUpdate) Merge() (err error) {
 	records := make([]globvarv2.GlobalVariables, 0, state.ENV__INIT_SLICE_CAPACITY__())
 
 	globvar := globvarv2.GlobalVariables{}
