@@ -208,14 +208,14 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 		group.GET("/sudory/server/service/:uuid/step/:sequence", ctl.GetServiceStep)
 
 		// /v2/server/service*
-		groupV2.GET("/server/service", ctl.FindService_v2)
-		groupV2.GET("/server/service/:uuid", ctl.GetService_v2)
-		groupV2.POST("/server/service", ctl.CreateService_v2)
-		groupV2.GET("/server/service/:uuid/result", ctl.GetServiceResult_v2)
-		groupV2.GET("/sudory/server/service", ctl.FindService_v2)
-		groupV2.GET("/sudory/server/service/:uuid", ctl.GetService_v2)
-		groupV2.POST("/sudory/server/service", ctl.CreateService_v2)
-		groupV2.GET("/sudory/server/service/:uuid/result", ctl.GetServiceResult_v2)
+		groupV2.GET("/server/service", ctl.FindService)
+		groupV2.GET("/server/service/:uuid", ctl.GetService)
+		groupV2.POST("/server/service", ctl.CreateService)
+		groupV2.GET("/server/service/:uuid/result", ctl.GetServiceResult)
+		groupV2.GET("/sudory/server/service", ctl.FindService)
+		groupV2.GET("/sudory/server/service/:uuid", ctl.GetService)
+		groupV2.POST("/sudory/server/service", ctl.CreateService)
+		groupV2.GET("/sudory/server/service/:uuid/result", ctl.GetServiceResult)
 
 		// /server/session*
 		group.GET("/server/session", ctl.FindSession)

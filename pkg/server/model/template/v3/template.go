@@ -20,7 +20,7 @@ type Template struct {
 }
 
 func (Template) TableName() string {
-	return "template_v2"
+	return "template"
 }
 
 func (obj Template) MarshalJSON() ([]byte, error) {

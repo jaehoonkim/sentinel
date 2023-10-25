@@ -1,6 +1,6 @@
 module github.com/NexClipper/sudory
 
-go 1.17
+go 1.21
 
 require (
 	github.com/NexClipper/logger v1.1.6

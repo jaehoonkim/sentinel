@@ -13,7 +13,6 @@ import (
 	"time"
 
 	"github.com/NexClipper/logger"
-	"github.com/NexClipper/sudory/conf/script/migrations"
 	"github.com/NexClipper/sudory/pkg/server/config"
 	"github.com/NexClipper/sudory/pkg/server/database"
 	"github.com/NexClipper/sudory/pkg/server/database/vanilla/excute"
@@ -48,7 +47,7 @@ func main() {
 	flag.StringVar(&cfg.Database.Password, "db-passwd", "", "Database's password")
 	flag.StringVar(&cfg.Database.DBName, "db-dbname", "", "Database's dbname")
 
-	configPath := flag.String("config", "../../conf/sudory-server.yml", "Path to sudory-server's config file")
+	configPath := flag.String("config", "./conf/sudory-server.yml", "Path to sudory-server's config file")
 
 	flag.Parse()
 
@@ -64,13 +63,14 @@ func main() {
 		panic(err)
 	}
 
+	/* 암호화 하지 않음,,,
 	enigmaConfigFilename := cfg.Encryption
 	if !path.IsAbs(cfg.Encryption) {
 		enigmaConfigFilename = path.Join(path.Dir(*configPath), cfg.Encryption)
 	}
 	if err := newEnigma(enigmaConfigFilename); err != nil {
 		panic(err)
-	}
+	}*/
 
 	db, err := database.New(cfg.Database)
 	if err != nil {
@@ -151,11 +151,9 @@ func doMigration(cfg *config.Config) (err error) {
 		Version() string
 		Err() error
 	}
-	if true {
-		latest = &config.Latest{Source: cfg.Migrate.Source}
-	} else {
-		latest = migrations.SudoryLatest
-	}
+
+	latest = &config.Latest{Source: cfg.Migrate.Source}
+
 	err = latest.Err()
 	if err != nil {
 		return err

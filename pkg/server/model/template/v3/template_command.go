@@ -19,5 +19,5 @@ type TemplateCommand struct {
 }
 
 func (TemplateCommand) TableName() string {
-	return "template_command_v2"
+	return "template_command"
 }

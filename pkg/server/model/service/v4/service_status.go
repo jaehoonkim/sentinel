@@ -9,7 +9,7 @@ import (
 type servicestatusTableName struct{}
 
 func (servicestatusTableName) TableName() string {
-	return "service_status_v2"
+	return "service_status"
 }
 
 type pkServiceStatus struct {

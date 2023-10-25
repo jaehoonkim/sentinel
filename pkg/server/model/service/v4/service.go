@@ -10,7 +10,7 @@ import (
 type serviceTableName struct{}
 
 func (serviceTableName) TableName() string {
-	return "service_v2"
+	return "service"
 }
 
 type pkService struct {
