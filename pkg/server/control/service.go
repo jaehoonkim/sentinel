@@ -27,12 +27,12 @@ import (
 	"github.com/pkg/errors"
 )
 
-// @Description Create a Service (v2)
+// @Description Create a Service
 // @Security    ServiceAuth
 // @Accept      json
 // @Produce     json
 // @Tags        server/service
-// @Router      /v2/server/service [post]
+// @Router      /server/service [post]
 // @Param       service     body service.HttpReq_Service_create true  "HttpReq_Service_create"
 // @Success     200 {array} service.HttpRsp_Service_create
 func (ctl ControlVanilla) CreateService(ctx echo.Context) error {
@@ -170,12 +170,12 @@ func (ctl ControlVanilla) CreateService(ctx echo.Context) error {
 	}
 }
 
-// @Description Find []Service (v2)
+// @Description Find []Service
 // @Security    ServiceAuth
 // @Accept      json
 // @Produce     json
 // @Tags        server/service
-// @Router      /v2/server/service [get]
+// @Router      /server/service [get]
 // @Param       q           query string false "query  github.com/NexClipper/sudory/pkg/server/database/vanilla/stmt/README.md"
 // @Param       o           query string false "order  github.com/NexClipper/sudory/pkg/server/database/vanilla/stmt/README.md"
 // @Param       p           query string false "paging github.com/NexClipper/sudory/pkg/server/database/vanilla/stmt/README.md"
@@ -275,12 +275,12 @@ func (ctl ControlVanilla) FindService(ctx echo.Context) (err error) {
 	return ctx.JSON(http.StatusOK, []service.HttpRsp_Service(rsp))
 }
 
-// @Description Get a Service (v2)
+// @Description Get a Service
 // @Security    ServiceAuth
 // @Accept      json
 // @Produce     json
 // @Tags        server/service
-// @Router      /v2/server/service/{uuid} [get]
+// @Router      /server/service/{uuid} [get]
 // @Param       uuid         path string true "service's UUID"
 // @Success     200 {object} service.HttpRsp_Service
 func (ctl ControlVanilla) GetService(ctx echo.Context) (err error) {
@@ -352,12 +352,12 @@ func (ctl ControlVanilla) GetService(ctx echo.Context) (err error) {
 	return ctx.JSON(http.StatusOK, (*service.HttpRsp_Service)(rst))
 }
 
-// @Description Get a Service Result (v2)
+// @Description Get a Service Result
 // @Security    ServiceAuth
 // @Accept      json
 // @Produce     json
 // @Tags        server/service
-// @Router      /v2/server/service/{uuid}/result [get]
+// @Router      /server/service/{uuid}/result [get]
 // @Param       uuid         path string true "service's UUID"
 // @Success     200 {object} service.HttpRsp_ServiceResult
 func (ctl ControlVanilla) GetServiceResult(ctx echo.Context) (err error) {

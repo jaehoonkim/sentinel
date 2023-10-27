@@ -1549,7 +1549,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_service_v3.HttpRsp_Service"
+                                "$ref": "#/definitions/service.HttpRsp_Service"
                             }
                         }
                     }
@@ -1578,7 +1578,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_service_v3.HttpReq_Service_create"
+                            "$ref": "#/definitions/service.HttpReq_Service_create"
                         }
                     }
                 ],
@@ -1588,7 +1588,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_service_v3.HttpRsp_Service_create"
+                                "$ref": "#/definitions/service.HttpRsp_Service_create"
                             }
                         }
                     }
@@ -1675,7 +1675,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_service_v3.HttpRsp_Service"
+                            "$ref": "#/definitions/service.HttpRsp_Service"
                         }
                     }
                 }
@@ -1711,7 +1711,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_service_v3.HttpRsp_ServiceResult"
+                            "$ref": "#/definitions/service.HttpRsp_ServiceResult"
                         }
                     }
                 }
@@ -1959,7 +1959,7 @@ const docTemplate = `{
                         "XAuthToken": []
                     }
                 ],
-                "description": "Find []template",
+                "description": "Find []template (v2)",
                 "consumes": [
                     "application/json"
                 ],
@@ -1995,90 +1995,8 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_template_v2.HttpRsp_Template"
+                                "$ref": "#/definitions/template.HttpRsp_Template"
                             }
-                        }
-                    }
-                }
-            }
-        },
-        "/server/template/{template_uuid}/command": {
-            "get": {
-                "security": [
-                    {
-                        "XAuthToken": []
-                    }
-                ],
-                "description": "List template command",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "server/template_command"
-                ],
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "HttpReqTemplate Uuid",
-                        "name": "template_uuid",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_template_v2.HttpRsp_TemplateCommand"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/server/template/{template_uuid}/command/{uuid}": {
-            "get": {
-                "security": [
-                    {
-                        "XAuthToken": []
-                    }
-                ],
-                "description": "Get a template command",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "server/template_command"
-                ],
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "HttpReqTemplate Uuid",
-                        "name": "template_uuid",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "HttpReqTemplateCommand 의 Uuid",
-                        "name": "uuid",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_template_v2.HttpRsp_TemplateCommand"
                         }
                     }
                 }
@@ -2091,7 +2009,7 @@ const docTemplate = `{
                         "XAuthToken": []
                     }
                 ],
-                "description": "Get a template",
+                "description": "Get a template (v2)",
                 "consumes": [
                     "application/json"
                 ],
@@ -2114,7 +2032,73 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_template_v2.HttpRsp_Template"
+                            "$ref": "#/definitions/template.HttpRsp_Template"
+                        }
+                    }
+                }
+            }
+        },
+        "/server/template_command": {
+            "get": {
+                "security": [
+                    {
+                        "XAuthToken": []
+                    }
+                ],
+                "description": "List template command (v2)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "server/template_command"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/template.HttpRsp_TemplateCommand"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/server/template_command/{uuid}": {
+            "get": {
+                "security": [
+                    {
+                        "XAuthToken": []
+                    }
+                ],
+                "description": "Get a template command (v2)",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "server/template_command"
+                ],
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "HttpReqTemplateCommand 의 Uuid",
+                        "name": "name",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/template.HttpRsp_TemplateCommand"
                         }
                     }
                 }
@@ -2188,319 +2172,6 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/auths.HttpRsp_AccessTokenResponse"
-                        }
-                    }
-                }
-            }
-        },
-        "/v2/server/service": {
-            "get": {
-                "security": [
-                    {
-                        "ServiceAuth": []
-                    }
-                ],
-                "description": "Find []Service (v2)",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "server/service"
-                ],
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/server/database/vanilla/stmt/README.md",
-                        "name": "q",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/server/database/vanilla/stmt/README.md",
-                        "name": "o",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/server/database/vanilla/stmt/README.md",
-                        "name": "p",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_service_v4.HttpRsp_Service"
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "security": [
-                    {
-                        "ServiceAuth": []
-                    }
-                ],
-                "description": "Create a Service (v2)",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "server/service"
-                ],
-                "parameters": [
-                    {
-                        "description": "HttpReq_Service_create",
-                        "name": "service",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_service_v4.HttpReq_Service_create"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_service_v4.HttpRsp_Service_create"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/v2/server/service/{uuid}": {
-            "get": {
-                "security": [
-                    {
-                        "ServiceAuth": []
-                    }
-                ],
-                "description": "Get a Service (v2)",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "server/service"
-                ],
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "service's UUID",
-                        "name": "uuid",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_service_v4.HttpRsp_Service"
-                        }
-                    }
-                }
-            }
-        },
-        "/v2/server/service/{uuid}/result": {
-            "get": {
-                "security": [
-                    {
-                        "ServiceAuth": []
-                    }
-                ],
-                "description": "Get a Service Result (v2)",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "server/service"
-                ],
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "service's UUID",
-                        "name": "uuid",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_service_v4.HttpRsp_ServiceResult"
-                        }
-                    }
-                }
-            }
-        },
-        "/v2/server/template": {
-            "get": {
-                "security": [
-                    {
-                        "XAuthToken": []
-                    }
-                ],
-                "description": "Find []template (v2)",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "server/template"
-                ],
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/server/database/vanilla/stmt/README.md",
-                        "name": "q",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/server/database/vanilla/stmt/README.md",
-                        "name": "o",
-                        "in": "query"
-                    },
-                    {
-                        "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/server/database/vanilla/stmt/README.md",
-                        "name": "p",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_template_v3.HttpRsp_Template"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/v2/server/template/{uuid}": {
-            "get": {
-                "security": [
-                    {
-                        "XAuthToken": []
-                    }
-                ],
-                "description": "Get a template (v2)",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "server/template"
-                ],
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Template Uuid",
-                        "name": "uuid",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_template_v3.HttpRsp_Template"
-                        }
-                    }
-                }
-            }
-        },
-        "/v2/server/template_command": {
-            "get": {
-                "security": [
-                    {
-                        "XAuthToken": []
-                    }
-                ],
-                "description": "List template command (v2)",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "server/template_command"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_template_v3.HttpRsp_TemplateCommand"
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/v2/server/template_command/{uuid}": {
-            "get": {
-                "security": [
-                    {
-                        "XAuthToken": []
-                    }
-                ],
-                "description": "Get a template command (v2)",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "server/template_command"
-                ],
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "HttpReqTemplateCommand 의 Uuid",
-                        "name": "name",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/github.com_NexClipper_sudory_pkg_server_model_template_v3.HttpRsp_TemplateCommand"
                         }
                     }
                 }
@@ -2628,183 +2299,15 @@ const docTemplate = `{
                 }
             }
         },
-        "github.com_NexClipper_sudory_pkg_server_model_service_v3.HttpReq_Service_create": {
+        "service.HttpReq_ClientServiceUpdate": {
             "type": "object",
             "properties": {
-                "cluster_uuid": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "name": {
-                    "type": "string"
-                },
-                "steps": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "args": {
-                                "type": "object",
-                                "additionalProperties": true
-                            }
-                        }
-                    }
-                },
-                "subscribed_channel": {
-                    "type": "string"
-                },
-                "summary": {
-                    "type": "string"
-                },
-                "template_uuid": {
+                "version": {
                     "type": "string"
                 }
             }
         },
-        "github.com_NexClipper_sudory_pkg_server_model_service_v3.HttpRsp_Service": {
-            "type": "object",
-            "properties": {
-                "assigned_client_uuid": {
-                    "type": "string"
-                },
-                "cluster_uuid": {
-                    "description": "pk char(32) cluster.uuid",
-                    "type": "string"
-                },
-                "created": {
-                    "type": "string"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "partition_date": {
-                    "description": "pk date",
-                    "type": "string"
-                },
-                "priority": {
-                    "type": "integer"
-                },
-                "status": {
-                    "type": "integer"
-                },
-                "step_count": {
-                    "type": "integer"
-                },
-                "step_position": {
-                    "type": "integer"
-                },
-                "steps": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/service.ServiceStep"
-                    }
-                },
-                "subscribed_channel": {
-                    "type": "string"
-                },
-                "summary": {
-                    "type": "string"
-                },
-                "template_uuid": {
-                    "type": "string"
-                },
-                "timestamp": {
-                    "description": "pk datetime(6)",
-                    "type": "string"
-                },
-                "uuid": {
-                    "description": "pk char(32) service.uuid",
-                    "type": "string"
-                }
-            }
-        },
-        "github.com_NexClipper_sudory_pkg_server_model_service_v3.HttpRsp_ServiceResult": {
-            "type": "object",
-            "properties": {
-                "cluster_uuid": {
-                    "description": "pk char(32) cluster.uuid",
-                    "type": "string"
-                },
-                "partition_date": {
-                    "description": "pk date",
-                    "type": "string"
-                },
-                "result": {
-                    "type": "string"
-                },
-                "result_type": {
-                    "type": "integer"
-                },
-                "timestamp": {
-                    "description": "pk datetime(6)",
-                    "type": "string"
-                },
-                "uuid": {
-                    "description": "pk char(32) service.uuid",
-                    "type": "string"
-                }
-            }
-        },
-        "github.com_NexClipper_sudory_pkg_server_model_service_v3.HttpRsp_Service_create": {
-            "type": "object",
-            "properties": {
-                "cluster_uuid": {
-                    "description": "pk char(32) cluster.uuid",
-                    "type": "string"
-                },
-                "created": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "partition_date": {
-                    "description": "pk date",
-                    "type": "string"
-                },
-                "priority": {
-                    "type": "integer"
-                },
-                "status": {
-                    "type": "integer"
-                },
-                "step_count": {
-                    "type": "integer"
-                },
-                "step_position": {
-                    "type": "integer"
-                },
-                "steps": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/service.ServiceStep_create"
-                    }
-                },
-                "subscribed_channel": {
-                    "type": "string"
-                },
-                "summary": {
-                    "type": "string"
-                },
-                "template_uuid": {
-                    "type": "string"
-                },
-                "timestamp": {
-                    "description": "pk datetime(6)",
-                    "type": "string"
-                },
-                "uuid": {
-                    "description": "pk char(32) service.uuid",
-                    "type": "string"
-                }
-            }
-        },
-        "github.com_NexClipper_sudory_pkg_server_model_service_v4.HttpReq_Service_create": {
+        "service.HttpReq_Service_create": {
             "type": "object",
             "properties": {
                 "cluster_uuid": {
@@ -2831,7 +2334,15 @@ const docTemplate = `{
                 }
             }
         },
-        "github.com_NexClipper_sudory_pkg_server_model_service_v4.HttpRsp_Service": {
+        "service.HttpRsp_ClientServicePolling": {
+            "type": "object",
+            "properties": {
+                "version": {
+                    "type": "string"
+                }
+            }
+        },
+        "service.HttpRsp_Service": {
             "type": "object",
             "properties": {
                 "cluster_uuid": {
@@ -2881,7 +2392,7 @@ const docTemplate = `{
                 }
             }
         },
-        "github.com_NexClipper_sudory_pkg_server_model_service_v4.HttpRsp_ServiceResult": {
+        "service.HttpRsp_ServiceResult": {
             "type": "object",
             "properties": {
                 "cluster_uuid": {
@@ -2903,212 +2414,6 @@ const docTemplate = `{
                 },
                 "uuid": {
                     "description": "pk char(32) service.uuid",
-                    "type": "string"
-                }
-            }
-        },
-        "github.com_NexClipper_sudory_pkg_server_model_service_v4.HttpRsp_Service_create": {
-            "type": "object",
-            "properties": {
-                "cluster_uuid": {
-                    "description": "pk char(32) cluster.uuid",
-                    "type": "string"
-                },
-                "created": {
-                    "type": "string"
-                },
-                "flow": {
-                    "type": "string"
-                },
-                "inputs": {
-                    "type": "object"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "partition_date": {
-                    "description": "pk date",
-                    "type": "string"
-                },
-                "priority": {
-                    "type": "integer"
-                },
-                "step_max": {
-                    "type": "integer"
-                },
-                "subscribed_channel": {
-                    "type": "string"
-                },
-                "summary": {
-                    "type": "string"
-                },
-                "template_uuid": {
-                    "type": "string"
-                },
-                "uuid": {
-                    "description": "pk char(32) service.uuid",
-                    "type": "string"
-                }
-            }
-        },
-        "github.com_NexClipper_sudory_pkg_server_model_template_v2.HttpRsp_Template": {
-            "type": "object",
-            "properties": {
-                "commands": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/template.TemplateCommand"
-                    }
-                },
-                "created": {
-                    "type": "string"
-                },
-                "deleted": {
-                    "type": "string"
-                },
-                "id": {
-                    "description": "pk",
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "origin": {
-                    "type": "string"
-                },
-                "summary": {
-                    "type": "string"
-                },
-                "updated": {
-                    "type": "string"
-                },
-                "uuid": {
-                    "description": "uuid",
-                    "type": "string"
-                }
-            }
-        },
-        "github.com_NexClipper_sudory_pkg_server_model_template_v2.HttpRsp_TemplateCommand": {
-            "type": "object",
-            "properties": {
-                "args": {
-                    "type": "object"
-                },
-                "created": {
-                    "type": "string"
-                },
-                "deleted": {
-                    "type": "string"
-                },
-                "id": {
-                    "description": "pk",
-                    "type": "integer"
-                },
-                "method": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "result_filter": {
-                    "type": "string"
-                },
-                "sequence": {
-                    "type": "integer"
-                },
-                "summary": {
-                    "type": "string"
-                },
-                "template_uuid": {
-                    "type": "string"
-                },
-                "updated": {
-                    "type": "string"
-                },
-                "uuid": {
-                    "description": "uuid",
-                    "type": "string"
-                }
-            }
-        },
-        "github.com_NexClipper_sudory_pkg_server_model_template_v3.HttpRsp_Template": {
-            "type": "object",
-            "properties": {
-                "created": {
-                    "type": "string"
-                },
-                "deleted": {
-                    "type": "string"
-                },
-                "flow": {
-                    "type": "string"
-                },
-                "inputs": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "origin": {
-                    "type": "string"
-                },
-                "summary": {
-                    "type": "string"
-                },
-                "updated": {
-                    "type": "string"
-                },
-                "uuid": {
-                    "description": "pk",
-                    "type": "string"
-                }
-            }
-        },
-        "github.com_NexClipper_sudory_pkg_server_model_template_v3.HttpRsp_TemplateCommand": {
-            "type": "object",
-            "properties": {
-                "category": {
-                    "type": "string"
-                },
-                "client_version": {
-                    "type": "integer"
-                },
-                "created": {
-                    "type": "string"
-                },
-                "deleted": {
-                    "type": "string"
-                },
-                "inputs": {
-                    "type": "string"
-                },
-                "name": {
-                    "description": "pk",
-                    "type": "string"
-                },
-                "outputs": {
-                    "type": "string"
-                },
-                "summary": {
-                    "type": "string"
-                },
-                "updated": {
-                    "type": "string"
-                }
-            }
-        },
-        "service.HttpReq_ClientServiceUpdate": {
-            "type": "object",
-            "properties": {
-                "version": {
-                    "type": "string"
-                }
-            }
-        },
-        "service.HttpRsp_ClientServicePolling": {
-            "type": "object",
-            "properties": {
-                "version": {
                     "type": "string"
                 }
             }
@@ -3165,6 +2470,50 @@ const docTemplate = `{
                 }
             }
         },
+        "service.HttpRsp_Service_create": {
+            "type": "object",
+            "properties": {
+                "cluster_uuid": {
+                    "description": "pk char(32) cluster.uuid",
+                    "type": "string"
+                },
+                "created": {
+                    "type": "string"
+                },
+                "flow": {
+                    "type": "string"
+                },
+                "inputs": {
+                    "type": "object"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "partition_date": {
+                    "description": "pk date",
+                    "type": "string"
+                },
+                "priority": {
+                    "type": "integer"
+                },
+                "step_max": {
+                    "type": "integer"
+                },
+                "subscribed_channel": {
+                    "type": "string"
+                },
+                "summary": {
+                    "type": "string"
+                },
+                "template_uuid": {
+                    "type": "string"
+                },
+                "uuid": {
+                    "description": "pk char(32) service.uuid",
+                    "type": "string"
+                }
+            }
+        },
         "service.ServiceStatus": {
             "type": "object",
             "properties": {
@@ -3197,104 +2546,6 @@ const docTemplate = `{
                 },
                 "step_seq": {
                     "type": "integer"
-                },
-                "uuid": {
-                    "description": "pk char(32) service.uuid",
-                    "type": "string"
-                }
-            }
-        },
-        "service.ServiceStep": {
-            "type": "object",
-            "properties": {
-                "args": {
-                    "type": "object"
-                },
-                "cluster_uuid": {
-                    "description": "pk char(32) cluster.uuid",
-                    "type": "string"
-                },
-                "created": {
-                    "type": "string"
-                },
-                "ended": {
-                    "type": "string"
-                },
-                "method": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "partition_date": {
-                    "description": "pk date",
-                    "type": "string"
-                },
-                "result_filter": {
-                    "type": "string"
-                },
-                "sequence": {
-                    "description": "pk tinyint",
-                    "type": "integer"
-                },
-                "started": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "integer"
-                },
-                "summary": {
-                    "type": "string"
-                },
-                "timestamp": {
-                    "description": "pk datetime(6)",
-                    "type": "string"
-                },
-                "uuid": {
-                    "description": "pk char(32) service.uuid",
-                    "type": "string"
-                }
-            }
-        },
-        "service.ServiceStep_create": {
-            "type": "object",
-            "properties": {
-                "args": {
-                    "type": "object"
-                },
-                "cluster_uuid": {
-                    "description": "pk char(32) cluster.uuid",
-                    "type": "string"
-                },
-                "created": {
-                    "type": "string"
-                },
-                "method": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "partition_date": {
-                    "description": "pk date",
-                    "type": "string"
-                },
-                "result_filter": {
-                    "type": "string"
-                },
-                "sequence": {
-                    "description": "pk tinyint",
-                    "type": "integer"
-                },
-                "status": {
-                    "type": "integer"
-                },
-                "summary": {
-                    "type": "string"
-                },
-                "timestamp": {
-                    "description": "pk datetime(6)",
-                    "type": "string"
                 },
                 "uuid": {
                     "description": "pk char(32) service.uuid",
@@ -3347,11 +2598,47 @@ const docTemplate = `{
                 }
             }
         },
-        "template.TemplateCommand": {
+        "template.HttpRsp_Template": {
             "type": "object",
             "properties": {
-                "args": {
-                    "type": "object"
+                "created": {
+                    "type": "string"
+                },
+                "deleted": {
+                    "type": "string"
+                },
+                "flow": {
+                    "type": "string"
+                },
+                "inputs": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "origin": {
+                    "type": "string"
+                },
+                "summary": {
+                    "type": "string"
+                },
+                "updated": {
+                    "type": "string"
+                },
+                "uuid": {
+                    "description": "pk",
+                    "type": "string"
+                }
+            }
+        },
+        "template.HttpRsp_TemplateCommand": {
+            "type": "object",
+            "properties": {
+                "category": {
+                    "type": "string"
+                },
+                "client_version": {
+                    "type": "integer"
                 },
                 "created": {
                     "type": "string"
@@ -3359,33 +2646,20 @@ const docTemplate = `{
                 "deleted": {
                     "type": "string"
                 },
-                "id": {
-                    "description": "pk",
-                    "type": "integer"
-                },
-                "method": {
+                "inputs": {
                     "type": "string"
                 },
                 "name": {
+                    "description": "pk",
                     "type": "string"
                 },
-                "result_filter": {
+                "outputs": {
                     "type": "string"
-                },
-                "sequence": {
-                    "type": "integer"
                 },
                 "summary": {
                     "type": "string"
                 },
-                "template_uuid": {
-                    "type": "string"
-                },
                 "updated": {
-                    "type": "string"
-                },
-                "uuid": {
-                    "description": "uuid",
                     "type": "string"
                 }
             }

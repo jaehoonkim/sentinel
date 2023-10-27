@@ -8,18 +8,18 @@
 @date = {{$datetime "YYYY-MM-DDThh:mm:ss"}}Z
 
 @template_uuid = 00000000000000000000000000000001
-@command_uuid = 00000000000000000000000000000001
+@command_name = 00000000000000000000000000000001
 
 //<<<< GET >>>> 
 # @name get_template_command
 
-GET {{url}}/server/template/{{template_uuid}}/command/{{command_uuid}}  {{protocolver}}
+GET {{url}}/server/template_command/{{command_name}}  {{protocolver}}
 Content-Type: application/json
 
 ###
 # @name list_template_command
 
-GET {{url}}/server/template/{{template_uuid}}/command  {{protocolver}}
+GET {{url}}/server/template_command  {{protocolver}}
 Content-Type: application/json
 
 ###

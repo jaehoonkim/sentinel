@@ -121,12 +121,13 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 		group := e.Group("")
 		group.Use(XAuthToken(cfg)) // @Security XAuthToken
 
-		groupV2 := e.Group("/v2")
-		groupV2.Use(XAuthToken(cfg)) // @Security XAuthToken
-
 		// /server/auth*
 		group.POST("/server/tenant", ctl.Tenant)
 		group.POST("/sudory/server/tenant", ctl.Tenant)
+
+		// /server/template_recipe*
+		group.GET("/server/template_recipe", ctl.FindTemplateRecipe)
+		group.GET("/sudory/server/template_recipe", ctl.FindTemplateRecipe)
 
 		// /server/template*
 		group.GET("/server/template", ctl.FindTemplate)
@@ -134,27 +135,11 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 		group.GET("/sudory/server/template", ctl.FindTemplate)
 		group.GET("/sudory/server/template/:uuid", ctl.GetTemplate)
 
-		// /server/template/:template_uuid/command*
-		group.GET("/server/template/:template_uuid/command", ctl.ListTemplateCommand)
-		group.GET("/server/template/:template_uuid/command/:uuid", ctl.GetTemplateCommand)
-		group.GET("/sudory/server/template/:template_uuid/command", ctl.ListTemplateCommand)
-		group.GET("/sudory/server/template/:template_uuid/command/:uuid", ctl.GetTemplateCommand)
-
-		// /server/template_recipe*
-		group.GET("/server/template_recipe", ctl.FindTemplateRecipe)
-		group.GET("/sudory/server/template_recipe", ctl.FindTemplateRecipe)
-
-		// /v2/server/template*
-		groupV2.GET("/server/template", ctl.FindTemplate_v2)
-		groupV2.GET("/server/template/:uuid", ctl.GetTemplate_v2)
-		groupV2.GET("/sudory/server/template", ctl.FindTemplate_v2)
-		groupV2.GET("/sudory/server/template/:uuid", ctl.GetTemplate_v2)
-
-		// /v2/server/template_command*
-		groupV2.GET("/server/template_command", ctl.FindTemplateCommand_v2)
-		groupV2.GET("/server/template_command/:uuid", ctl.GetTemplateCommand_v2)
-		groupV2.GET("/sudory/server/template_command", ctl.FindTemplateCommand_v2)
-		groupV2.GET("/sudory/server/template_command/:uuid", ctl.GetTemplateCommand_v2)
+		// /server/template_command*
+		group.GET("/server/template_command", ctl.FindTemplateCommand)
+		group.GET("/server/template_command/:uuid", ctl.GetTemplateCommand)
+		group.GET("/sudory/server/template_command", ctl.FindTemplateCommand)
+		group.GET("/sudory/server/template_command/:uuid", ctl.GetTemplateCommand)
 
 		// /server/global_variables*
 		group.GET("/server/global_variables", ctl.FindGlobalVariables)
@@ -169,9 +154,6 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 	{
 		group := e.Group("")
 		group.Use(ServiceAuthorizationBearerToken()) // @Security ServiceAuthorizationBearerToken
-
-		groupV2 := e.Group("/v2")
-		groupV2.Use(ServiceAuthorizationBearerToken()) // @Security ServiceAuthorizationBearerToken
 
 		// /server/cluster*
 		group.GET("/server/cluster", ctl.FindCluster)
@@ -198,24 +180,6 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 		group.GET("/sudory/server/service/:uuid", ctl.GetService)
 		group.POST("/sudory/server/service", ctl.CreateService)
 		group.GET("/sudory/server/service/:uuid/result", ctl.GetServiceResult)
-
-		// /server/service_step*
-		group.GET("/server/service/step", ctl.FindServiceStep)
-		group.GET("/server/service/:uuid/step", ctl.GetServiceSteps)
-		group.GET("/server/service/:uuid/step/:sequence", ctl.GetServiceStep)
-		group.GET("/sudory/server/service/step", ctl.FindServiceStep)
-		group.GET("/sudory/server/service/:uuid/step", ctl.GetServiceSteps)
-		group.GET("/sudory/server/service/:uuid/step/:sequence", ctl.GetServiceStep)
-
-		// /v2/server/service*
-		groupV2.GET("/server/service", ctl.FindService)
-		groupV2.GET("/server/service/:uuid", ctl.GetService)
-		groupV2.POST("/server/service", ctl.CreateService)
-		groupV2.GET("/server/service/:uuid/result", ctl.GetServiceResult)
-		groupV2.GET("/sudory/server/service", ctl.FindService)
-		groupV2.GET("/sudory/server/service/:uuid", ctl.GetService)
-		groupV2.POST("/sudory/server/service", ctl.CreateService)
-		groupV2.GET("/sudory/server/service/:uuid/result", ctl.GetServiceResult)
 
 		// /server/session*
 		group.GET("/server/session", ctl.FindSession)
