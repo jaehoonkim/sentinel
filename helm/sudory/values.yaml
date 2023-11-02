@@ -1,6 +1,6 @@
 client:
   enabled: true
-  image: "repo.kubeaiops.com/lab/nexclipper-sudory-client:latest"
+  image: "green:32000/sudory-client:latest"
   environment_variable:
     data:
       server: "" #http://<IP>:<PORT>
@@ -11,7 +11,7 @@ server:
   enabled: true
   service:
     service_type: "ClusterIP"
-  image: "repo.kubeaiops.com/lab/nexclipper-sudory-server:latest"
+  image: "green:32000/sudory-server:latest"
   containerPort: 8099
   environment_variable:
     data:

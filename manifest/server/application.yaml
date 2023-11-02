@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: sudory-server
-          image: repo.nexclipper.io/nexclipper/sudory-server:0.2.23
+          image: green:32000/sudory-server:0.0.1
           ports:
             - containerPort: 8099
           env:

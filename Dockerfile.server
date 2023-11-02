@@ -4,9 +4,9 @@ LABEL version=0.0.1
 
 ENV WORKDIR=/app \
     NAME=sudory-server \
-    USER=nexclipperuser \
+    USER=jaehoon \
     USER_ID=1002 \
-    GROUP=nexclipper
+    GROUP=kim
 
 WORKDIR ${WORKDIR}
 
