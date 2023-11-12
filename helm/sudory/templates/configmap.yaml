@@ -1,37 +1,37 @@
 ---
-{{if .Values.client.enabled -}}
+{{if .Values.agent.enabled -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-sudory-client-configmap
+  name: {{ .Release.Name }}-sudory-agent-configmap
   namespace: {{ .Release.Namespace }}
   labels:
-    sudory: client
+    sudory: agent
 data:
-{{ toYaml .Values.client.environment_variable.data | indent 2  }}
+{{ toYaml .Values.agent.environment_variable.data | indent 2  }}
 {{- end}}
 ---
-{{if .Values.server.serverrule.enabled -}}
+{{if .Values.manager.managerrule.enabled -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-sudory-server-rules-configmap
+  name: {{ .Release.Name }}-sudory-manager-rules-configmap
   namespace: {{ .Release.Namespace }}
   labels:
     release: {{ .Release.Name }}
-    sudory: server
+    sudory: manager
 data:
-{{ toYaml .Values.server.serverrule.data | indent 2 }}
+{{ toYaml .Values.manager.managerrule.data | indent 2 }}
 {{- end}}
 ---
 
-{{if .Values.server.enabled -}}
+{{if .Values.manager.enabled -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-sudory-server-configmap
+  name: {{ .Release.Name }}-sudory-manager-configmap
   namespace: {{ .Release.Namespace }}
 data:
-{{ toYaml .Values.server.environment_variable.data | indent 2  }}
+{{ toYaml .Values.manager.environment_variable.data | indent 2  }}
 {{- end}}
 ---

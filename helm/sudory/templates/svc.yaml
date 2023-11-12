@@ -1,14 +1,14 @@
-{{- if .Values.server.enabled -}}
+{{- if .Values.manager.enabled -}}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Release.Name }}-sudory-server
+  name: {{ .Release.Name }}-sudory-manager
   namespace: {{ .Release.Namespace }}
 spec:
-  type: {{ .Values.server.service.service_type }}
+  type: {{ .Values.manager.service.service_type }}
   ports:
-    - port: {{ .Values.server.containerPort }}
-      targetPort: {{ .Values.server.containerPort }}
+    - port: {{ .Values.manager.containerPort }}
+      targetPort: {{ .Values.manager.containerPort }}
   selector:
-    sudory: {{ .Release.Name }}-server
+    sudory: {{ .Release.Name }}-manager
   {{- end -}}

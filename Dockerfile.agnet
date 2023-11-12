@@ -1,0 +1,13 @@
+FROM alpine:latest  as common-build-stage
+LABEL version=0.1.0
+
+RUN apk update && apk add --no-cache openssh-client bash dbus
+
+COPY ./bin/agent/sudory-agent /
+COPY ./conf/script/agent/entrypoint.sh /
+
+ENV S_MANAGER_URL ""
+ENV S_CLUSTER_ID ""
+ENV S_TOKEN ""
+
+ENTRYPOINT ["sh", "/entrypoint.sh"]

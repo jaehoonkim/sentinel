@@ -5,7 +5,7 @@ sudoRy is a Kubernetes executor to help to manage multiple, multi-CSP backed Kub
 
 ## Why sudoRy is different than others?
 
-sudoRy consists of a server and a client for an each Kubernetes cluster, however, sudoRy's client is not a typical agent. No direct access from the server to the client API calls. The client always polls the server to inquire whether there is any assignment for the client and fetch the assigned taks and execute/send the result back to the server. Users can control how often the client polls the server using server management API. 
+sudoRy consists of a manager and a agent for an each Kubernetes cluster, however, sudoRy's agent is not a typical agent. No direct access from the manager to the agent API calls. The agent always polls the manager to inquire whether there is any assignment for the agent and fetch the assigned taks and execute/send the result back to the manager. Users can control how often the agent polls the manager using manager management API. 
 
 sudoRy maintains standard templates to use Kubernetes & Prometheus APIs and users just need to pick the template and cluster(s) to get what they want. It's simple and resuable. 
 
@@ -149,8 +149,8 @@ prometheus_query_range
 prometheus_rules
 prometheus_targets
 prometheus_targets/metadata
-sudory_client_pod_rebounce
-sudory_client_upgrade
+sudory_agent_pod_rebounce
+sudory_agent_upgrade
 sudory_credential_add
 sudory_credential_get
 sudory_credential_remove
@@ -160,11 +160,11 @@ sudory_credential_update
 
 ## How to install?
 
-Use manifest files in this github to install Server & Client. 
+Use manifest files in this github to install Manager & Agent. 
 
-### Server
+### Manager
 
-You need to have MariaDB 10.0 and above to install sudoRy server. Recommand using bitnami Mariadb helm chart to install Mariadb in your Kubernetes cluster. Once you install Mariadb and get host/port/user informatin to configre in "environment.yaml". 
+You need to have MariaDB 10.0 and above to install sudoRy manager. Recommand using bitnami Mariadb helm chart to install Mariadb in your Kubernetes cluster. Once you install Mariadb and get host/port/user informatin to configre in "environment.yaml". 
 
 ```console
 data:
@@ -188,7 +188,7 @@ data:
 
 ```
 
-Run the following commands to install the server. 
+Run the following commands to install the manager. 
 
 
 ```console
@@ -196,19 +196,19 @@ kubectl apply -f application.yaml
 kubectl apply -f environment.yaml
 ```
 
-Check your installed sudoRy server in sudory namespace. 
+Check your installed sudoRy manager in sudory namespace. 
 ```console
 kubectl get pods -n sudory
 kubectl get service -n sudory
 kubectl get deployment -n sudory
 ```
 
-### Client 
+### Agetn 
 
-To install sudoRy client, you need to get cluster uuid and bear's token from sudoRy server. 
+To install sudoRy agent, you need to get cluster uuid and bear's token from sudoRy manager. 
 
 ```console
-POST http://<sudory_server_url/server/cluster
+POST http://<sudory_manager_url/manager/cluster
 ```
 with the follwoing body - 
 ```console
@@ -238,7 +238,7 @@ Then, you will get uuid of your cluster. Here is the sample body of response -
 Next step is to get a bearer' token with the following APIs. 
 
 ```console
-POST http://<sudory_server_url/server/cluster_token
+POST http://<sudory_manager_url/manager/cluster_token
 ```
 with the following request body - 
 
@@ -263,8 +263,8 @@ Here is the sample response from the api.
 }
 ```
 
-Sudory client shall be installed at the Kubernetes cluster that you want to manage. 
-Configure these in environment.yaml for uuid and token for client. You can limit sudoRy's roles by configuring cluster role in sa.yaml. With the following configuration, sudoRy will perform only for namespace and pods. You can configure "*" for all the resources for Sudory to access & execute the commands. 
+Sudory agent shall be installed at the Kubernetes cluster that you want to manage. 
+Configure these in environment.yaml for uuid and token for agent. You can limit sudoRy's roles by configuring cluster role in sa.yaml. With the following configuration, sudoRy will perform only for namespace and pods. You can configure "*" for all the resources for Sudory to access & execute the commands. 
 
 ```c
 rules:
@@ -273,7 +273,7 @@ rules:
   verbs: ["get", "list", "watch"]
 ```
 
-Run these commands to install sudoRy client once the configuration is done.
+Run these commands to install sudoRy agent once the configuration is done.
 
 ```console
 kubectl apply -f environment.yaml
@@ -293,28 +293,28 @@ $ make swagger
 
 source build
 ```console
-$ make go-build target=server
+$ make go-build target=manager
 ```
 
-image build(server / client)  
+image build(manager / agent)  
 ```console
-$ make docker-build image=repo.kubeaiops.com/lab/nexclipper-sudory target=server
+$ make docker-build image=repo.kubeaiops.com/lab/nexclipper-sudory target=manager
 
 or
 
-$ make docker-build image=repo.kubeaiops.com/lab/nexclipper-sudory target=client
+$ make docker-build image=repo.kubeaiops.com/lab/nexclipper-sudory target=agent
 ```
 
 image push
 ```console
-$ make docker-push image=repo.kubeaiops.com/lab/nexclipper-sudory target=server
+$ make docker-push image=repo.kubeaiops.com/lab/nexclipper-sudory target=manager
 ```
 
 ## Design
 
 how to use swagger?
 ```
-kubectl port-forward svc/sudory-sudory-server -n sudory 8099
+kubectl port-forward svc/sudory-sudory-manager -n sudory 8099
 http://127.0.0.1:8099/swagger/index.html
 ```
 

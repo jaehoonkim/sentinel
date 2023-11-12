@@ -1,58 +1,58 @@
 ---
-{{if .Values.client.enabled -}}
+{{if .Values.agent.enabled -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-sudory-client
+  name: {{ .Release.Name }}-sudory-agent
   namespace: {{ .Release.Namespace }}
   labels:
-    sudory: client
+    sudory: agent
 spec:
   selector:
     matchLabels:
-      sudory:  {{ .Release.Name }}-sudory-client
+      sudory:  {{ .Release.Name }}-sudory-agent
   replicas: 1
   template:
     metadata:
       labels:
-        sudory: {{ .Release.Name }}-sudory-client
+        sudory: {{ .Release.Name }}-sudory-agent
     spec:
-      serviceAccountName: {{ .Release.Name }}-sudoryclient-controller
+      serviceAccountName: {{ .Release.Name }}-sudoryagent-controller
       containers:
-        - name: {{ .Release.Name }}-sudory-client
-          image: "{{ .Values.client.image }}"
+        - name: {{ .Release.Name }}-sudory-agent
+          image: "{{ .Values.agent.image }}"
           env:
-            {{- range $key, $value := .Values.client.environment_variable.data }}
+            {{- range $key, $value := .Values.agent.environment_variable.data }}
             - name: {{ $key }}
               valueFrom:
                 configMapKeyRef:
-                  name: {{ $.Release.Name }}-sudory-client-configmap
+                  name: {{ $.Release.Name }}-sudory-agent-configmap
                   key: {{ $key }}
             {{- end -}}
 
 {{- end }}
 ---
-{{if .Values.server.enabled -}}
+{{if .Values.manager.enabled -}}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-sudory-server
+  name: {{ .Release.Name }}-sudory-manager
   namespace: {{ .Release.Namespace }}
 spec:
   selector:
     matchLabels:
-      sudory: {{ .Release.Name }}-server
+      sudory: {{ .Release.Name }}-manager
   replicas: 1
   template:
     metadata:
       labels:
-        sudory: {{ .Release.Name }}-server
+        sudory: {{ .Release.Name }}-manager
     spec:
       containers:
-        - name: {{ .Release.Name }}-sudory-server
-          image: {{ .Values.server.image }}
+        - name: {{ .Release.Name }}-sudory-manager
+          image: {{ .Values.manager.image }}
           ports:
-            - containerPort: {{ .Values.server.containerPort }}
+            - containerPort: {{ .Values.manager.containerPort }}
           resources:
             requests:
               memory: "64Mi"
@@ -61,14 +61,14 @@ spec:
               memory: "128Mi"
               cpu: "500m"
           env:
-            {{- range $key, $value := .Values.server.environment_variable.data }}
+            {{- range $key, $value := .Values.manager.environment_variable.data }}
             - name: {{ $key }}
               valueFrom:
                 configMapKeyRef:
-                  name: {{ $.Release.Name }}-sudory-server-configmap
+                  name: {{ $.Release.Name }}-sudory-manager-configmap
                   key: {{ $key }}
             {{- end -}}
-            {{- range $key, $value := .Values.server.secret_variable.data }}
+            {{- range $key, $value := .Values.manager.secret_variable.data }}
             - name: {{ $key }}
               valueFrom:
                 secretKeyRef:
@@ -80,16 +80,16 @@ spec:
               port: 8099
             initialDelaySeconds: 15
             timeoutSeconds: 15
-          {{ if .Values.server.serverrule.enabled}}
+          {{ if .Values.manager.managerrule.enabled}}
           volumeMounts:
             - mountPath: /app/conf/rules
-              name: {{ .Release.Name }}-sudory-server-rules-volume
+              name: {{ .Release.Name }}-sudory-manager-rules-volume
           {{- end }}
-          {{- if .Values.server.serverrule.enabled}}
+          {{- if .Values.manager.managerrule.enabled}}
       volumes:
         - configMap:
             defaultMode: 420
-            name: {{ .Release.Name }}-sudory-server-rules-configmap
-          name: {{ .Release.Name }}-sudory-server-rules-volume
+            name: {{ .Release.Name }}-sudory-manager-rules-configmap
+          name: {{ .Release.Name }}-sudory-manager-rules-volume
           {{- end}}
 {{- end }}

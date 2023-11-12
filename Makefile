@@ -8,7 +8,7 @@ prep:
 	go install github.com/swaggo/swag/cmd/swag@v1.8.7
 
 swagger:
-	cd pkg/server/route;go generate
+	cd pkg/manager/route;go generate
 
 docker-login:
 	docker login ${register} -u ${user}
@@ -25,5 +25,5 @@ docker-push:
 	docker push ${image}-${target}:latest
 
 clean:
-	rm ./bin/server/sudory-server
-	rm ./bin/client/sudory-client
+	rm ./bin/manager/sudory-manager
+	rm ./bin/agent/sudory-agent

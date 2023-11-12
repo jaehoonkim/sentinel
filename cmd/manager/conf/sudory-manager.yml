@@ -1,0 +1,43 @@
+appname: sudory-manager
+
+host:
+  port: 8099
+  # tls-enable: true
+  # tls-crt-filename: /app/conf/secret/manager.crt
+  # tls-key-filename: /app/conf/secret/manager.key
+  # xauthtoken: true
+
+database:
+  type: mysql
+  protocol: 'tcp'
+  host: '127.0.0.1'
+  port: '3306'
+  dbname: 'sudory'
+  username: 'sudory'
+  password: 'sudory'
+  maxopenconns: 15
+  maxidleconns: 5
+  maxconnlifetime: 1
+  showsql: false
+  loglevel: warn
+
+migrate:
+  source: 'conf/script/migrations/sudory'
+
+logger:
+  severity: 'debug'
+  system-event: false
+  system-event-name: 'research/sudory'
+  verbose: false
+  verbose-level: 9
+  filename: 'sudory.log'
+  max-size: 10
+  max-age: 30
+  max-backups: 20
+  compress: false
+
+#encryption: /conf/enigma.yml
+
+# cors-config:
+#   allow-origins:  google.com, example.com
+#   allow-methods:  get, put, delete

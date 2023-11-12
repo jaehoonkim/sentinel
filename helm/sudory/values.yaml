@@ -1,17 +1,17 @@
-client:
+agent:
   enabled: true
-  image: "green:32000/sudory-client:latest"
+  image: "green:32000/sudory-agent:latest"
   environment_variable:
     data:
-      server: "" #http://<IP>:<PORT>
+      manager: "" #http://<IP>:<PORT>
       clusterid: ""
       token: ""
 
-server:
+manager:
   enabled: true
   service:
     service_type: "ClusterIP"
-  image: "green:32000/sudory-server:latest"
+  image: "green:32000/sudory-manager:latest"
   containerPort: 8099
   environment_variable:
     data:
@@ -32,7 +32,7 @@ server:
   secret_variable:
     data:
       db_server_password: "sudory"
-  serverrule:
+  managerrule:
     enabled: false
     data:
      enigma.yml: |

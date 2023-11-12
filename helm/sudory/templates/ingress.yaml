@@ -1,36 +1,36 @@
-{{- if .Values.server.ingress.enabled -}}
+{{- if .Values.manager.ingress.enabled -}}
 {{- $fullName := .Release.Name -}}
-{{- $servicePort := .Values.server.containerPort -}}
-{{- $ingressPath := .Values.server.ingress.path -}}
-{{- $ingressPathType := .Values.server.ingress.pathType -}}
-{{- $extraPaths := .Values.server.ingress.extraPaths -}}
+{{- $servicePort := .Values.manager.containerPort -}}
+{{- $ingressPath := .Values.manager.ingress.path -}}
+{{- $ingressPathType := .Values.manager.ingress.pathType -}}
+{{- $extraPaths := .Values.manager.ingress.extraPaths -}}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}-sudory-server
+  name: {{ $fullName }}-sudory-manager
   namespace: {{ .Release.Namespace }}
   labels:
-    sudory: {{ .Release.Name }}-server
-{{- if .Values.server.ingress.labels }}
-{{ toYaml .Values.server.ingress.labels | indent 4 }}
+    sudory: {{ .Release.Name }}-manager
+{{- if .Values.manager.ingress.labels }}
+{{ toYaml .Values.manager.ingress.labels | indent 4 }}
 {{- end }}
-  {{- if .Values.server.ingress.annotations }}
+  {{- if .Values.servmanagerer.ingress.annotations }}
   annotations:
-    {{- range $key, $value := .Values.server.ingress.annotations }}
+    {{- range $key, $value := .Values.manager.ingress.annotations }}
     {{ $key }}: {{ tpl $value $ | quote }}
     {{- end }}
   {{- end }}
 spec:
-  {{- if .Values.server.ingress.ingressClassName }}
-  ingressClassName: {{ .Values.server.ingress.ingressClassName }}
+  {{- if .Values.manager.ingress.ingressClassName }}
+  ingressClassName: {{ .Values.manager.ingress.ingressClassName }}
   {{- end -}}
-{{- if .Values.server.ingress.tls }}
+{{- if .Values.manager.ingress.tls }}
   tls:
-{{ tpl (toYaml .Values.server.ingress.tls) $ | indent 4 }}
+{{ tpl (toYaml .Values.manager.ingress.tls) $ | indent 4 }}
 {{- end }}
   rules:
-  {{- if .Values.server.ingress.hosts  }}
-  {{- range .Values.server.ingress.hosts }}
+  {{- if .Values.manager.ingress.hosts  }}
+  {{- range .Values.manager.ingress.hosts }}
     - host: {{ tpl . $}}
       http:
         paths:
@@ -41,7 +41,7 @@ spec:
             pathType: {{ $ingressPathType }}
             backend:
               service:
-                name: {{ $fullName }}-sudory-server
+                name: {{ $fullName }}-sudory-manager
                 port:
                   number: {{ $servicePort }}
   {{- end }}
@@ -50,7 +50,7 @@ spec:
         paths:
           - backend:
               service:
-                name: {{ $fullName }}-sudory-server
+                name: {{ $fullName }}-sudory-manager
                 port:
                   number: {{ $servicePort }}
             {{- if $ingressPath }}
