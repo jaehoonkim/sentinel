@@ -104,7 +104,7 @@ definitions:
       template_uuid:
         type: string
     type: object
-  service.HttpRsp_ClientServicePolling:
+  service.HttpRsp_AgentServicePolling:
     properties:
       version:
         type: string
@@ -809,15 +809,15 @@ info:
   contact:
     email: jaehoon@nexclipper.io
     url: https://nexclipper.io
-  description: this is a sudory server.
+  description: this is a sudory manager.
   title: SUDORY
   version: 0.0.1
 paths:
-  /client/auth:
+  /agent/auth:
     post:
       consumes:
       - application/json
-      description: auth client
+      description: auth agent
       parameters:
       - description: HttpReqAuth
         in: body
@@ -836,8 +836,8 @@ paths:
           schema:
             type: string
       tags:
-      - client/auth
-  /client/service:
+      - agent/auth
+  /agent/service:
     get:
       consumes:
       - application/json
@@ -852,12 +852,12 @@ paths:
               type: string
           schema:
             items:
-              $ref: '#/definitions/service.HttpRsp_ClientServicePolling'
+              $ref: '#/definitions/service.HttpRsp_AgentServicePolling'
             type: array
       security:
-      - ClientAuth: []
+      - AgentAuth: []
       tags:
-      - client/service
+      - agent/service
     put:
       consumes:
       - application/json
@@ -878,9 +878,9 @@ paths:
             x-sudory-agent-token:
               type: string
       security:
-      - ClientAuth: []
+      - AgentAuth: []
       tags:
-      - client/service
+      - agent/service
   /manager/channels:
     get:
       consumes:

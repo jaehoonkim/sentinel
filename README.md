@@ -298,16 +298,16 @@ $ make go-build target=manager
 
 image build(manager / agent)  
 ```console
-$ make docker-build image=repo.kubeaiops.com/lab/nexclipper-sudory target=manager
+$ make image base=jaehoon/sudory target=manager
 
 or
 
-$ make docker-build image=repo.kubeaiops.com/lab/nexclipper-sudory target=agent
+$ make image base=jaehoon/sudory target=agent
 ```
 
 image push
 ```console
-$ make docker-push image=repo.kubeaiops.com/lab/nexclipper-sudory target=manager
+$ make push base=jaehoon/sudory target=manager
 ```
 
 ## Design

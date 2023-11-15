@@ -19,9 +19,9 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/client/auth": {
+        "/agent/auth": {
             "post": {
-                "description": "auth client",
+                "description": "auth agent",
                 "consumes": [
                     "application/json"
                 ],
@@ -29,7 +29,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "client/auth"
+                    "agent/auth"
                 ],
                 "parameters": [
                     {
@@ -57,11 +57,11 @@ const docTemplate = `{
                 }
             }
         },
-        "/client/service": {
+        "/agent/service": {
             "get": {
                 "security": [
                     {
-                        "ClientAuth": []
+                        "AgentAuth": []
                     }
                 ],
                 "description": "get []Service",
@@ -72,7 +72,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "client/service"
+                    "agent/service"
                 ],
                 "responses": {
                     "200": {
@@ -80,7 +80,7 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/service.HttpRsp_ClientServicePolling"
+                                "$ref": "#/definitions/service.HttpRsp_AgentServicePolling"
                             }
                         },
                         "headers": {
@@ -94,7 +94,7 @@ const docTemplate = `{
             "put": {
                 "security": [
                     {
-                        "ClientAuth": []
+                        "AgentAuth": []
                     }
                 ],
                 "description": "update a service",
@@ -105,7 +105,7 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "client/service"
+                    "agent/service"
                 ],
                 "parameters": [
                     {
@@ -2334,7 +2334,7 @@ const docTemplate = `{
                 }
             }
         },
-        "service.HttpRsp_ClientServicePolling": {
+        "service.HttpRsp_AgentServicePolling": {
             "type": "object",
             "properties": {
                 "version": {
@@ -3366,7 +3366,7 @@ var SwaggerInfo = &swag.Spec{
 	BasePath:         "",
 	Schemes:          []string{},
 	Title:            "SUDORY",
-	Description:      "this is a sudory server.",
+	Description:      "this is a sudory manager.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }

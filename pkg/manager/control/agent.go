@@ -40,12 +40,12 @@ import (
 )
 
 // @Description get []Service
-// @Security    ClientAuth
+// @Security    AgentAuth
 // @Accept      json
 // @Produce     json
-// @Tags        client/service
-// @Router      /client/service [get]
-// @Success     200 {array}  servicev4.HttpRsp_ClientServicePolling
+// @Tags        agent/service
+// @Router      /agent/service [get]
+// @Success     200 {array}  servicev4.HttpRsp_AgentServicePolling
 // @Header      200 {string} x-sudory-agent-token
 func (ctl ControlVanilla) PollingService(ctx echo.Context) error {
 
@@ -461,11 +461,11 @@ func (ctl ControlVanilla) PollingService(ctx echo.Context) error {
 }
 
 // @Description update a service
-// @Security    ClientAuth
+// @Security    AgentAuth
 // @Accept      json
 // @Produce     json
-// @Tags        client/service
-// @Router      /client/service [put]
+// @Tags        agent/service
+// @Router      /agent/service [put]
 // @Param       body body servicev4.HttpReq_AgentServiceUpdate true "HttpReq_AgentServiceUpdate"
 // @Success     200
 // @Header      200 {string} x-sudory-agent-token
@@ -561,11 +561,11 @@ func (ctl ControlVanilla) UpdateService(ctx echo.Context) (err error) {
 			return HttpError(err, http.StatusBadRequest)
 		}
 
-		// get client token claims
+		// get agent token claims
 		// claims, err := GetSudoryAgentTokenClaims(ctx)
 		claims, err := GetAgentSessionClaims(ctx, ctl.DB, ctl.dialect)
 		if err != nil {
-			err = errors.Wrapf(err, "failed to get client token")
+			err = errors.Wrapf(err, "failed to get agent token")
 			return HttpError(err, http.StatusBadRequest)
 		}
 

@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "this is a sudory server.",
+        "description": "this is a sudory manager.",
         "title": "SUDORY",
         "contact": {
             "url": "https://nexclipper.io",
@@ -10,9 +10,9 @@
         "version": "0.0.1"
     },
     "paths": {
-        "/client/auth": {
+        "/agent/auth": {
             "post": {
-                "description": "auth client",
+                "description": "auth agent",
                 "consumes": [
                     "application/json"
                 ],
@@ -20,7 +20,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "client/auth"
+                    "agent/auth"
                 ],
                 "parameters": [
                     {
@@ -48,11 +48,11 @@
                 }
             }
         },
-        "/client/service": {
+        "/agent/service": {
             "get": {
                 "security": [
                     {
-                        "ClientAuth": []
+                        "AgentAuth": []
                     }
                 ],
                 "description": "get []Service",
@@ -63,7 +63,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "client/service"
+                    "agent/service"
                 ],
                 "responses": {
                     "200": {
@@ -71,7 +71,7 @@
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/service.HttpRsp_ClientServicePolling"
+                                "$ref": "#/definitions/service.HttpRsp_AgentServicePolling"
                             }
                         },
                         "headers": {
@@ -85,7 +85,7 @@
             "put": {
                 "security": [
                     {
-                        "ClientAuth": []
+                        "AgentAuth": []
                     }
                 ],
                 "description": "update a service",
@@ -96,7 +96,7 @@
                     "application/json"
                 ],
                 "tags": [
-                    "client/service"
+                    "agent/service"
                 ],
                 "parameters": [
                     {
@@ -2325,7 +2325,7 @@
                 }
             }
         },
-        "service.HttpRsp_ClientServicePolling": {
+        "service.HttpRsp_AgentServicePolling": {
             "type": "object",
             "properties": {
                 "version": {
