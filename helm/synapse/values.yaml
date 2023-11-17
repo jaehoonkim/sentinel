@@ -15,7 +15,7 @@ manager:
   containerPort: 8099
   environment_variable:
     data:
-      SYNAPSE_DB_HOST: "mariadb.db.svc.cluster.local"
+      SYNAPSE_DB_HOST: "mysql.db.svc.cluster.local"
       SYNAPSE_DB_PORT: "3306"
       SYNAPSE_DB_SCHEME: "synapse"
       SYNAPSE_DB_EXPORT_PATH: "."
