@@ -8,7 +8,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/NexClipper/logger"
+	"github.com/google/logger"
 	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
 	"github.com/jinzhu/configor"
 	"github.com/pkg/errors"
@@ -53,7 +53,7 @@ func init() {
 
 	flag.StringVar(&cfg.Logger.Severity, "log-severity", "debug", "severity of log severity=debug,[info|information],[warn|warning],error,fatal")
 	flag.BoolVar(&cfg.Logger.SystemEvent, "log-system-event", false, "enabled system event")
-	flag.StringVar(&cfg.Logger.SystemEventName, "log-system-eventname", "nexclipper.io/synapse", "system event name")
+	flag.StringVar(&cfg.Logger.SystemEventName, "log-system-eventname", "github.com/jaehoonkim/synapse", "system event name")
 	flag.BoolVar(&cfg.Logger.Verbose, "log-verbose", false, "enabled verbose")
 
 	//file rotator (for lumberjack)
@@ -87,7 +87,7 @@ func init() {
 		logger.SetLevel(logger.Level(severity(cfg.Logger.Severity)))
 
 		//first log
-		logger.Debugf("init logger%v",
+		logger.Infof("init logger%v",
 			logs.KVL(
 				"log-severity", cfg.Logger.Severity,
 				"log-system-event", cfg.Logger.SystemEvent,

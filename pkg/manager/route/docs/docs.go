@@ -11,8 +11,8 @@ const docTemplate = `{
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
         "contact": {
-            "url": "https://nexclipper.io",
-            "email": "jaehoon@nexclipper.io"
+            "url": "https://github.com/jaehoonkim/synapse",
+            "email": "jaehoon@gmail.io"
         },
         "version": "{{.Version}}"
     },

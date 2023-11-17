@@ -12,8 +12,8 @@ import (
 	"text/tabwriter"
 	"time"
 
-	"github.com/NexClipper/logger"
 	"github.com/golang-migrate/migrate/v4"
+	"github.com/google/logger"
 	"github.com/jaehoonkim/synapse/pkg/manager/config"
 	"github.com/jaehoonkim/synapse/pkg/manager/database"
 	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
@@ -139,7 +139,7 @@ func main() {
 		))
 	}
 
-	logger.Debugf("%s is DONE", path.Base(strings.ReplaceAll(os.Args[0], "\\", "/")))
+	logger.Infof("%s is DONE", path.Base(strings.ReplaceAll(os.Args[0], "\\", "/")))
 }
 
 func doMigration(cfg *config.Config) (err error) {

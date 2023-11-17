@@ -1,8 +1,8 @@
 // @title SYNAPSE
 // @version 0.0.1
 // @description this is a synapse manager.
-// @contact.url https://nexclipper.io
-// @contact.email jaehoon@nexclipper.io
+// @contact.url https://github.com/jaehoonkim/synapse
+// @contact.email jaehoon@gmail.io
 // @securityDefinitions.apikey ClientAuth
 // @in header
 // @name x-synapse-agent-token

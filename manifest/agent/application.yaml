@@ -16,7 +16,7 @@ spec:
       serviceAccountName: synapse-controller
       containers:
         - name: synapse-agent
-          image: green:32000/nexclipper-synapse-agent
+          image: green:32000/synapse-synapse-agent
           env:
             - name: S_MANAGER_URL
               valueFrom:

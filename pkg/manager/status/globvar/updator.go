@@ -7,7 +7,7 @@ import (
 
 	// "github.com/jaehoonkim/synapse/pkg/manager/control/vault"
 
-	"github.com/NexClipper/logger"
+	"github.com/google/logger"
 	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla"
 	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
 	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"

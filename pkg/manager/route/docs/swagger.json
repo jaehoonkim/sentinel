@@ -4,8 +4,8 @@
         "description": "this is a synapse manager.",
         "title": "SYNAPSE",
         "contact": {
-            "url": "https://nexclipper.io",
-            "email": "jaehoon@nexclipper.io"
+            "url": "https://github.com/jaehoonkim/synapse",
+            "email": "jaehoon@gmail.io"
         },
         "version": "0.0.1"
     },

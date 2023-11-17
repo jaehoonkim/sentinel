@@ -807,8 +807,8 @@ definitions:
     type: object
 info:
   contact:
-    email: jaehoon@nexclipper.io
-    url: https://nexclipper.io
+    email: jaehoon@gmail.io
+    url: https://github.com/jaehoonkim/synapse
   description: this is a synapse manager.
   title: SYNAPSE
   version: 0.0.1
