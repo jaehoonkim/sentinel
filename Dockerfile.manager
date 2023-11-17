@@ -20,7 +20,7 @@ COPY /bin/manager/synapse-manager ${WORKDIR}/
 COPY /conf/synapse-manager.yml ${WORKDIR}/conf/
 COPY /conf/enigma.yml ${WORKDIR}/conf/rules/
 COPY /conf/script/migrations/synapse  ${WORKDIR}/conf/migrations/synapse
-COPY docker-entrypoint.sh ${WORKDIR}/
+COPY /conf/script/manager/entrypoint.sh ${WORKDIR}/
 
 
 RUN chmod +x  ${WORKDIR}/docker-entrypoint.sh
@@ -33,4 +33,4 @@ USER ${USER}
 
 EXPOSE 8099
 
-ENTRYPOINT [ "sh","./docker-entrypoint.sh" ]
+ENTRYPOINT [ "sh","./entrypoint.sh" ]
