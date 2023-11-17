@@ -14,7 +14,7 @@ synapse maintains standard templates to use Kubernetes & Prometheus APIs and use
 
 The list below is the template list synapse is supporting as of today and "create", "delete", "apply" will be added soon. 
 
-```console
+```
 alertmanager_silences_create
 alertmanager_silences_delete
 alertmanager_silences_get
@@ -164,7 +164,7 @@ Use manifest files in this github to install Manager & Agent.
 
 You need to have MariaDB 10.0 and above to install synapse manager. Recommand using bitnami Mariadb helm chart to install Mariadb in your Kubernetes cluster. Once you install Mariadb and get host/port/user informatin to configre in "environment.yaml". 
 
-```console
+```yaml
 data:
   db_host: "XXX.XXX.XXX.XXX"
   db_port: "3306"
@@ -174,7 +174,7 @@ data:
 ```
 
 Also use BASE64 to encrypt your password and populate in the Secret in the "environment.yaml" file. Also, configure "x_auth_token" value to use the token in the header of API request. 
-```console
+```yaml
 apiVersion: v1
 kind: Secret
 metadata:
@@ -189,27 +189,27 @@ data:
 Run the following commands to install the manager. 
 
 
-```console
-kubectl apply -f application.yaml
-kubectl apply -f environment.yaml
+```shell
+$ kubectl apply -f application.yaml
+$ kubectl apply -f environment.yaml
 ```
 
 Check your installed synapse manager in synapse namespace. 
-```console
-kubectl get pods -n synapse
-kubectl get service -n synapse
-kubectl get deployment -n synapse
+```shell
+$ kubectl get pods -n synapse
+$ kubectl get service -n synapse
+$ kubectl get deployment -n synapse
 ```
 
 ### Agent 
 
 To install synapse agent, you need to get cluster uuid and bear's token from synapse manager. 
 
-```console
+```shell
 POST http://<synapse_manager_url/manager/cluster
 ```
 with the follwoing body - 
-```console
+```json
 {
   "name": "cluster name",
   "polling_option": {
@@ -222,7 +222,7 @@ with the follwoing body -
 
 Then, you will get uuid of your cluster. Here is the sample body of response - 
 
-```console
+```json
     "id": 3,
     "uuid": "8a331d8d913d47e39946b32dc70e77f7",
     "name": "cluster name",
@@ -235,12 +235,12 @@ Then, you will get uuid of your cluster. Here is the sample body of response -
 
 Next step is to get a bearer' token with the following APIs. 
 
-```console
+```shell
 POST http://<synapse_manager_url/manager/cluster_token
 ```
 with the following request body - 
 
-```console
+```json
 {
   "name": "cluster name",
   "cluster_uuid": "8a331d8d913d47e39946b32dc70e77f7",
@@ -249,7 +249,7 @@ with the following request body -
 ```
 Here is the sample response from the api. 
 
-```c
+```json
 {
     "id": 2,
     "uuid": "2e11ec0976354bfdb593af4fa6120db4",
@@ -264,7 +264,7 @@ Here is the sample response from the api.
 synapse agent shall be installed at the Kubernetes cluster that you want to manage. 
 Configure these in environment.yaml for uuid and token for agent. You can limit synapse's roles by configuring cluster role in sa.yaml. With the following configuration, synapse will perform only for namespace and pods. You can configure "*" for all the resources for synapse to access & execute the commands. 
 
-```c
+```yaml
 rules:
 - apiGroups: ["*"]
   resources: ["namespaces", "pods"]
@@ -273,10 +273,10 @@ rules:
 
 Run these commands to install synapse agent once the configuration is done.
 
-```console
-kubectl apply -f environment.yaml
-kubectl apply -f application.yaml
-kubectl apply -f sa.yaml
+```shell
+$ kubectl apply -f environment.yaml
+$ kubectl apply -f application.yaml
+$ kubectl apply -f sa.yaml
 ```
 
 
@@ -285,34 +285,32 @@ kubectl apply -f sa.yaml
 
 
 swagger build 
-```console
+```shell
 $ make swagger
 ```
 
 source build
-```console
-$ make go-build target=manager
+```shell
+$ make build target=manager
 ```
 
 image build(manager / agent)  
-```console
+```shell
 $ make image base=jaehoon/synapse target=manager
-
 or
-
 $ make image base=jaehoon/synapse target=agent
 ```
 
 image push
-```console
+```shell
 $ make push base=jaehoon/synapse target=manager
 ```
 
 ## Design
 
 how to use swagger?
-```
-kubectl port-forward svc/synapse-synapse-manager -n synapse 8099
+```shell
+$ kubectl port-forward svc/synapse-synapse-manager -n synapse 8099
 http://127.0.0.1:8099/swagger/index.html
 ```
 
