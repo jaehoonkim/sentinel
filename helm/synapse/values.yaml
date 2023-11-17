@@ -1,6 +1,6 @@
 agent:
   enabled: true
-  image: "green:32000/synapse-agent:latest"
+  image: "jaehoon/synapse-agent:latest"
   environment_variable:
     data:
       manager: "" #http://<IP>:<PORT>
@@ -11,11 +11,11 @@ manager:
   enabled: true
   service:
     service_type: "ClusterIP"
-  image: "green:32000/synapse-manager:latest"
+  image: "jaehoon/synapse-manager:latest"
   containerPort: 8099
   environment_variable:
     data:
-      SYNAPSE_DB_HOST: "mariadb.mariadb.svc.cluster.local"
+      SYNAPSE_DB_HOST: "mariadb.db.svc.cluster.local"
       SYNAPSE_DB_PORT: "3306"
       SYNAPSE_DB_SCHEME: "synapse"
       SYNAPSE_DB_EXPORT_PATH: "."
