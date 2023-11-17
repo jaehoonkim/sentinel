@@ -12,11 +12,11 @@ import (
 )
 
 const (
-	// CiperKeySudoryDefaultCrypto is a CiperKey of type Sudory.Default.Crypto.
-	CiperKeySudoryDefaultCrypto CiperKey = iota
+	// CiperKeySynapseDefaultCrypto is a CiperKey of type Synapse.Default.Crypto.
+	CiperKeySynapseDefaultCrypto CiperKey = iota
 )
 
-const _CiperKeyName = "sudory.default.crypto"
+const _CiperKeyName = "synapse.default.crypto"
 
 var _CiperKeyNames = []string{
 	_CiperKeyName[0:21],
@@ -30,7 +30,7 @@ func CiperKeyNames() []string {
 }
 
 var _CiperKeyMap = map[CiperKey]string{
-	CiperKeySudoryDefaultCrypto: _CiperKeyName[0:21],
+	CiperKeySynapseDefaultCrypto: _CiperKeyName[0:21],
 }
 
 // String implements the Stringer interface.
@@ -42,7 +42,7 @@ func (x CiperKey) String() string {
 }
 
 var _CiperKeyValue = map[string]CiperKey{
-	_CiperKeyName[0:21]: CiperKeySudoryDefaultCrypto,
+	_CiperKeyName[0:21]: CiperKeySynapseDefaultCrypto,
 }
 
 // ParseCiperKey attempts to convert a string to a CiperKey.

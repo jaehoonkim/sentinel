@@ -1,6 +1,6 @@
 package control
 
-import "github.com/NexClipper/sudory/pkg/manager/macro"
+import "github.com/jaehoonkim/synapse/pkg/manager/macro"
 
 func genUuidString(uuid string) string {
 	if 0 < len(uuid) {

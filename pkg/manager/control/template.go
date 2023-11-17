@@ -3,12 +3,12 @@ package control
 import (
 	"net/http"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/excute"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
-	"github.com/NexClipper/sudory/pkg/manager/macro/echoutil"
-	"github.com/NexClipper/sudory/pkg/manager/macro/logs"
-	"github.com/NexClipper/sudory/pkg/manager/model/template/v3"
-	"github.com/NexClipper/sudory/pkg/manager/status/state"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/echoutil"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
+	"github.com/jaehoonkim/synapse/pkg/manager/model/template/v3"
+	"github.com/jaehoonkim/synapse/pkg/manager/status/state"
 	"github.com/labstack/echo/v4"
 	"github.com/pkg/errors"
 )
@@ -68,9 +68,9 @@ func (ctl ControlVanilla) GetTemplate(ctx echo.Context) (err error) {
 // @Produce     json
 // @Tags        manager/template
 // @Router      /manager/template [get]
-// @Param       q            query  string false "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       o            query  string false "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       p            query  string false "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       q            query  string false "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       o            query  string false "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       p            query  string false "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md"
 // @Success 200 {array} template.HttpRsp_Template
 func (ctl ControlVanilla) FindTemplate(ctx echo.Context) error {
 	q, err := stmt.ConditionLexer.Parse(echoutil.QueryParam(ctx)["q"])

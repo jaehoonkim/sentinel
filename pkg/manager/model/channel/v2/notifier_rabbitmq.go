@@ -1,7 +1,7 @@
 package v2
 
 import (
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla"
 )
 
 type NotifierRabbitMq_essential struct {

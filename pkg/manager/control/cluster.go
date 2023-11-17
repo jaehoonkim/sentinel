@@ -6,16 +6,16 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/manager/database"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/excute"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/sqlex"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
-	"github.com/NexClipper/sudory/pkg/manager/macro/echoutil"
-	"github.com/NexClipper/sudory/pkg/manager/macro/logs"
-	clusterv3 "github.com/NexClipper/sudory/pkg/manager/model/cluster/v3"
-	tenants "github.com/NexClipper/sudory/pkg/manager/model/tenants/v3"
-	"github.com/NexClipper/sudory/pkg/manager/status/state"
+	"github.com/jaehoonkim/synapse/pkg/manager/database"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/sqlex"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/echoutil"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
+	clusterv3 "github.com/jaehoonkim/synapse/pkg/manager/model/cluster/v3"
+	tenants "github.com/jaehoonkim/synapse/pkg/manager/model/tenants/v3"
+	"github.com/jaehoonkim/synapse/pkg/manager/status/state"
 	"github.com/labstack/echo/v4"
 	"github.com/pkg/errors"
 )
@@ -113,9 +113,9 @@ func (ctl ControlVanilla) CreateCluster(ctx echo.Context) (err error) {
 // @Produce     json
 // @Tags        manager/cluster
 // @Router      /manager/cluster [get]
-// @Param       q            query  string false "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       o            query  string false "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       p            query  string false "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       q            query  string false "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       o            query  string false "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       p            query  string false "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md"
 // @Success     200 {array} v3.HttpRsp_Cluster
 func (ctl ControlVanilla) FindCluster(ctx echo.Context) (err error) {
 	q, err := stmt.ConditionLexer.Parse(echoutil.QueryParam(ctx)["q"])

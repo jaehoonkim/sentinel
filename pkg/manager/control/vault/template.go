@@ -4,19 +4,19 @@ import (
 	"context"
 	"sort"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/excute"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
-	"github.com/NexClipper/sudory/pkg/manager/model/template/v2"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/synapse/pkg/manager/model/template/v2"
 	"github.com/pkg/errors"
 )
 
 // import (
-// 	"github.com/NexClipper/sudory/pkg/manager/database"
-// 	"github.com/NexClipper/sudory/pkg/manager/database/prepare"
-// 	"github.com/NexClipper/sudory/pkg/manager/macro/logs"
+// 	"github.com/jaehoonkim/synapse/pkg/manager/database"
+// 	"github.com/jaehoonkim/synapse/pkg/manager/database/prepare"
+// 	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
 // 	"github.com/pkg/errors"
 
-// 	templatev1 "github.com/NexClipper/sudory/pkg/manager/model/template/v1"
+// 	templatev1 "github.com/jaehoonkim/synapse/pkg/manager/model/template/v1"
 // )
 
 // //Template

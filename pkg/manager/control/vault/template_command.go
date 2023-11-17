@@ -1,10 +1,10 @@
 package vault
 
 // import (
-// 	"github.com/NexClipper/sudory/pkg/manager/database"
-// 	"github.com/NexClipper/sudory/pkg/manager/database/prepare"
-// 	"github.com/NexClipper/sudory/pkg/manager/macro/logs"
-// 	commandv1 "github.com/NexClipper/sudory/pkg/manager/model/template_command/v1"
+// 	"github.com/jaehoonkim/synapse/pkg/manager/database"
+// 	"github.com/jaehoonkim/synapse/pkg/manager/database/prepare"
+// 	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
+// 	commandv1 "github.com/jaehoonkim/synapse/pkg/manager/model/template_command/v1"
 // 	"github.com/pkg/errors"
 // )
 

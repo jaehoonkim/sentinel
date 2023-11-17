@@ -1,7 +1,7 @@
 package v1
 
 import (
-	metav1 "github.com/NexClipper/sudory/pkg/manager/model/meta/v1"
+	metav1 "github.com/jaehoonkim/synapse/pkg/manager/model/meta/v1"
 )
 
 // TemplateCommandProperty

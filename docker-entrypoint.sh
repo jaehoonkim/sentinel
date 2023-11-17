@@ -1,7 +1,7 @@
 #!/bin/sh
 
 apprun() {
-	/app/sudory-manager -config '/app/conf/sudory-manager.yml'
+	/app/synapse-manager -config '/app/conf/synapse-manager.yml'
 }
 
 apprun

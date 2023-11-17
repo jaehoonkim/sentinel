@@ -1,4 +1,4 @@
-module github.com/NexClipper/sudory
+module github.com/jaehoonkim/synapse
 
 go 1.21
 

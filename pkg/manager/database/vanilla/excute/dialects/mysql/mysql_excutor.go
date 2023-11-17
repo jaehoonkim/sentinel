@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/excute"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
 	"github.com/pkg/errors"
 )
 

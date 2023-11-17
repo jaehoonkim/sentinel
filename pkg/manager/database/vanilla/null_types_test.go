@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla"
 )
 
 func TestNullInt(t *testing.T) {

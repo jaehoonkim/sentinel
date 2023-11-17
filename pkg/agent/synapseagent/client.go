@@ -1,10 +1,10 @@
-package sudoryagent
+package synapseagent
 
 import (
 	"fmt"
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/agent/k8s"
+	"github.com/jaehoonkim/synapse/pkg/agent/k8s"
 )
 
 const defaultTimeout = 10 * time.Second

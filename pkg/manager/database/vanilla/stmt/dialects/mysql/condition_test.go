@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
 )
 
 func TestNewCondition(t *testing.T) {

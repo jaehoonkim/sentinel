@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/NexClipper/sudory/pkg/manager/macro/enigma"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/enigma"
 	"gopkg.in/yaml.v2"
 )
 

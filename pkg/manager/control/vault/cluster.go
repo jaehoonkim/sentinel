@@ -3,19 +3,19 @@ package vault
 import (
 	"context"
 
-	"github.com/NexClipper/sudory/pkg/manager/database"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/excute"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
-	"github.com/NexClipper/sudory/pkg/manager/model/auths/v2"
-	clusters "github.com/NexClipper/sudory/pkg/manager/model/cluster/v3"
+	"github.com/jaehoonkim/synapse/pkg/manager/database"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/synapse/pkg/manager/model/auths/v2"
+	clusters "github.com/jaehoonkim/synapse/pkg/manager/model/cluster/v3"
 	"github.com/pkg/errors"
 )
 
 // import (
-// 	"github.com/NexClipper/sudory/pkg/manager/database"
-// 	"github.com/NexClipper/sudory/pkg/manager/database/prepare"
-// 	"github.com/NexClipper/sudory/pkg/manager/macro/logs"
-// 	clusterv1 "github.com/NexClipper/sudory/pkg/manager/model/cluster/v1"
+// 	"github.com/jaehoonkim/synapse/pkg/manager/database"
+// 	"github.com/jaehoonkim/synapse/pkg/manager/database/prepare"
+// 	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
+// 	clusterv1 "github.com/jaehoonkim/synapse/pkg/manager/model/cluster/v1"
 // 	"github.com/pkg/errors"
 // 	"xorm.io/xorm"
 // )

@@ -1,109 +1,109 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: sudory-manager
-  namespace: sudory 
+  name: synapse-manager
+  namespace: synapse 
 spec:
   type: LoadBalancer
   ports:
     - port: 8099
       targetPort: 8099
   selector:
-    sudory: manager 
+    synapse: manager 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sudory-manager
+  name: synapse-manager
   namespace: manager
 spec:
   selector:
     matchLabels:
-      sudory: manager
+      synapse: manager
   replicas: 1 
   template:
     metadata:
       labels:
-        sudory: manager
+        synapse: manager
     spec:
       containers:
-        - name: sudory-manager
-          image: green:32000/sudory-manager:0.0.1
+        - name: synapse-manager
+          image: green:32000/synapse-manager:0.0.1
           ports:
             - containerPort: 8099
           env:
-            - name: SUDORY_DB_HOST
+            - name: SYNAPSE_DB_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: sudory-configmap
+                  name: synapse-configmap
                   key: db_host
-            - name: SUDORY_DB_PORT
+            - name: SYNAPSE_DB_PORT
               valueFrom:
                 configMapKeyRef:
-                  name: sudory-configmap
+                  name: synapse-configmap
                   key: db_port
-            - name: SUDORY_DB_SCHEME
+            - name: SYNAPSE_DB_SCHEME
               valueFrom:
                 configMapKeyRef:
-                  name: sudory-configmap
+                  name: synapse-configmap
                   key: db_scheme
-            - name: SUDORY_DB_EXPORT_PATH
+            - name: SYNAPSE_DB_EXPORT_PATH
               valueFrom:
                 configMapKeyRef:
-                  name: sudory-configmap
+                  name: synapse-configmap
                   key: db_export_path
-            - name: SUDORY_DB_SERVER_USERNAME
+            - name: SYNAPSE_DB_SERVER_USERNAME
               valueFrom:
                 configMapKeyRef:
-                  name: sudory-configmap
+                  name: synapse-configmap
                   key: db_server_username
-            - name: SUDORY_DB_SERVER_PASSWORD
+            - name: SYNAPSE_DB_SERVER_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: sudory-secret
+                  name: synapse-secret
                   key: db_server_password
-            - name: SUDORY_LOG_SEVERITY
+            - name: SYNAPSE_LOG_SEVERITY
               valueFrom:
                 configMapKeyRef:
-                  name: sudory-configmap
+                  name: synapse-configmap
                   key: log_severity
-            - name: SUDORY_LOG_SYSTEM_EVENT
+            - name: SYNAPSE_LOG_SYSTEM_EVENT
               valueFrom:
                 configMapKeyRef:
-                  name: sudory-configmap            
+                  name: synapse-configmap            
                   key: log_system_event
-            - name: SUDORY_LOG_VERBOSE
+            - name: SYNAPSE_LOG_VERBOSE
               valueFrom:
                 configMapKeyRef:
-                  name: sudory-configmap 
+                  name: synapse-configmap 
                   key: log_verbose
-            - name: SUDORY_LOG_VERBOSELEVEL
+            - name: SYNAPSE_LOG_VERBOSELEVEL
               valueFrom:
                 configMapKeyRef:
-                  name: sudory-configmap
+                  name: synapse-configmap
                   key: log_verboselevel
-            - name: SUDORY_LOG_FILENAME
+            - name: SYNAPSE_LOG_FILENAME
               valueFrom:
                 configMapKeyRef:
-                  name: sudory-configmap
+                  name: synapse-configmap
                   key: log_filename
-            - name: SUDORY_LOG_MAXSIZE
+            - name: SYNAPSE_LOG_MAXSIZE
               valueFrom:
                 configMapKeyRef:
-                  name: sudory-configmap
+                  name: synapse-configmap
                   key: log_maxsize
-            - name: SUDORY_LOG_MAXAGE
+            - name: SYNAPSE_LOG_MAXAGE
               valueFrom:
                 configMapKeyRef:
-                  name: sudory-configmap
+                  name: synapse-configmap
                   key: log_maxage
-            - name: SUDORY_LOG_MAXBACKUPS
+            - name: SYNAPSE_LOG_MAXBACKUPS
               valueFrom:
                 configMapKeyRef:
-                  name: sudory-configmap
+                  name: synapse-configmap
                   key: log_maxbackups
-            - name: SUDORY_LOG_COMPRESS
+            - name: SYNAPSE_LOG_COMPRESS
               valueFrom:
                 configMapKeyRef:
-                  name: sudory-configmap
+                  name: synapse-configmap
                   key: log_compress

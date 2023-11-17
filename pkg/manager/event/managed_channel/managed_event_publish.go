@@ -9,12 +9,12 @@ import (
 
 	"github.com/NexClipper/logger"
 
-	"github.com/NexClipper/sudory/pkg/manager/control/vault"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/excute"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
-	"github.com/NexClipper/sudory/pkg/manager/macro/logs"
-	channelv3 "github.com/NexClipper/sudory/pkg/manager/model/channel/v3"
-	"github.com/NexClipper/sudory/pkg/manager/status/globvar"
+	"github.com/jaehoonkim/synapse/pkg/manager/control/vault"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
+	channelv3 "github.com/jaehoonkim/synapse/pkg/manager/model/channel/v3"
+	"github.com/jaehoonkim/synapse/pkg/manager/status/globvar"
 	"github.com/pkg/errors"
 )
 

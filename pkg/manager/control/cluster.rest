@@ -15,7 +15,7 @@
 
 POST {{url}}/manager/tenant {{protocolver}}
 Content-Type: application/json
-x_auth_token: SUDORY
+x_auth_token: SYNAPSE
 
 {
   "tenant": "{{ tenant_pattern }}"

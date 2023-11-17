@@ -1,6 +1,6 @@
 agent:
   enabled: true
-  image: "green:32000/sudory-agent:latest"
+  image: "green:32000/synapse-agent:latest"
   environment_variable:
     data:
       manager: "" #http://<IP>:<PORT>
@@ -11,33 +11,33 @@ manager:
   enabled: true
   service:
     service_type: "ClusterIP"
-  image: "green:32000/sudory-manager:latest"
+  image: "green:32000/synapse-manager:latest"
   containerPort: 8099
   environment_variable:
     data:
-      SUDORY_DB_HOST: "mariadb.mariadb.svc.cluster.local"
-      SUDORY_DB_PORT: "3306"
-      SUDORY_DB_SCHEME: "sudory"
-      SUDORY_DB_EXPORT_PATH: "."
-      SUDORY_DB_SERVER_USERNAME: "sudory"
-      SUDORY_LOG_SEVERITY: "info"
-      SUDORY_LOG_SYSTEM_EVENT: "false"
-      SUDORY_LOG_VERBOSE: "true"
-      SUDORY_LOG_VERBOSELEVEL: "9"
-      SUDORY_LOG_FILENAME: "./sudory.log"
-      SUDORY_LOG_MAXSIZE: "10"
-      SUDORY_LOG_MAXAGE: "5"
-      SUDORY_LOG_MAXBACKUPS: "10"
-      SUDORY_LOG_COMPRESS: "false"
+      SYNAPSE_DB_HOST: "mariadb.mariadb.svc.cluster.local"
+      SYNAPSE_DB_PORT: "3306"
+      SYNAPSE_DB_SCHEME: "synapse"
+      SYNAPSE_DB_EXPORT_PATH: "."
+      SYNAPSE_DB_SERVER_USERNAME: "synapse"
+      SYNAPSE_LOG_SEVERITY: "info"
+      SYNAPSE_LOG_SYSTEM_EVENT: "false"
+      SYNAPSE_LOG_VERBOSE: "true"
+      SYNAPSE_LOG_VERBOSELEVEL: "9"
+      SYNAPSE_LOG_FILENAME: "./synapse.log"
+      SYNAPSE_LOG_MAXSIZE: "10"
+      SYNAPSE_LOG_MAXAGE: "5"
+      SYNAPSE_LOG_MAXBACKUPS: "10"
+      SYNAPSE_LOG_COMPRESS: "false"
   secret_variable:
     data:
-      db_server_password: "sudory"
+      db_server_password: "synapse"
   managerrule:
     enabled: false
     data:
      enigma.yml: |
        enigma:
-         sudory.default.crypto:
+         synapse.default.crypto:
            block-method: none
            block-size: 0
            block-key:

@@ -1,16 +1,16 @@
-// @title SUDORY
+// @title SYNAPSE
 // @version 0.0.1
-// @description this is a sudory manager.
+// @description this is a synapse manager.
 // @contact.url https://nexclipper.io
 // @contact.email jaehoon@nexclipper.io
 // @securityDefinitions.apikey ClientAuth
 // @in header
-// @name x-sudory-agent-token
+// @name x-synapse-agent-token
 // @description token for client api
 // @securityDefinitions.apikey XAuthToken
 // @in header
 // @name x_auth_token
-// @description limit for access sudory api
+// @description limit for access synapse api
 package route
 
 import (
@@ -23,19 +23,19 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/manager/config"
-	"github.com/NexClipper/sudory/pkg/manager/control"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/excute"
-	mysqlFlavor "github.com/NexClipper/sudory/pkg/manager/database/vanilla/excute/dialects/mysql"
-	pprof "github.com/NexClipper/sudory/pkg/manager/route/pprof"
-	"github.com/NexClipper/sudory/pkg/version"
+	"github.com/jaehoonkim/synapse/pkg/manager/config"
+	"github.com/jaehoonkim/synapse/pkg/manager/control"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
+	mysqlFlavor "github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute/dialects/mysql"
+	pprof "github.com/jaehoonkim/synapse/pkg/manager/route/pprof"
+	"github.com/jaehoonkim/synapse/pkg/version"
 	"github.com/pkg/errors"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/swaggo/echo-swagger"
 
-	"github.com/NexClipper/sudory/pkg/manager/route/docs"
+	"github.com/jaehoonkim/synapse/pkg/manager/route/docs"
 )
 
 func init() {
@@ -105,7 +105,7 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 	{
 		// /client/auth*
 		e.POST("/agent/auth", ctl.AuthAgent)
-		e.POST("/sudory/agent/auth", ctl.AuthAgent)
+		e.POST("/synapse/agent/auth", ctl.AuthAgent)
 
 		group := e.Group("")
 		// @Security ClientSessionToken
@@ -113,8 +113,8 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 		// /client/service*
 		group.GET("/agent/service", ctl.PollingService)
 		group.PUT("/agent/service", ctl.UpdateService)
-		group.GET("/sudory/agent/service", ctl.PollingService)
-		group.PUT("/sudory/agent/service", ctl.UpdateService)
+		group.GET("/synapse/agent/service", ctl.PollingService)
+		group.PUT("/synapse/agent/service", ctl.UpdateService)
 	}
 
 	{
@@ -123,31 +123,31 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 
 		// /manager/auth*
 		group.POST("/manager/tenant", ctl.Tenant)
-		group.POST("/sudory/manager/tenant", ctl.Tenant)
+		group.POST("/synapse/manager/tenant", ctl.Tenant)
 
 		// /manager/template_recipe*
 		group.GET("/manager/template_recipe", ctl.FindTemplateRecipe)
-		group.GET("/sudory/manager/template_recipe", ctl.FindTemplateRecipe)
+		group.GET("/synapse/manager/template_recipe", ctl.FindTemplateRecipe)
 
 		// /manager/template*
 		group.GET("/manager/template", ctl.FindTemplate)
 		group.GET("/manager/template/:uuid", ctl.GetTemplate)
-		group.GET("/sudory/manager/template", ctl.FindTemplate)
-		group.GET("/sudory/manager/template/:uuid", ctl.GetTemplate)
+		group.GET("/synapse/manager/template", ctl.FindTemplate)
+		group.GET("/synapse/manager/template/:uuid", ctl.GetTemplate)
 
 		// /manager/template_command*
 		group.GET("/manager/template_command", ctl.FindTemplateCommand)
 		group.GET("/manager/template_command/:uuid", ctl.GetTemplateCommand)
-		group.GET("/sudory/manager/template_command", ctl.FindTemplateCommand)
-		group.GET("/sudory/manager/template_command/:uuid", ctl.GetTemplateCommand)
+		group.GET("/synapse/manager/template_command", ctl.FindTemplateCommand)
+		group.GET("/synapse/manager/template_command/:uuid", ctl.GetTemplateCommand)
 
 		// /manager/global_variables*
 		group.GET("/manager/global_variables", ctl.FindGlobalVariables)
 		group.GET("/manager/global_variables/:uuid", ctl.GetGlobalVariables)
 		group.PUT("/manager/global_variables/:uuid", ctl.UpdateGlobalVariablesValue)
-		group.GET("/sudory/manager/global_variables", ctl.FindGlobalVariables)
-		group.GET("/sudory/manager/global_variables/:uuid", ctl.GetGlobalVariables)
-		group.PUT("/sudory/manager/global_variables/:uuid", ctl.UpdateGlobalVariablesValue)
+		group.GET("/synapse/manager/global_variables", ctl.FindGlobalVariables)
+		group.GET("/synapse/manager/global_variables/:uuid", ctl.GetGlobalVariables)
+		group.PUT("/synapse/manager/global_variables/:uuid", ctl.UpdateGlobalVariablesValue)
 
 	}
 
@@ -163,33 +163,33 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 		group.PUT("/manager/cluster/:uuid/polling/regular", ctl.UpdateClusterPollingRegular)
 		group.PUT("/manager/cluster/:uuid/polling/smart", ctl.UpdateClusterPollingSmart)
 		group.DELETE("/manager/cluster/:uuid", ctl.DeleteCluster)
-		group.GET("/sudory/manager/cluster", ctl.FindCluster)
-		group.GET("/sudory/manager/cluster/:uuid", ctl.GetCluster)
-		group.POST("/sudory/manager/cluster", ctl.CreateCluster)
-		group.PUT("/sudory/manager/cluster/:uuid", ctl.UpdateCluster)
-		group.PUT("/sudory/manager/cluster/:uuid/polling/regular", ctl.UpdateClusterPollingRegular)
-		group.PUT("/sudory/manager/cluster/:uuid/polling/smart", ctl.UpdateClusterPollingSmart)
-		group.DELETE("/sudory/manager/cluster/:uuid", ctl.DeleteCluster)
+		group.GET("/synapse/manager/cluster", ctl.FindCluster)
+		group.GET("/synapse/manager/cluster/:uuid", ctl.GetCluster)
+		group.POST("/synapse/manager/cluster", ctl.CreateCluster)
+		group.PUT("/synapse/manager/cluster/:uuid", ctl.UpdateCluster)
+		group.PUT("/synapse/manager/cluster/:uuid/polling/regular", ctl.UpdateClusterPollingRegular)
+		group.PUT("/synapse/manager/cluster/:uuid/polling/smart", ctl.UpdateClusterPollingSmart)
+		group.DELETE("/synapse/manager/cluster/:uuid", ctl.DeleteCluster)
 
 		// /manager/service*
 		group.GET("/manager/service", ctl.FindService)
 		group.GET("/manager/service/:uuid", ctl.GetService)
 		group.POST("/manager/service", ctl.CreateService)
 		group.GET("/manager/service/:uuid/result", ctl.GetServiceResult)
-		group.GET("/sudory/manager/service", ctl.FindService)
-		group.GET("/sudory/manager/service/:uuid", ctl.GetService)
-		group.POST("/sudory/manager/service", ctl.CreateService)
-		group.GET("/sudory/manager/service/:uuid/result", ctl.GetServiceResult)
+		group.GET("/synapse/manager/service", ctl.FindService)
+		group.GET("/synapse/manager/service/:uuid", ctl.GetService)
+		group.POST("/synapse/manager/service", ctl.CreateService)
+		group.GET("/synapse/manager/service/:uuid/result", ctl.GetServiceResult)
 
 		// /manager/session*
 		group.GET("/manager/session", ctl.FindSession)
 		group.GET("/manager/session/:uuid", ctl.GetSession)
 		group.DELETE("/manager/session/:uuid", ctl.DeleteSession)
 		group.GET("/manager/session/cluster/:cluster_uuid/alive", ctl.AliveClusterSession)
-		group.GET("/sudory/manager/session", ctl.FindSession)
-		group.GET("/sudory/manager/session/:uuid", ctl.GetSession)
-		group.DELETE("/sudory/manager/session/:uuid", ctl.DeleteSession)
-		group.GET("/sudory/manager/session/cluster/:cluster_uuid/alive", ctl.AliveClusterSession)
+		group.GET("/synapse/manager/session", ctl.FindSession)
+		group.GET("/synapse/manager/session/:uuid", ctl.GetSession)
+		group.DELETE("/synapse/manager/session/:uuid", ctl.DeleteSession)
+		group.GET("/synapse/manager/session/cluster/:cluster_uuid/alive", ctl.AliveClusterSession)
 
 		// /manager/cluster_token*
 		group.GET("/manager/cluster_token", ctl.FindClusterToken)
@@ -199,13 +199,13 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 		group.POST("/manager/cluster_token", ctl.CreateClusterToken)
 		group.PUT("/manager/cluster_token/:uuid/refresh", ctl.RefreshClusterTokenTime)
 		group.PUT("/manager/cluster_token/:uuid/expire", ctl.ExpireClusterToken)
-		group.GET("/sudory/manager/cluster_token", ctl.FindClusterToken)
-		group.GET("/sudory/manager/cluster_token/:uuid", ctl.GetClusterToken)
-		group.PUT("/sudory/manager/cluster_token/:uuid/label", ctl.UpdateClusterTokenLabel)
-		group.DELETE("/sudory/manager/cluster_token/:uuid", ctl.DeleteClusterToken)
-		group.POST("/sudory/manager/cluster_token", ctl.CreateClusterToken)
-		group.PUT("/sudory/manager/cluster_token/:uuid/refresh", ctl.RefreshClusterTokenTime)
-		group.PUT("/sudory/manager/cluster_token/:uuid/expire", ctl.ExpireClusterToken)
+		group.GET("/synapse/manager/cluster_token", ctl.FindClusterToken)
+		group.GET("/synapse/manager/cluster_token/:uuid", ctl.GetClusterToken)
+		group.PUT("/synapse/manager/cluster_token/:uuid/label", ctl.UpdateClusterTokenLabel)
+		group.DELETE("/synapse/manager/cluster_token/:uuid", ctl.DeleteClusterToken)
+		group.POST("/synapse/manager/cluster_token", ctl.CreateClusterToken)
+		group.PUT("/synapse/manager/cluster_token/:uuid/refresh", ctl.RefreshClusterTokenTime)
+		group.PUT("/synapse/manager/cluster_token/:uuid/expire", ctl.ExpireClusterToken)
 
 		// /manager/channels*
 		group.POST("/manager/channels", ctl.CreateChannel)
@@ -213,11 +213,11 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 		group.GET("/manager/channels/:uuid", ctl.GetChannel)
 		group.PUT("/manager/channels/:uuid", ctl.UpdateChannel)
 		group.DELETE("/manager/channels/:uuid", ctl.DeleteChannel)
-		group.POST("/sudory/manager/channels", ctl.CreateChannel)
-		group.GET("/sudory/manager/channels", ctl.FindChannel)
-		group.GET("/sudory/manager/channels/:uuid", ctl.GetChannel)
-		group.PUT("/sudory/manager/channels/:uuid", ctl.UpdateChannel)
-		group.DELETE("/sudory/manager/channels/:uuid", ctl.DeleteChannel)
+		group.POST("/synapse/manager/channels", ctl.CreateChannel)
+		group.GET("/synapse/manager/channels", ctl.FindChannel)
+		group.GET("/synapse/manager/channels/:uuid", ctl.GetChannel)
+		group.PUT("/synapse/manager/channels/:uuid", ctl.UpdateChannel)
+		group.DELETE("/synapse/manager/channels/:uuid", ctl.DeleteChannel)
 
 		// /manager/channels/:uuid/notifiers/*
 		group.GET("/manager/channels/:uuid/notifiers/edge", ctl.GetChannelNotifierEdge)
@@ -225,31 +225,31 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 		group.PUT("/manager/channels/:uuid/notifiers/rabbitmq", ctl.UpdateChannelNotifierRabbitMq)
 		group.PUT("/manager/channels/:uuid/notifiers/webhook", ctl.UpdateChannelNotifierWebhook)
 		group.PUT("/manager/channels/:uuid/notifiers/slackhook", ctl.UpdateChannelNotifierSlackhook)
-		group.GET("/sudory/manager/channels/:uuid/notifiers/edge", ctl.GetChannelNotifierEdge)
-		group.PUT("/sudory/manager/channels/:uuid/notifiers/console", ctl.UpdateChannelNotifierConsole)
-		group.PUT("/sudory/manager/channels/:uuid/notifiers/rabbitmq", ctl.UpdateChannelNotifierRabbitMq)
-		group.PUT("/sudory/manager/channels/:uuid/notifiers/webhook", ctl.UpdateChannelNotifierWebhook)
-		group.PUT("/sudory/manager/channels/:uuid/notifiers/slackhook", ctl.UpdateChannelNotifierSlackhook)
+		group.GET("/synapse/manager/channels/:uuid/notifiers/edge", ctl.GetChannelNotifierEdge)
+		group.PUT("/synapse/manager/channels/:uuid/notifiers/console", ctl.UpdateChannelNotifierConsole)
+		group.PUT("/synapse/manager/channels/:uuid/notifiers/rabbitmq", ctl.UpdateChannelNotifierRabbitMq)
+		group.PUT("/synapse/manager/channels/:uuid/notifiers/webhook", ctl.UpdateChannelNotifierWebhook)
+		group.PUT("/synapse/manager/channels/:uuid/notifiers/slackhook", ctl.UpdateChannelNotifierSlackhook)
 
 		// /manager/channels/status
 		group.GET("/manager/channels/status", ctl.FindChannelStatus)
-		group.GET("/sudory/manager/channels/status", ctl.FindChannelStatus)
+		group.GET("/synapse/manager/channels/status", ctl.FindChannelStatus)
 
 		// /manager/channels/:uuid/status*
 		group.GET("/manager/channels/:uuid/status", ctl.ListChannelStatus)
 		group.DELETE("/manager/channels/:uuid/status/purge", ctl.PurgeChannelStatus)
 		group.PUT("/manager/channels/:uuid/status/option", ctl.UpdateChannelStatusOption)
 		group.GET("/manager/channels/:uuid/status/option", ctl.GetChannelStatusOption)
-		group.GET("/sudory/manager/channels/:uuid/status", ctl.ListChannelStatus)
-		group.DELETE("/sudory/manager/channels/:uuid/status/purge", ctl.PurgeChannelStatus)
-		group.PUT("/sudory/manager/channels/:uuid/status/option", ctl.UpdateChannelStatusOption)
-		group.GET("/sudory/manager/channels/:uuid/status/option", ctl.GetChannelStatusOption)
+		group.GET("/synapse/manager/channels/:uuid/status", ctl.ListChannelStatus)
+		group.DELETE("/synapse/manager/channels/:uuid/status/purge", ctl.PurgeChannelStatus)
+		group.PUT("/synapse/manager/channels/:uuid/status/option", ctl.UpdateChannelStatusOption)
+		group.GET("/synapse/manager/channels/:uuid/status/option", ctl.GetChannelStatusOption)
 
 		// /manager/channels/:uuid/format*
 		group.GET("/manager/channels/:uuid/format", ctl.GetChannelFormat)
 		group.PUT("/manager/channels/:uuid/format", ctl.UpdateChannelFormat)
-		group.GET("/sudory/manager/channels/:uuid/format", ctl.GetChannelFormat)
-		group.PUT("/sudory/manager/channels/:uuid/format", ctl.UpdateChannelFormat)
+		group.GET("/synapse/manager/channels/:uuid/format", ctl.GetChannelFormat)
+		group.PUT("/synapse/manager/channels/:uuid/format", ctl.UpdateChannelFormat)
 
 	}
 

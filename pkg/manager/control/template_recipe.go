@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/excute"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
-	"github.com/NexClipper/sudory/pkg/manager/macro/echoutil"
-	recipev2 "github.com/NexClipper/sudory/pkg/manager/model/template_recipe/v2"
-	"github.com/NexClipper/sudory/pkg/manager/status/state"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/echoutil"
+	recipev2 "github.com/jaehoonkim/synapse/pkg/manager/model/template_recipe/v2"
+	"github.com/jaehoonkim/synapse/pkg/manager/status/state"
 	"github.com/labstack/echo/v4"
 	"github.com/pkg/errors"
 )

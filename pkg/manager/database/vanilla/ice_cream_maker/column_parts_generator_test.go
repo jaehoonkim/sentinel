@@ -3,7 +3,7 @@ package ice_cream_maker_test
 import (
 	"testing"
 
-	vanilla "github.com/NexClipper/sudory/pkg/manager/database/vanilla/ice_cream_maker"
+	vanilla "github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/ice_cream_maker"
 )
 
 func TestGenerateParts(t *testing.T) {

@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/manager/config"
+	"github.com/jaehoonkim/synapse/pkg/manager/config"
 	"github.com/pkg/errors"
 
 	_ "github.com/go-sql-driver/mysql"

@@ -13,24 +13,24 @@ import (
 	"time"
 
 	"github.com/NexClipper/logger"
-	"github.com/NexClipper/sudory/pkg/manager/config"
-	"github.com/NexClipper/sudory/pkg/manager/database"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/excute"
-	mysqlFlavor "github.com/NexClipper/sudory/pkg/manager/database/vanilla/excute/dialects/mysql"
-	"github.com/NexClipper/sudory/pkg/manager/event/managed_channel"
-	"github.com/NexClipper/sudory/pkg/manager/macro/enigma"
-	"github.com/NexClipper/sudory/pkg/manager/macro/logs"
-	dctv1 "github.com/NexClipper/sudory/pkg/manager/model/default_crypto_types/v1"
-	"github.com/NexClipper/sudory/pkg/manager/route"
-	"github.com/NexClipper/sudory/pkg/manager/status/globvar"
-	"github.com/NexClipper/sudory/pkg/manager/status/ticker"
-	"github.com/NexClipper/sudory/pkg/version"
 	"github.com/golang-migrate/migrate/v4"
+	"github.com/jaehoonkim/synapse/pkg/manager/config"
+	"github.com/jaehoonkim/synapse/pkg/manager/database"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
+	mysqlFlavor "github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute/dialects/mysql"
+	"github.com/jaehoonkim/synapse/pkg/manager/event/managed_channel"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/enigma"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
+	dctv1 "github.com/jaehoonkim/synapse/pkg/manager/model/default_crypto_types/v1"
+	"github.com/jaehoonkim/synapse/pkg/manager/route"
+	"github.com/jaehoonkim/synapse/pkg/manager/status/globvar"
+	"github.com/jaehoonkim/synapse/pkg/manager/status/ticker"
+	"github.com/jaehoonkim/synapse/pkg/version"
 	"github.com/jinzhu/configor"
 	"github.com/pkg/errors"
 )
 
-const APP_NAME = "sudory-manager"
+const APP_NAME = "synapse-manager"
 
 func init() {
 	println("init timezone UTC")
@@ -47,7 +47,7 @@ func main() {
 	flag.StringVar(&cfg.Database.Password, "db-passwd", "", "Database's password")
 	flag.StringVar(&cfg.Database.DBName, "db-dbname", "", "Database's dbname")
 
-	configPath := flag.String("config", "./conf/sudory-manager.yml", "Path to sudory-manager's config file")
+	configPath := flag.String("config", "./conf/synapse-manager.yml", "Path to synapse-manager's config file")
 
 	flag.Parse()
 

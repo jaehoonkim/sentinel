@@ -1,20 +1,18 @@
-![](asset/sudory.png)
-# sudoRy
 
-sudoRy is a Kubernetes executor to help to manage multiple, multi-CSP backed Kubernetes clusters using standardized templates such as Kubernetes APis, Prometheus APIs and Helm commands. Using schedulers (such as NexClipper-cron or other cron services), users can automate the cluser management activities such as collecting Kubernetes events, status of nodes and pods, metrics & alerts of Prometheus. Also, we are working hard to provide addtional features such as custom-template with multiple steps, users can create thier own template with several Kuberntes APIs and http API calls to automate & standardize the DevOps operations. 
+# synapse
 
-## Why sudoRy is different than others?
+synapse is a Kubernetes executor to help to manage multiple, multi-CSP backed Kubernetes clusters using standardized templates such as Kubernetes APis, Prometheus APIs and Helm commands. Using schedulers (such as jaehoonkim-cron or other cron services), users can automate the cluser management activities such as collecting Kubernetes events, status of nodes and pods, metrics & alerts of Prometheus. Also, we are working hard to provide addtional features such as custom-template with multiple steps, users can create thier own template with several Kuberntes APIs and http API calls to automate & standardize the DevOps operations. 
 
-sudoRy consists of a manager and a agent for an each Kubernetes cluster, however, sudoRy's agent is not a typical agent. No direct access from the manager to the agent API calls. The agent always polls the manager to inquire whether there is any assignment for the agent and fetch the assigned taks and execute/send the result back to the manager. Users can control how often the agent polls the manager using manager management API. 
+## Why synapse is different than others?
 
-sudoRy maintains standard templates to use Kubernetes & Prometheus APIs and users just need to pick the template and cluster(s) to get what they want. It's simple and resuable. 
+synapse consists of a manager and a agent for an each Kubernetes cluster, however, synapse's agent is not a typical agent. No direct access from the manager to the agent API calls. The agent always polls the manager to inquire whether there is any assignment for the agent and fetch the assigned taks and execute/send the result back to the manager. Users can control how often the agent polls the manager using manager management API. 
 
-## How to use Sudory
-https://nexcloud.gitbook.io/sudory/en/
+synapse maintains standard templates to use Kubernetes & Prometheus APIs and users just need to pick the template and cluster(s) to get what they want. It's simple and resuable. 
+
 
 ## What are the available templates at this moment? 
 
-The list below is the template list sudoRy is supporting as of today and "create", "delete", "apply" will be added soon. 
+The list below is the template list synapse is supporting as of today and "create", "delete", "apply" will be added soon. 
 
 ```console
 alertmanager_silences_create
@@ -149,12 +147,12 @@ prometheus_query_range
 prometheus_rules
 prometheus_targets
 prometheus_targets/metadata
-sudory_agent_pod_rebounce
-sudory_agent_upgrade
-sudory_credential_add
-sudory_credential_get
-sudory_credential_remove
-sudory_credential_update
+synapse_agent_pod_rebounce
+synapse_agent_upgrade
+synapse_credential_add
+synapse_credential_get
+synapse_credential_remove
+synapse_credential_update
 
 ```
 
@@ -164,15 +162,15 @@ Use manifest files in this github to install Manager & Agent.
 
 ### Manager
 
-You need to have MariaDB 10.0 and above to install sudoRy manager. Recommand using bitnami Mariadb helm chart to install Mariadb in your Kubernetes cluster. Once you install Mariadb and get host/port/user informatin to configre in "environment.yaml". 
+You need to have MariaDB 10.0 and above to install synapse manager. Recommand using bitnami Mariadb helm chart to install Mariadb in your Kubernetes cluster. Once you install Mariadb and get host/port/user informatin to configre in "environment.yaml". 
 
 ```console
 data:
   db_host: "XXX.XXX.XXX.XXX"
   db_port: "3306"
-  db_scheme: "sudory"
+  db_scheme: "synapse"
   db_export_path: "."
-  db_server_username: "sudory"
+  db_server_username: "synapse"
 ```
 
 Also use BASE64 to encrypt your password and populate in the Secret in the "environment.yaml" file. Also, configure "x_auth_token" value to use the token in the header of API request. 
@@ -180,8 +178,8 @@ Also use BASE64 to encrypt your password and populate in the Secret in the "envi
 apiVersion: v1
 kind: Secret
 metadata:
-  name: sudory-secret
-  namespace: sudory
+  name: synapse-secret
+  namespace: synapse
 type: Opaque
 data:
   db_server_password: 
@@ -196,19 +194,19 @@ kubectl apply -f application.yaml
 kubectl apply -f environment.yaml
 ```
 
-Check your installed sudoRy manager in sudory namespace. 
+Check your installed synapse manager in synapse namespace. 
 ```console
-kubectl get pods -n sudory
-kubectl get service -n sudory
-kubectl get deployment -n sudory
+kubectl get pods -n synapse
+kubectl get service -n synapse
+kubectl get deployment -n synapse
 ```
 
-### Agetn 
+### Agent 
 
-To install sudoRy agent, you need to get cluster uuid and bear's token from sudoRy manager. 
+To install synapse agent, you need to get cluster uuid and bear's token from synapse manager. 
 
 ```console
-POST http://<sudory_manager_url/manager/cluster
+POST http://<synapse_manager_url/manager/cluster
 ```
 with the follwoing body - 
 ```console
@@ -238,7 +236,7 @@ Then, you will get uuid of your cluster. Here is the sample body of response -
 Next step is to get a bearer' token with the following APIs. 
 
 ```console
-POST http://<sudory_manager_url/manager/cluster_token
+POST http://<synapse_manager_url/manager/cluster_token
 ```
 with the following request body - 
 
@@ -263,8 +261,8 @@ Here is the sample response from the api.
 }
 ```
 
-Sudory agent shall be installed at the Kubernetes cluster that you want to manage. 
-Configure these in environment.yaml for uuid and token for agent. You can limit sudoRy's roles by configuring cluster role in sa.yaml. With the following configuration, sudoRy will perform only for namespace and pods. You can configure "*" for all the resources for Sudory to access & execute the commands. 
+synapse agent shall be installed at the Kubernetes cluster that you want to manage. 
+Configure these in environment.yaml for uuid and token for agent. You can limit synapse's roles by configuring cluster role in sa.yaml. With the following configuration, synapse will perform only for namespace and pods. You can configure "*" for all the resources for synapse to access & execute the commands. 
 
 ```c
 rules:
@@ -273,7 +271,7 @@ rules:
   verbs: ["get", "list", "watch"]
 ```
 
-Run these commands to install sudoRy agent once the configuration is done.
+Run these commands to install synapse agent once the configuration is done.
 
 ```console
 kubectl apply -f environment.yaml
@@ -298,23 +296,23 @@ $ make go-build target=manager
 
 image build(manager / agent)  
 ```console
-$ make image base=jaehoon/sudory target=manager
+$ make image base=jaehoon/synapse target=manager
 
 or
 
-$ make image base=jaehoon/sudory target=agent
+$ make image base=jaehoon/synapse target=agent
 ```
 
 image push
 ```console
-$ make push base=jaehoon/sudory target=manager
+$ make push base=jaehoon/synapse target=manager
 ```
 
 ## Design
 
 how to use swagger?
 ```
-kubectl port-forward svc/sudory-sudory-manager -n sudory 8099
+kubectl port-forward svc/synapse-synapse-manager -n synapse 8099
 http://127.0.0.1:8099/swagger/index.html
 ```
 

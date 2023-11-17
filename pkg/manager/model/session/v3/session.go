@@ -3,7 +3,7 @@ package sessions
 import (
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla"
 )
 
 // type Session_essential struct {

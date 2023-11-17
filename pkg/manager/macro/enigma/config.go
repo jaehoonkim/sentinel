@@ -6,18 +6,19 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/NexClipper/sudory/pkg/version"
+	"github.com/jaehoonkim/synapse/pkg/version"
 )
 
 // Config
-//  config-name:
-//    block-method: aes    # NONE, AES, DES
-//    block-size: 128      # NONE: default(1), AES: 128|192|256, DES: 64
-//    block-key: secret    # (base64 string)
-//    cipher-mode: gcm     # NONE: NONE|AES|DES , GCM: AES, CBC: NONE|AES|DES
-//    cipher-salt: null    # NULL, (base64 string)
-//    padding: PKCS        # NONE: AES+GCM, PKCS: AES+NONE|AES+CBC|DES+NONE|DES+CBC
-//    strconv: base64      # plain|base64|hex
+//
+//	config-name:
+//	  block-method: aes    # NONE, AES, DES
+//	  block-size: 128      # NONE: default(1), AES: 128|192|256, DES: 64
+//	  block-key: secret    # (base64 string)
+//	  cipher-mode: gcm     # NONE: NONE|AES|DES , GCM: AES, CBC: NONE|AES|DES
+//	  cipher-salt: null    # NULL, (base64 string)
+//	  padding: PKCS        # NONE: AES+GCM, PKCS: AES+NONE|AES+CBC|DES+NONE|DES+CBC
+//	  strconv: base64      # plain|base64|hex
 type Config struct {
 	CryptoAlgorithmSet map[string]ConfigCryptoAlgorithm `yaml:"enigma"`
 }

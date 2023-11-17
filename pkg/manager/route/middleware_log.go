@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"github.com/NexClipper/logger"
-	"github.com/NexClipper/sudory/pkg/manager/macro/echoutil"
-	"github.com/NexClipper/sudory/pkg/manager/macro/logs"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/echoutil"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
 	"github.com/labstack/echo/v4"
 )
 

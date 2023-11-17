@@ -3,8 +3,8 @@ package executor
 import (
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/agent/log"
-	"github.com/NexClipper/sudory/pkg/agent/service"
+	"github.com/jaehoonkim/synapse/pkg/agent/log"
+	"github.com/jaehoonkim/synapse/pkg/agent/service"
 )
 
 type ServiceExecutorV2 struct {

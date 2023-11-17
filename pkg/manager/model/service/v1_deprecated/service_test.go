@@ -5,8 +5,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/manager/macro/newist"
-	cryptov1 "github.com/NexClipper/sudory/pkg/manager/model/default_crypto_types/v1"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/newist"
+	cryptov1 "github.com/jaehoonkim/synapse/pkg/manager/model/default_crypto_types/v1"
 )
 
 func TestServiceJson(t *testing.T) {

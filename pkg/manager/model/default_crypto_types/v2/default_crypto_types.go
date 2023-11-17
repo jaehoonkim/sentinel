@@ -6,21 +6,21 @@ import (
 	"encoding/json"
 	"reflect"
 
-	"github.com/NexClipper/sudory/pkg/manager/macro/enigma"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/enigma"
 	"github.com/pkg/errors"
 )
 
-const DefaultCryptoName = "sudory.default.crypto"
+const DefaultCryptoName = "synapse.default.crypto"
 
 func EnigmaEncode(bytes []byte) (out []byte, err error) {
-	if out, err = enigma.CipherSet(CiperKeySudoryDefaultCrypto.String()).Encode(bytes); err != nil {
+	if out, err = enigma.CipherSet(CiperKeySynapseDefaultCrypto.String()).Encode(bytes); err != nil {
 		return nil, errors.Wrapf(err, "enigma encode")
 	}
 	return
 }
 
 func EnigmaDecode(bytes []byte) (out []byte, err error) {
-	if out, err = enigma.CipherSet(CiperKeySudoryDefaultCrypto.String()).Decode(bytes); err != nil {
+	if out, err = enigma.CipherSet(CiperKeySynapseDefaultCrypto.String()).Decode(bytes); err != nil {
 		return out, errors.Wrapf(err, "enigma decode")
 	}
 	return

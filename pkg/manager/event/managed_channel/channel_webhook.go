@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/manager/macro/logs"
-	channelv2 "github.com/NexClipper/sudory/pkg/manager/model/channel/v3"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
+	channelv2 "github.com/jaehoonkim/synapse/pkg/manager/model/channel/v3"
 	"github.com/pkg/errors"
 )
 

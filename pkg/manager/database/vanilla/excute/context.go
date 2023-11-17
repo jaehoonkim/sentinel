@@ -4,7 +4,7 @@ import (
 	"context"
 	"database/sql"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
 )
 
 type ConditionStmt = stmt.ConditionStmt

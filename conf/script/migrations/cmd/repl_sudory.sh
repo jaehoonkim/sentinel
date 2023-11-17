@@ -5,16 +5,16 @@ pwd=$PWD
 
 
 # Show env vars
-grep -v '^#' .sudory.env
+grep -v '^#' .synapse.env
 
 # Export env vars
-export $(grep -v '^#' .sudory.env | xargs)
+export $(grep -v '^#' .synapse.env | xargs)
 
 # path="$(dirname "$0")"
 echo $pwd
 # echo $path
 
-cd ../sudory
+cd ../synapse
 
 ../cmd/repl.sh
 

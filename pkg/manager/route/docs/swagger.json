@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "description": "this is a sudory manager.",
-        "title": "SUDORY",
+        "description": "this is a synapse manager.",
+        "title": "SYNAPSE",
         "contact": {
             "url": "https://nexclipper.io",
             "email": "jaehoon@nexclipper.io"
@@ -40,7 +40,7 @@
                             "type": "string"
                         },
                         "headers": {
-                            "x-sudory-agent-token": {
+                            "x-synapse-agent-token": {
                                 "type": "string"
                             }
                         }
@@ -75,7 +75,7 @@
                             }
                         },
                         "headers": {
-                            "x-sudory-agent-token": {
+                            "x-synapse-agent-token": {
                                 "type": "string"
                             }
                         }
@@ -113,7 +113,7 @@
                     "200": {
                         "description": "OK",
                         "headers": {
-                            "x-sudory-agent-token": {
+                            "x-synapse-agent-token": {
                                 "type": "string"
                             }
                         }
@@ -141,19 +141,19 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -227,19 +227,19 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -833,19 +833,19 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1119,19 +1119,19 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1389,19 +1389,19 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1517,19 +1517,19 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1606,19 +1606,19 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1810,19 +1810,19 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1963,19 +1963,19 @@
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -3338,11 +3338,11 @@
         "ClientAuth": {
             "description": "token for client api",
             "type": "apiKey",
-            "name": "x-sudory-agent-token",
+            "name": "x-synapse-agent-token",
             "in": "header"
         },
         "XAuthToken": {
-            "description": "limit for access sudory api",
+            "description": "limit for access synapse api",
             "type": "apiKey",
             "name": "x_auth_token",
             "in": "header"

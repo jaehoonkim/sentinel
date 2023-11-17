@@ -3,30 +3,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-sudory-agent
+  name: {{ .Release.Name }}-synapse-agent
   namespace: {{ .Release.Namespace }}
   labels:
-    sudory: agent
+    synapse: agent
 spec:
   selector:
     matchLabels:
-      sudory:  {{ .Release.Name }}-sudory-agent
+      synapse:  {{ .Release.Name }}-synapse-agent
   replicas: 1
   template:
     metadata:
       labels:
-        sudory: {{ .Release.Name }}-sudory-agent
+        synapse: {{ .Release.Name }}-synapse-agent
     spec:
-      serviceAccountName: {{ .Release.Name }}-sudoryagent-controller
+      serviceAccountName: {{ .Release.Name }}-synapseagent-controller
       containers:
-        - name: {{ .Release.Name }}-sudory-agent
+        - name: {{ .Release.Name }}-synapse-agent
           image: "{{ .Values.agent.image }}"
           env:
             {{- range $key, $value := .Values.agent.environment_variable.data }}
             - name: {{ $key }}
               valueFrom:
                 configMapKeyRef:
-                  name: {{ $.Release.Name }}-sudory-agent-configmap
+                  name: {{ $.Release.Name }}-synapse-agent-configmap
                   key: {{ $key }}
             {{- end -}}
 
@@ -36,20 +36,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-sudory-manager
+  name: {{ .Release.Name }}-synapse-manager
   namespace: {{ .Release.Namespace }}
 spec:
   selector:
     matchLabels:
-      sudory: {{ .Release.Name }}-manager
+      synapse: {{ .Release.Name }}-manager
   replicas: 1
   template:
     metadata:
       labels:
-        sudory: {{ .Release.Name }}-manager
+        synapse: {{ .Release.Name }}-manager
     spec:
       containers:
-        - name: {{ .Release.Name }}-sudory-manager
+        - name: {{ .Release.Name }}-synapse-manager
           image: {{ .Values.manager.image }}
           ports:
             - containerPort: {{ .Values.manager.containerPort }}
@@ -65,14 +65,14 @@ spec:
             - name: {{ $key }}
               valueFrom:
                 configMapKeyRef:
-                  name: {{ $.Release.Name }}-sudory-manager-configmap
+                  name: {{ $.Release.Name }}-synapse-manager-configmap
                   key: {{ $key }}
             {{- end -}}
             {{- range $key, $value := .Values.manager.secret_variable.data }}
             - name: {{ $key }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ $.Release.Name }}-sudory-secret
+                  name: {{ $.Release.Name }}-synapse-secret
                   key: {{ $key }}
                 {{- end }}
           livenessProbe:
@@ -83,13 +83,13 @@ spec:
           {{ if .Values.manager.managerrule.enabled}}
           volumeMounts:
             - mountPath: /app/conf/rules
-              name: {{ .Release.Name }}-sudory-manager-rules-volume
+              name: {{ .Release.Name }}-synapse-manager-rules-volume
           {{- end }}
           {{- if .Values.manager.managerrule.enabled}}
       volumes:
         - configMap:
             defaultMode: 420
-            name: {{ .Release.Name }}-sudory-manager-rules-configmap
-          name: {{ .Release.Name }}-sudory-manager-rules-volume
+            name: {{ .Release.Name }}-synapse-manager-rules-configmap
+          name: {{ .Release.Name }}-synapse-manager-rules-volume
           {{- end}}
 {{- end }}

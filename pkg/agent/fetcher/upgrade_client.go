@@ -18,24 +18,24 @@ import (
 	"k8s.io/apimachinery/pkg/watch"
 	watchtools "k8s.io/client-go/tools/watch"
 
-	"github.com/NexClipper/sudory/pkg/agent/k8s"
-	"github.com/NexClipper/sudory/pkg/agent/log"
-	"github.com/NexClipper/sudory/pkg/agent/service"
+	"github.com/jaehoonkim/synapse/pkg/agent/k8s"
+	"github.com/jaehoonkim/synapse/pkg/agent/log"
+	"github.com/jaehoonkim/synapse/pkg/agent/service"
 )
 
 func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args map[string]interface{}) (err error) {
-	log.Debugf("SudoryAgent Upgrade: start")
+	log.Debugf("SynapseAgent Upgrade: start")
 
 	t := time.Now()
 
 	// service processing status update
 	for {
 		up := service.CreateUpdateService(version, serviceId, 1, 0, service.StepStatusProcessing, "", t, time.Time{})
-		if err := f.sudoryAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
-			log.Errorf("SudoryAgent Upgrade: failed to update service status(processing): error: %s\n", err.Error())
+		if err := f.synapseAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
+			log.Errorf("SynapseAgent Upgrade: failed to update service status(processing): error: %s\n", err.Error())
 
 			// retry and handshake if session expired
-			if f.sudoryAPI.IsTokenExpired() {
+			if f.synapseAPI.IsTokenExpired() {
 				f.RetryHandshake()
 			}
 			continue
@@ -47,15 +47,15 @@ func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args m
 	f.ticker.Stop()
 	defer func() {
 		if err != nil {
-			log.Errorf("SudoryAgent Upgrade: failed to upgrade: %v\n", err)
+			log.Errorf("SynapseAgent Upgrade: failed to upgrade: %v\n", err)
 
 			for {
 				up := service.CreateUpdateService(version, serviceId, 1, 0, service.StepStatusFail, "", t, time.Now())
-				if err := f.sudoryAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
+				if err := f.synapseAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
 					log.Errorf(err.Error())
 
 					// retry and handshake if session expired
-					if f.sudoryAPI.IsTokenExpired() {
+					if f.synapseAPI.IsTokenExpired() {
 						f.RetryHandshake()
 					}
 					continue
@@ -67,7 +67,7 @@ func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args m
 			f.ticker.Reset(time.Second * time.Duration(f.pollingInterval))
 		}
 	}()
-	log.Debugf("SudoryAgent Upgrade: stop polling")
+	log.Debugf("SynapseAgent Upgrade: stop polling")
 
 	// check arguments
 	var imageTag string
@@ -107,7 +107,7 @@ func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args m
 	}
 
 	// clean up the remaining services before upgrade(timeout:30s)
-	log.Debugf("SudoryAgent Upgrade: waiting remain service proccess")
+	log.Debugf("SynapseAgent Upgrade: waiting remain service proccess")
 	for cnt := 0; cnt < 10; cnt++ {
 		<-time.After(time.Second * 3)
 		remainServices := f.RemainServices()
@@ -122,7 +122,7 @@ func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args m
 		}
 		log.Infof(buf.String() + "\n")
 	}
-	log.Debugf("SudoryAgent Upgrade: end remain service proccess")
+	log.Debugf("SynapseAgent Upgrade: end remain service proccess")
 
 	// get namespace
 	namespace, err := ioutil.ReadFile("/var/run/secrets/kubernetes.io/serviceaccount/namespace")
@@ -140,7 +140,7 @@ func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args m
 		return fmt.Errorf("pod name is empty")
 	}
 
-	log.Debugf("SudoryAgent Upgrade: found pod info: {namespace: %s, pod_name: %s}\n", ns, podName)
+	log.Debugf("SynapseAgent Upgrade: found pod info: {namespace: %s, pod_name: %s}\n", ns, podName)
 
 	// get k8s client
 	k8sClient, err := k8s.GetClient()
@@ -158,7 +158,7 @@ func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args m
 	upgradeImage := replaceImageTag(prevImage, imageTag)
 
 	// patch deployment's image to upgrade image
-	log.Debugf("SudoryAgent Upgrade: request to patch deployment's image with %s", upgradeImage)
+	log.Debugf("SynapseAgent Upgrade: request to patch deployment's image with %s", upgradeImage)
 	patchedObj, err := k8sClient.ResourcePatch(schema.GroupVersion{Group: "apps", Version: "v1"}, "deployments", map[string]interface{}{
 		"namespace":  ns,
 		"name":       deploymentObj.Name,
@@ -185,7 +185,7 @@ func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args m
 	if reflect.DeepEqual(origM, patchedM) {
 		return fmt.Errorf("no changes to patch deployment")
 	}
-	log.Debugf("SudoryAgent Upgrade: patched deployment")
+	log.Debugf("SynapseAgent Upgrade: patched deployment")
 
 	// watch my deployment
 	watchInf, err := k8sClient.ResourceWatch(schema.GroupVersion{Group: "apps", Version: "v1"}, "deployments", map[string]interface{}{"namespace": ns, "name": deploymentObj.Name})
@@ -202,7 +202,7 @@ func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args m
 	}
 	defer watchCancel()
 
-	log.Debugf("SudoryAgent Upgrade: watch the status of the rollout until it's done")
+	log.Debugf("SynapseAgent Upgrade: watch the status of the rollout until it's done")
 	if _, watchErr := watchtools.UntilWithoutRetry(watchCtx, watchInf, func(e watch.Event) (bool, error) {
 		switch t := e.Type; t {
 		case watch.Added, watch.Modified:
@@ -220,20 +220,20 @@ func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args m
 				if cond != nil && cond.Reason == "ProgressDeadlineExceeded" {
 					return false, fmt.Errorf("deployment %q exceeded its progress deadline", deploymentObj.Name)
 				} else if deploymentObj.Spec.Replicas != nil && deploymentObj.Status.UpdatedReplicas < *deploymentObj.Spec.Replicas {
-					log.Debugf("SudoryAgent Upgrade: waiting for deployment %q rollout to finish: %d out of %d new replicas have been updated\n", deploymentObj.Name, deploymentObj.Status.UpdatedReplicas, *deploymentObj.Spec.Replicas)
+					log.Debugf("SynapseAgent Upgrade: waiting for deployment %q rollout to finish: %d out of %d new replicas have been updated\n", deploymentObj.Name, deploymentObj.Status.UpdatedReplicas, *deploymentObj.Spec.Replicas)
 					return false, nil
 				} else if deploymentObj.Status.Replicas > deploymentObj.Status.UpdatedReplicas {
-					log.Debugf("SudoryAgent Upgrade: waiting for deployment %q rollout to finish: %d old replicas are pending termination\n", deploymentObj.Name, deploymentObj.Status.Replicas-deploymentObj.Status.UpdatedReplicas)
+					log.Debugf("SynapseAgent Upgrade: waiting for deployment %q rollout to finish: %d old replicas are pending termination\n", deploymentObj.Name, deploymentObj.Status.Replicas-deploymentObj.Status.UpdatedReplicas)
 					return false, nil
 				} else if deploymentObj.Status.AvailableReplicas < deploymentObj.Status.UpdatedReplicas {
-					log.Debugf("SudoryAgent Upgrade: waiting for deployment %q rollout to finish: %d of %d updated replicas are available\n", deploymentObj.Name, deploymentObj.Status.AvailableReplicas, deploymentObj.Status.UpdatedReplicas)
+					log.Debugf("SynapseAgent Upgrade: waiting for deployment %q rollout to finish: %d of %d updated replicas are available\n", deploymentObj.Name, deploymentObj.Status.AvailableReplicas, deploymentObj.Status.UpdatedReplicas)
 					return false, nil
 				} else {
-					log.Debugf("SudoryAgent Upgrade: deployment %q successfully rolled out\n", deploymentObj.Name)
+					log.Debugf("SynapseAgent Upgrade: deployment %q successfully rolled out\n", deploymentObj.Name)
 					return true, nil
 				}
 			}
-			log.Debugf("SudoryAgent Upgrade: waiting for deployment spec update to be observed\n")
+			log.Debugf("SynapseAgent Upgrade: waiting for deployment spec update to be observed\n")
 
 			return false, nil
 
@@ -266,10 +266,10 @@ func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args m
 	// upgrade success
 	for {
 		up := service.CreateUpdateService(version, serviceId, 1, 0, service.StepStatusSuccess, "", t, time.Now())
-		if err := f.sudoryAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
+		if err := f.synapseAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
 			log.Errorf(err.Error())
 			// retry and handshake if session expired
-			if f.sudoryAPI.IsTokenExpired() {
+			if f.synapseAPI.IsTokenExpired() {
 				f.RetryHandshake()
 			}
 			continue
@@ -301,7 +301,7 @@ func findDeploymentFromPod(k8sClient *k8s.Client, ns, podName string) (*appsv1.D
 		return nil, fmt.Errorf("failed to find replicaset name")
 	}
 
-	log.Debugf("SudoryAgent Upgrade: found owner replicaset info: {namespace: %s, name: %s}\n", ns, replicasetName)
+	log.Debugf("SynapseAgent Upgrade: found owner replicaset info: {namespace: %s, name: %s}\n", ns, replicasetName)
 
 	replicasetJson, err := k8sClient.ResourceGet(schema.GroupVersion{Group: "apps", Version: "v1"}, "replicasets", map[string]interface{}{"namespace": ns, "name": replicasetName})
 	if err != nil {
@@ -323,7 +323,7 @@ func findDeploymentFromPod(k8sClient *k8s.Client, ns, podName string) (*appsv1.D
 		return nil, fmt.Errorf("failed to find replicaset name")
 	}
 
-	log.Debugf("SudoryAgent Upgrade: found owner deployment info: {namespace: %s, name: %s}\n", ns, deploymentName)
+	log.Debugf("SynapseAgent Upgrade: found owner deployment info: {namespace: %s, name: %s}\n", ns, deploymentName)
 
 	deploymentJson, err := k8sClient.ResourceGet(schema.GroupVersion{Group: "apps", Version: "v1"}, "deployments", map[string]interface{}{"namespace": ns, "name": deploymentName})
 	if err != nil {

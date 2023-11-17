@@ -3,8 +3,8 @@ package macro_test
 import (
 	"testing"
 
-	"github.com/NexClipper/sudory/pkg/manager/macro"
 	"github.com/google/uuid"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro"
 )
 
 func TestNewUuid(t *testing.T) {

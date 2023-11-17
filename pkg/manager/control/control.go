@@ -3,7 +3,7 @@ package control
 import (
 	"database/sql"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
 
 	"github.com/labstack/echo/v4"
 )

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/NexClipper/sudory/pkg/agent/helm/repo"
+	"github.com/jaehoonkim/synapse/pkg/agent/helm/repo"
 )
 
 func (c *Client) RepoAdd(args map[string]interface{}) (string, error) {

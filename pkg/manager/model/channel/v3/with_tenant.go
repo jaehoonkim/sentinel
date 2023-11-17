@@ -5,9 +5,9 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/ice_cream_maker"
-	"github.com/NexClipper/sudory/pkg/manager/macro/slicestrings"
-	"github.com/NexClipper/sudory/pkg/manager/model/tenants/v3"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/ice_cream_maker"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/slicestrings"
+	"github.com/jaehoonkim/synapse/pkg/manager/model/tenants/v3"
 )
 
 var (

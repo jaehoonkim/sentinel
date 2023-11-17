@@ -1,35 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: sudory-agent
-  namespace: sudoryagent
+  name: synapse-agent
+  namespace: synapseagent
 spec:
   selector:
     matchLabels:
-      sudory:  agent
+      synapse:  agent
   replicas: 1 
   template:
     metadata:
       labels:
-        sudory: agent
+        synapse: agent
     spec:
-      serviceAccountName: sudory-controller
+      serviceAccountName: synapse-controller
       containers:
-        - name: sudory-agent
-          image: green:32000/nexclipper-sudory-agent
+        - name: synapse-agent
+          image: green:32000/nexclipper-synapse-agent
           env:
             - name: S_MANAGER_URL
               valueFrom:
                 configMapKeyRef:
-                  name: sudory-configmap
+                  name: synapse-configmap
                   key: manager
             - name: S_CLUSTER_ID
               valueFrom:
                 configMapKeyRef:
-                  name: sudory-configmap
+                  name: synapse-configmap
                   key: clusterid
             - name: S_TOKEN
               valueFrom:
                 configMapKeyRef:
-                  name: sudory-configmap
+                  name: synapse-configmap
                   key: token

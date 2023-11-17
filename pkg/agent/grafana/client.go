@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/agent/httpclient"
+	"github.com/jaehoonkim/synapse/pkg/agent/httpclient"
 )
 
 const defaultApiTimeout = 10 * time.Second

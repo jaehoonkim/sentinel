@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
 )
 
 func TestNewOrder(t *testing.T) {

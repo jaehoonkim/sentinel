@@ -15,7 +15,7 @@
 
 POST {{url}}{{test_path}} {{protocolver}}
 Content-Type: application/json
-x_auth_token: SUDORY
+x_auth_token: SYNAPSE
 
 {
   "tenant": "{{ tenant_default }}"
@@ -26,7 +26,7 @@ x_auth_token: SUDORY
 
 POST {{url}}{{test_path}} {{protocolver}}
 Content-Type: application/json
-x_auth_token: SUDORY
+x_auth_token: SYNAPSE
 
 {
   "tenant": "{{ tenant_foo }}"
@@ -37,7 +37,7 @@ x_auth_token: SUDORY
 
 POST {{url}}{{test_path}} {{protocolver}}
 Content-Type: application/json
-x_auth_token: SUDORY
+x_auth_token: SYNAPSE
 
 {
   "tenant": "{{ tenant_test }}"

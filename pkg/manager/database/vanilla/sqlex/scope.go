@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"time"
 
-	vanilla "github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
+	vanilla "github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
 	"github.com/pkg/errors"
 )
 

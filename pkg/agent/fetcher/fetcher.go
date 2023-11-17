@@ -9,11 +9,11 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/panta/machineid"
 
-	"github.com/NexClipper/sudory/pkg/agent/log"
-	"github.com/NexClipper/sudory/pkg/agent/scheduler"
-	"github.com/NexClipper/sudory/pkg/agent/service"
-	"github.com/NexClipper/sudory/pkg/agent/sudory"
-	sessionv1 "github.com/NexClipper/sudory/pkg/manager/model/session/v1"
+	"github.com/jaehoonkim/synapse/pkg/agent/log"
+	"github.com/jaehoonkim/synapse/pkg/agent/scheduler"
+	"github.com/jaehoonkim/synapse/pkg/agent/service"
+	"github.com/jaehoonkim/synapse/pkg/agent/synapse"
+	sessionv1 "github.com/jaehoonkim/synapse/pkg/manager/model/session/v1"
 )
 
 const (
@@ -25,7 +25,7 @@ type Fetcher struct {
 	bearerToken     string
 	machineID       string
 	clusterId       string
-	sudoryAPI       *sudory.SudoryAPI
+	synapseAPI      *synapse.SynapseAPI
 	ticker          *time.Ticker
 	pollingInterval int
 	scheduler       *scheduler.Scheduler
@@ -39,7 +39,7 @@ func NewFetcher(bearerToken, manager, clusterId string, scheduler *scheduler.Sch
 	}
 	id = strings.ReplaceAll(id, "-", "")
 
-	api, err := sudory.NewSudoryAPI(manager)
+	api, err := synapse.NewSynapseAPI(manager)
 	log.Debugf("api in fetcher.go : %s\n", *api)
 	if err != nil {
 		return nil, err
@@ -49,7 +49,7 @@ func NewFetcher(bearerToken, manager, clusterId string, scheduler *scheduler.Sch
 		bearerToken:     bearerToken,
 		machineID:       id,
 		clusterId:       clusterId,
-		sudoryAPI:       api,
+		synapseAPI:      api,
 		ticker:          time.NewTicker(defaultPollingInterval * time.Second),
 		pollingInterval: defaultPollingInterval,
 		scheduler:       scheduler,
@@ -105,12 +105,12 @@ func (f *Fetcher) poll() {
 	defer cancel()
 
 	// get services from manager
-	respData, err := f.sudoryAPI.GetServices(ctx)
+	respData, err := f.synapseAPI.GetServices(ctx)
 	if err != nil {
 		log.Errorf("Failed to polling: error: %s\n", err.Error())
 
 		// if session token is expired, retry handshake
-		if f.sudoryAPI.IsTokenExpired() {
+		if f.synapseAPI.IsTokenExpired() {
 			f.ticker.Stop()
 			f.RetryHandshake()
 		}
@@ -135,8 +135,8 @@ func (f *Fetcher) poll() {
 		f.UpdateFailedToConvertServices(failed)
 	}
 
-	// catch sudoryagent service
-	if ok := f.CatchSudoryAgentService(recvServices); ok {
+	// catch synapseagent service
+	if ok := f.CatchSynapseAgentService(recvServices); ok {
 		return
 	}
 
@@ -146,7 +146,7 @@ func (f *Fetcher) poll() {
 
 func (f *Fetcher) ChangeAgentConfigFromToken() {
 	claims := new(sessionv1.ClientSessionPayload)
-	jwt_token, _, err := jwt.NewParser().ParseUnverified(f.sudoryAPI.GetToken(), claims)
+	jwt_token, _, err := jwt.NewParser().ParseUnverified(f.synapseAPI.GetToken(), claims)
 	if _, ok := jwt_token.Claims.(*sessionv1.ClientSessionPayload); !ok || err != nil {
 		log.Warnf("Failed to bind payload : %v\n", err)
 		return
@@ -177,7 +177,7 @@ func (f *Fetcher) UpdateServiceProcess() {
 			ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 			defer cancel()
 
-			if err := f.sudoryAPI.UpdateServices(ctx, serv); err != nil {
+			if err := f.synapseAPI.UpdateServices(ctx, serv); err != nil {
 				switch serv.Version {
 				case "v3":
 					log.Errorf("Failed to update service on manager : service_uuid:%s, error:%s\n", serv.V3.Uuid, err.Error())
@@ -191,7 +191,7 @@ func (f *Fetcher) UpdateServiceProcess() {
 	}
 }
 
-func (f *Fetcher) CatchSudoryAgentService(services map[string]service.ServiceInterface) bool {
+func (f *Fetcher) CatchSynapseAgentService(services map[string]service.ServiceInterface) bool {
 	exist := false
 
 	for _, svc := range services {
@@ -203,10 +203,10 @@ func (f *Fetcher) CatchSudoryAgentService(services map[string]service.ServiceInt
 					method := step.Command.Method
 
 					switch method {
-					case "sudory.agent_pod.rebounce":
+					case "synapse.agent_pod.rebounce":
 						exist = true
 						f.RebounceAgentPod(ver, svcv1.Id)
-					case "sudory.agent.upgrade":
+					case "synapse.agent.upgrade":
 						exist = true
 						f.UpgradeAgent(ver, svcv1.Id, step.Command.Args)
 					}
@@ -222,10 +222,10 @@ func (f *Fetcher) CatchSudoryAgentService(services map[string]service.ServiceInt
 					method := step.Command
 
 					switch method {
-					case "sudory.agent_pod.rebounce":
+					case "synapse.agent_pod.rebounce":
 						exist = true
 						f.RebounceAgentPod(ver, svcv2.Id)
-					case "sudory.agent.upgrade":
+					case "synapse.agent.upgrade":
 						exist = true
 						f.UpgradeAgent(ver, svcv2.Id, step.Inputs.GetInputs())
 					}
@@ -279,7 +279,7 @@ func (f *Fetcher) UpdateFailedToConvertServices(failed []service.FailedConvertSe
 		ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 		defer cancel()
 
-		if err := f.sudoryAPI.UpdateServices(ctx, serv); err != nil {
+		if err := f.synapseAPI.UpdateServices(ctx, serv); err != nil {
 			switch serv.Version {
 			case "v3":
 				log.Errorf("Failed to update service on manager : service_uuid:%s, error:%s\n", serv.V3.Uuid, err.Error())

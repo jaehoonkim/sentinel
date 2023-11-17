@@ -1,4 +1,4 @@
-appname: sudory-manager
+appname: synapse-manager
 
 host:
   port: 8099
@@ -12,9 +12,9 @@ database:
   protocol: 'tcp'
   host: '127.0.0.1'
   port: '3306'
-  dbname: 'sudory'
-  username: 'sudory'
-  password: 'sudory'
+  dbname: 'synapse'
+  username: 'synapse'
+  password: 'synapse'
   maxopenconns: 15
   maxidleconns: 5
   maxconnlifetime: 1
@@ -22,15 +22,15 @@ database:
   loglevel: warn
 
 migrate:
-  source: 'conf/script/migrations/sudory'
+  source: 'conf/script/migrations/synapse'
 
 logger:
   severity: 'debug'
   system-event: false
-  system-event-name: 'research/sudory'
+  system-event-name: 'project-synapse/synapse'
   verbose: false
   verbose-level: 9
-  filename: 'sudory.log'
+  filename: 'synapse.log'
   max-size: 10
   max-age: 30
   max-backups: 20

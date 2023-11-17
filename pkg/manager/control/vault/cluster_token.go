@@ -1,12 +1,12 @@
 package vault
 
 // import (
-// 	"github.com/NexClipper/sudory/pkg/manager/database"
-// 	"github.com/NexClipper/sudory/pkg/manager/database/prepare"
-// 	"github.com/NexClipper/sudory/pkg/manager/database/vanilla"
-// 	"github.com/NexClipper/sudory/pkg/manager/macro/logs"
-// 	clustertokenv1 "github.com/NexClipper/sudory/pkg/manager/model/cluster_token/v1"
-// 	clustertokenv2 "github.com/NexClipper/sudory/pkg/manager/model/cluster_token/v2"
+// 	"github.com/jaehoonkim/synapse/pkg/manager/database"
+// 	"github.com/jaehoonkim/synapse/pkg/manager/database/prepare"
+// 	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla"
+// 	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
+// 	clustertokenv1 "github.com/jaehoonkim/synapse/pkg/manager/model/cluster_token/v1"
+// 	clustertokenv2 "github.com/jaehoonkim/synapse/pkg/manager/model/cluster_token/v2"
 // 	"github.com/pkg/errors"
 // 	"xorm.io/xorm"
 // )

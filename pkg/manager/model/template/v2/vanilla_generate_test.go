@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/ice_cream_maker"
-	"github.com/NexClipper/sudory/pkg/manager/model/template/v2"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/ice_cream_maker"
+	"github.com/jaehoonkim/synapse/pkg/manager/model/template/v2"
 )
 
 var objs = []interface{}{

@@ -4,17 +4,17 @@ import (
 	"context"
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/excute"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
-	"github.com/NexClipper/sudory/pkg/manager/macro/echoutil"
-	"github.com/NexClipper/sudory/pkg/manager/macro/logs"
-	"github.com/NexClipper/sudory/pkg/manager/model/auths/v2"
-	clusterv3 "github.com/NexClipper/sudory/pkg/manager/model/cluster/v3"
-	clusterinfov2 "github.com/NexClipper/sudory/pkg/manager/model/cluster_infomation/v2"
-	sessionv3 "github.com/NexClipper/sudory/pkg/manager/model/session/v3"
-	"github.com/NexClipper/sudory/pkg/manager/status/globvar"
 	"github.com/golang-jwt/jwt/v4"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/echoutil"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
+	"github.com/jaehoonkim/synapse/pkg/manager/model/auths/v2"
+	clusterv3 "github.com/jaehoonkim/synapse/pkg/manager/model/cluster/v3"
+	clusterinfov2 "github.com/jaehoonkim/synapse/pkg/manager/model/cluster_infomation/v2"
+	sessionv3 "github.com/jaehoonkim/synapse/pkg/manager/model/session/v3"
+	"github.com/jaehoonkim/synapse/pkg/manager/status/globvar"
 	"github.com/labstack/echo/v4"
 	"github.com/pkg/errors"
 )
@@ -36,7 +36,7 @@ func SetContextValue(ctx context.Context, key ContextValueKey, v interface{}) co
 
 func GetAgentSessionClaims(ctx echo.Context, tx excute.Preparer, dialect excute.SqlExcutor) (*sessionv3.ClientSessionPayload, error) {
 	const (
-		__HTTP_HEADER_KEY__   = "x-sudory-agent-token"
+		__HTTP_HEADER_KEY__   = "x-synapse-agent-token"
 		__CONTEXT_VALUE_KEY__ = AgentSession
 	)
 

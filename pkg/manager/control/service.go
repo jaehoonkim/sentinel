@@ -9,19 +9,19 @@ import (
 	"sort"
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/manager/control/vault"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/excute"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/sqlex"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
-	"github.com/NexClipper/sudory/pkg/manager/status/state"
+	"github.com/jaehoonkim/synapse/pkg/manager/control/vault"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/sqlex"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/synapse/pkg/manager/status/state"
 	"github.com/qri-io/jsonschema"
 
-	"github.com/NexClipper/sudory/pkg/manager/macro/echoutil"
-	"github.com/NexClipper/sudory/pkg/manager/macro/logs"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/echoutil"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
 
-	"github.com/NexClipper/sudory/pkg/manager/model/service/v4"
-	"github.com/NexClipper/sudory/pkg/manager/model/template/v3"
+	"github.com/jaehoonkim/synapse/pkg/manager/model/service/v4"
+	"github.com/jaehoonkim/synapse/pkg/manager/model/template/v3"
 
 	"github.com/labstack/echo/v4"
 	"github.com/pkg/errors"
@@ -176,9 +176,9 @@ func (ctl ControlVanilla) CreateService(ctx echo.Context) error {
 // @Produce     json
 // @Tags        manager/service
 // @Router      /manager/service [get]
-// @Param       q           query string false "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       o           query string false "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       p           query string false "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       q           query string false "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       o           query string false "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       p           query string false "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md"
 // @Success     200 {array} service.HttpRsp_Service
 func (ctl ControlVanilla) FindService(ctx echo.Context) (err error) {
 	q, err := stmt.ConditionLexer.Parse(echoutil.QueryParam(ctx)["q"])

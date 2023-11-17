@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata: 
-  name: sudory-controller
-  namespace: sudoryagent
+  name: synapse-controller
+  namespace: synapseagent
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: sudory-controller
-  namespace: sudoryagent
+  name: synapse-controller
+  namespace: synapseagent
 rules:
 - apiGroups: ["*"]
   resources: ["*"]
@@ -17,12 +17,12 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: sudory-controller
+  name: synapse-controller
 subjects:
 - kind: ServiceAccount
-  name: sudory-controller
-  namespace: sudoryagent 
+  name: synapse-controller
+  namespace: synapseagent 
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: sudory-controller
+  name: synapse-controller

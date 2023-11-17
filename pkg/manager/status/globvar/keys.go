@@ -3,7 +3,7 @@ package globvar
 import (
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/manager/macro/logs"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
 	"github.com/pkg/errors"
 )
 

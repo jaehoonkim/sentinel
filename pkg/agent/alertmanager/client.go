@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/agent/httpclient"
-	"github.com/NexClipper/sudory/pkg/agent/log"
+	"github.com/jaehoonkim/synapse/pkg/agent/httpclient"
+	"github.com/jaehoonkim/synapse/pkg/agent/log"
 )
 
 const defaultQueryTimeout = 10 * time.Second

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 apprun() {
-	exec /app/sudory-manager -config '/app/conf/sudory-manager.yml'
+	exec /app/synapseee-manager -config '/app/conf/synapse-manager.yml'
 }
 
 apprun

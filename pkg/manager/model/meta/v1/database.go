@@ -3,7 +3,7 @@ package v1
 import (
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/manager/macro"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro"
 )
 
 // database meta info

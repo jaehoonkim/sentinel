@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/manager/macro/channels"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/channels"
 )
 
 func TestNewFanout(t *testing.T) {

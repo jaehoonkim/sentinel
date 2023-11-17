@@ -3,23 +3,23 @@ FROM alpine:latest   as common-build-stage
 LABEL version=0.0.1
 
 ENV WORKDIR=/app \
-    NAME=sudory-manager \
-    USER=jaehoon \
+    NAME=synapse-manager \
+    USER=synapse \
     USER_ID=1002 \
-    GROUP=kim
+    GROUP=project-synapse
 
 WORKDIR ${WORKDIR}
 
 RUN apk update && apk add bash mariadb-client
 
 RUN mkdir -p ${WORKDIR}/conf/rules
-RUN mkdir -p ${WORKDIR}/migrations/sudory
+RUN mkdir -p ${WORKDIR}/migrations/synapse
 
 
-COPY /bin/manager/sudory-manager ${WORKDIR}/
-COPY /conf/sudory-manager.yml ${WORKDIR}/conf/
+COPY /bin/manager/synapse-manager ${WORKDIR}/
+COPY /conf/synapse-manager.yml ${WORKDIR}/conf/
 COPY /conf/enigma.yml ${WORKDIR}/conf/rules/
-COPY /conf/script/migrations/sudory  ${WORKDIR}/conf/migrations/sudory
+COPY /conf/script/migrations/synapse  ${WORKDIR}/conf/migrations/synapse
 COPY docker-entrypoint.sh ${WORKDIR}/
 
 

@@ -1,6 +1,6 @@
 package stmt
 
-import "github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
+import "github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
 
 const (
 	__DIALECT__ = "mysql"

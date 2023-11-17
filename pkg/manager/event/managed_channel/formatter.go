@@ -5,8 +5,8 @@ import (
 	"encoding/json"
 	"sync"
 
-	channelv2 "github.com/NexClipper/sudory/pkg/manager/model/channel/v2"
 	"github.com/itchyny/gojq"
+	channelv2 "github.com/jaehoonkim/synapse/pkg/manager/model/channel/v2"
 )
 
 type Formatter interface {

@@ -3,7 +3,7 @@ package excute
 import (
 	"context"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
 )
 
 type FakeResolver struct {

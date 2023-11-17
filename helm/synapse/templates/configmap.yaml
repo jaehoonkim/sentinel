@@ -3,10 +3,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-sudory-agent-configmap
+  name: {{ .Release.Name }}-synapse-agent-configmap
   namespace: {{ .Release.Namespace }}
   labels:
-    sudory: agent
+    synapse: agent
 data:
 {{ toYaml .Values.agent.environment_variable.data | indent 2  }}
 {{- end}}
@@ -15,11 +15,11 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-sudory-manager-rules-configmap
+  name: {{ .Release.Name }}-synapse-manager-rules-configmap
   namespace: {{ .Release.Namespace }}
   labels:
     release: {{ .Release.Name }}
-    sudory: manager
+    synapse: manager
 data:
 {{ toYaml .Values.manager.managerrule.data | indent 2 }}
 {{- end}}
@@ -29,7 +29,7 @@ data:
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Release.Name }}-sudory-manager-configmap
+  name: {{ .Release.Name }}-synapse-manager-configmap
   namespace: {{ .Release.Namespace }}
 data:
 {{ toYaml .Values.manager.environment_variable.data | indent 2  }}

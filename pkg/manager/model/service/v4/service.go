@@ -3,8 +3,8 @@ package service
 import (
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla"
-	cryptov2 "github.com/NexClipper/sudory/pkg/manager/model/default_crypto_types/v2"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla"
+	cryptov2 "github.com/jaehoonkim/synapse/pkg/manager/model/default_crypto_types/v2"
 )
 
 type serviceTableName struct{}

@@ -3,7 +3,7 @@ package globvar_test
 import (
 	"testing"
 
-	"github.com/NexClipper/sudory/pkg/manager/macro"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro"
 )
 
 func TestGenerateUuid(t *testing.T) {

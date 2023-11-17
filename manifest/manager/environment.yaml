@@ -1,24 +1,24 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: sudory
+  name: synapse
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: sudory-configmap
-  namespace: sudory
+  name: synapse-configmap
+  namespace: synapse
 data:
   db_host: ""
   db_port: "3306"
-  db_scheme: "sudory"
+  db_scheme: "synapse"
   db_export_path: "."
-  db_server_username: "sudory"
+  db_server_username: "synapse"
   log_severity: "info"
   log_system_event: "false"
   log_verbose: "true"
   log_verboselevel: "9"
-  log_filename: "./sudory.log"
+  log_filename: "./synapse.log"
   log_maxsize: "10"
   log_maxage: "5"
   log_maxbackups: "10"
@@ -27,8 +27,8 @@ data:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: sudory-secret
-  namespace: sudory
+  name: synapse-secret
+  namespace: synapse
 type: Opaque
 data:
   db_server_password: ""

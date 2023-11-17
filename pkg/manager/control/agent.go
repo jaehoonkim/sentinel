@@ -10,31 +10,31 @@ import (
 	"strings"
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/agent/log"
-	"github.com/NexClipper/sudory/pkg/manager/control/vault"
-	"github.com/NexClipper/sudory/pkg/manager/event/managed_channel"
-	"github.com/NexClipper/sudory/pkg/manager/macro"
+	"github.com/jaehoonkim/synapse/pkg/agent/log"
+	"github.com/jaehoonkim/synapse/pkg/manager/control/vault"
+	"github.com/jaehoonkim/synapse/pkg/manager/event/managed_channel"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro"
 	"github.com/pkg/errors"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/excute"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/sqlex"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/sqlex"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
 
-	"github.com/NexClipper/sudory/pkg/manager/macro/echoutil"
-	"github.com/NexClipper/sudory/pkg/manager/macro/logs"
-	"github.com/NexClipper/sudory/pkg/manager/model/auths/v2"
-	channelv3 "github.com/NexClipper/sudory/pkg/manager/model/channel/v3"
-	clusterv3 "github.com/NexClipper/sudory/pkg/manager/model/cluster/v3"
-	clusterinfov2 "github.com/NexClipper/sudory/pkg/manager/model/cluster_infomation/v2"
-	"github.com/NexClipper/sudory/pkg/manager/model/cluster_token/v3"
-	cryptov2 "github.com/NexClipper/sudory/pkg/manager/model/default_crypto_types/v2"
-	servicev3 "github.com/NexClipper/sudory/pkg/manager/model/service/v3"
-	servicev4 "github.com/NexClipper/sudory/pkg/manager/model/service/v4"
-	sessions "github.com/NexClipper/sudory/pkg/manager/model/session/v3"
-	"github.com/NexClipper/sudory/pkg/manager/model/tenants/v3"
-	"github.com/NexClipper/sudory/pkg/manager/status/globvar"
 	"github.com/golang-jwt/jwt/v4"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/echoutil"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
+	"github.com/jaehoonkim/synapse/pkg/manager/model/auths/v2"
+	channelv3 "github.com/jaehoonkim/synapse/pkg/manager/model/channel/v3"
+	clusterv3 "github.com/jaehoonkim/synapse/pkg/manager/model/cluster/v3"
+	clusterinfov2 "github.com/jaehoonkim/synapse/pkg/manager/model/cluster_infomation/v2"
+	"github.com/jaehoonkim/synapse/pkg/manager/model/cluster_token/v3"
+	cryptov2 "github.com/jaehoonkim/synapse/pkg/manager/model/default_crypto_types/v2"
+	servicev3 "github.com/jaehoonkim/synapse/pkg/manager/model/service/v3"
+	servicev4 "github.com/jaehoonkim/synapse/pkg/manager/model/service/v4"
+	sessions "github.com/jaehoonkim/synapse/pkg/manager/model/session/v3"
+	"github.com/jaehoonkim/synapse/pkg/manager/model/tenants/v3"
+	"github.com/jaehoonkim/synapse/pkg/manager/status/globvar"
 
 	"github.com/labstack/echo/v4"
 )
@@ -46,11 +46,11 @@ import (
 // @Tags        agent/service
 // @Router      /agent/service [get]
 // @Success     200 {array}  servicev4.HttpRsp_AgentServicePolling
-// @Header      200 {string} x-sudory-agent-token
+// @Header      200 {string} x-synapse-agent-token
 func (ctl ControlVanilla) PollingService(ctx echo.Context) error {
 
 	//get token claims
-	// claims, err := GetSudoryAgentTokenClaims(ctx)
+	// claims, err := GetSynapseAgentTokenClaims(ctx)
 	claims, err := GetAgentSessionClaims(ctx, ctl, ctl.dialect)
 	err = errors.Wrapf(err, "failed to get client token")
 	if err != nil {
@@ -468,7 +468,7 @@ func (ctl ControlVanilla) PollingService(ctx echo.Context) error {
 // @Router      /agent/service [put]
 // @Param       body body servicev4.HttpReq_AgentServiceUpdate true "HttpReq_AgentServiceUpdate"
 // @Success     200
-// @Header      200 {string} x-sudory-agent-token
+// @Header      200 {string} x-synapse-agent-token
 func (ctl ControlVanilla) UpdateService(ctx echo.Context) (err error) {
 	type temp struct {
 		Version string `json:"version,omitempty"`
@@ -562,7 +562,7 @@ func (ctl ControlVanilla) UpdateService(ctx echo.Context) (err error) {
 		}
 
 		// get agent token claims
-		// claims, err := GetSudoryAgentTokenClaims(ctx)
+		// claims, err := GetSynapseAgentTokenClaims(ctx)
 		claims, err := GetAgentSessionClaims(ctx, ctl.DB, ctl.dialect)
 		if err != nil {
 			err = errors.Wrapf(err, "failed to get agent token")
@@ -753,7 +753,7 @@ func (ctl ControlVanilla) UpdateService(ctx echo.Context) (err error) {
 		}
 
 		// get client token claims
-		// claims, err := GetSudoryAgentTokenClaims(ctx)
+		// claims, err := GetSynapseAgentTokenClaims(ctx)
 		claims, err := GetAgentSessionClaims(ctx, ctl.DB, ctl.dialect)
 		if err != nil {
 			err = errors.Wrapf(err, "failed to get client token")
@@ -944,7 +944,7 @@ func (ctl ControlVanilla) UpdateService(ctx echo.Context) (err error) {
 // @Router      /agent/auth [post]
 // @Param       body body auths.HttpReqAuth true "HttpReqAuth"
 // @Success     200 {string} ok
-// @Header      200 {string} x-sudory-agent-token
+// @Header      200 {string} x-synapse-agent-token
 func (ctl ControlVanilla) AuthAgent(ctx echo.Context) (err error) {
 	auth := new(auths.HttpReqAuth)
 	err = func() (err error) {
@@ -1086,7 +1086,7 @@ func (ctl ControlVanilla) AuthAgent(ctx echo.Context) (err error) {
 	}
 
 	//save token to header
-	ctx.Response().Header().Set(__HTTP_HEADER_X_SUDORY_AGENT_TOKEN__, token_string)
+	ctx.Response().Header().Set(__HTTP_HEADER_X_SYNAPSE_AGENT_TOKEN__, token_string)
 
 	//invoke event (client-auth-accept)
 	const event_name = "agent-auth-accept"
@@ -1113,11 +1113,11 @@ func (ctl ControlVanilla) AuthAgent(ctx echo.Context) (err error) {
 // }
 
 func (ctl ControlVanilla) VerifyClientSessionToken(ctx echo.Context) (err error) {
-	token := ctx.Request().Header.Get(__HTTP_HEADER_X_SUDORY_AGENT_TOKEN__)
+	token := ctx.Request().Header.Get(__HTTP_HEADER_X_SYNAPSE_AGENT_TOKEN__)
 	err = func() (err error) {
 		if len(token) == 0 {
 			return errors.Wrapf(ErrorInvalidRequestParameter, "missing request header%v", logs.KVL(
-				"header", __HTTP_HEADER_X_SUDORY_AGENT_TOKEN__,
+				"header", __HTTP_HEADER_X_SYNAPSE_AGENT_TOKEN__,
 			))
 		}
 
@@ -1131,7 +1131,7 @@ func (ctl ControlVanilla) VerifyClientSessionToken(ctx echo.Context) (err error)
 
 		if _, ok := jwt_token.Claims.(*sessions.ClientSessionPayload); !ok || !jwt_token.Valid {
 			return errors.Errorf("jwt verify%v", logs.KVL(
-				"header", __HTTP_HEADER_X_SUDORY_AGENT_TOKEN__,
+				"header", __HTTP_HEADER_X_SYNAPSE_AGENT_TOKEN__,
 				"token", token,
 			))
 		}
@@ -1145,14 +1145,14 @@ func (ctl ControlVanilla) VerifyClientSessionToken(ctx echo.Context) (err error)
 }
 
 func (ctl ControlVanilla) RefreshClientSessionToken(ctx echo.Context) (err error) {
-	token := ctx.Request().Header.Get(__HTTP_HEADER_X_SUDORY_AGENT_TOKEN__)
+	token := ctx.Request().Header.Get(__HTTP_HEADER_X_SYNAPSE_AGENT_TOKEN__)
 	var jwt_token *jwt.Token
 	claims := new(sessions.ClientSessionPayload)
 	err = func() (err error) {
 		if len(token) == 0 {
 			return errors.Wrapf(ErrorInvalidRequestParameter, "missing request header%s",
 				logs.KVL(
-					"key", __HTTP_HEADER_X_SUDORY_AGENT_TOKEN__,
+					"key", __HTTP_HEADER_X_SYNAPSE_AGENT_TOKEN__,
 				))
 		}
 
@@ -1251,7 +1251,7 @@ func (ctl ControlVanilla) RefreshClientSessionToken(ctx echo.Context) (err error
 	}
 
 	//save client session-token to header
-	ctx.Response().Header().Set(__HTTP_HEADER_X_SUDORY_AGENT_TOKEN__, new_token_string)
+	ctx.Response().Header().Set(__HTTP_HEADER_X_SYNAPSE_AGENT_TOKEN__, new_token_string)
 
 	session := sessions.Session{}
 	session.Uuid = claims.Uuid
@@ -1315,12 +1315,12 @@ func usedJwtSigningMethod(token jwt.Token, init jwt.SigningMethod) jwt.SigningMe
 	return init
 }
 
-// func GetSudoryAgentTokenClaims(ctx echo.Context) (claims *sessionv3.ClientSessionPayload, err error) {
+// func GetSynapseAgentTokenClaims(ctx echo.Context) (claims *sessionv3.ClientSessionPayload, err error) {
 // 	var token string
-// 	if token = ctx.Request().Header.Get(__HTTP_HEADER_X_SUDORY_AGENT_TOKEN__); len(token) == 0 {
+// 	if token = ctx.Request().Header.Get(__HTTP_HEADER_X_SYNAPSE_AGENT_TOKEN__); len(token) == 0 {
 // 		err = errors.Errorf("missing request header%s",
 // 			logs.KVL(
-// 				"key", __HTTP_HEADER_X_SUDORY_AGENT_TOKEN__,
+// 				"key", __HTTP_HEADER_X_SYNAPSE_AGENT_TOKEN__,
 // 			))
 // 		return
 // 	}
@@ -1369,7 +1369,7 @@ func usedJwtSigningMethod(token jwt.Token, init jwt.SigningMethod) jwt.SigningMe
 
 // 	err = fn()
 // 	err = errors.Wrapf(err, "failed to parse header token%v", logs.KVL(
-// 		"header_token", __HTTP_HEADER_X_SUDORY_AGENT_TOKEN__,
+// 		"header_token", __HTTP_HEADER_X_SYNAPSE_AGENT_TOKEN__,
 // 		"token", token,
 // 	))
 // 	return

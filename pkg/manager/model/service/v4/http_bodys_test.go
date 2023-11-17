@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	v3 "github.com/NexClipper/sudory/pkg/manager/model/service/v3"
+	v3 "github.com/jaehoonkim/synapse/pkg/manager/model/service/v3"
 )
 
 func TestPollingV3(t *testing.T) {

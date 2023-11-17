@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla"
-	globvarv2 "github.com/NexClipper/sudory/pkg/manager/model/global_variables/v2"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla"
+	globvarv2 "github.com/jaehoonkim/synapse/pkg/manager/model/global_variables/v2"
 )
 
 type defaultValue struct {

@@ -10,23 +10,23 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/agent/fetcher"
-	"github.com/NexClipper/sudory/pkg/agent/httpclient"
-	"github.com/NexClipper/sudory/pkg/agent/k8s"
-	"github.com/NexClipper/sudory/pkg/agent/log"
-	"github.com/NexClipper/sudory/pkg/agent/scheduler"
-	"github.com/NexClipper/sudory/pkg/version"
+	"github.com/jaehoonkim/synapse/pkg/agent/fetcher"
+	"github.com/jaehoonkim/synapse/pkg/agent/httpclient"
+	"github.com/jaehoonkim/synapse/pkg/agent/k8s"
+	"github.com/jaehoonkim/synapse/pkg/agent/log"
+	"github.com/jaehoonkim/synapse/pkg/agent/scheduler"
+	"github.com/jaehoonkim/synapse/pkg/version"
 )
 
-const APP_NAME = "sudory-agent"
+const APP_NAME = "synapse-agent"
 
 func main() {
 	versionFlag := flag.Bool("version", false, "print the current version")
 
-	manager := flag.String("manager", "http://localhost:8099", "sudory manager url")
-	clusterid := flag.String("clusterid", "", "sudory agent's cluster id")
-	token := flag.String("token", "", "sudory agent's token for manager connection")
-	loglevel := flag.String("loglevel", "debug", "sudory agent's log level. One of: debug(defualt)|info|warn|error")
+	manager := flag.String("manager", "http://localhost:8099", "synapse manager url")
+	clusterid := flag.String("clusterid", "", "synapse agent's cluster id")
+	token := flag.String("token", "", "synapse agent's token for manager connection")
+	loglevel := flag.String("loglevel", "debug", "synapse agent's log level. One of: debug(defualt)|info|warn|error")
 
 	flag.Parse()
 
@@ -115,5 +115,5 @@ func main() {
 		log.Infof("Received Fetcher Done")
 	}
 
-	log.Infof("sudory-agent: end\n")
+	log.Infof("synapse-agent: end\n")
 }

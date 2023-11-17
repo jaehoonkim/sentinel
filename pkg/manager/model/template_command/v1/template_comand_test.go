@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/manager/macro/newist"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/newist"
 )
 
 func TestTemplateCommandJson(t *testing.T) {

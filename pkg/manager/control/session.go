@@ -4,17 +4,17 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/NexClipper/sudory/pkg/manager/database"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/excute"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
-	"github.com/NexClipper/sudory/pkg/manager/macro/echoutil"
-	"github.com/NexClipper/sudory/pkg/manager/macro/logs"
-	clusterinfos "github.com/NexClipper/sudory/pkg/manager/model/cluster_infomation/v2"
-	"github.com/NexClipper/sudory/pkg/manager/model/service/v3"
-	sessions "github.com/NexClipper/sudory/pkg/manager/model/session/v3"
-	"github.com/NexClipper/sudory/pkg/manager/status/globvar"
-	"github.com/NexClipper/sudory/pkg/manager/status/state"
+	"github.com/jaehoonkim/synapse/pkg/manager/database"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/echoutil"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
+	clusterinfos "github.com/jaehoonkim/synapse/pkg/manager/model/cluster_infomation/v2"
+	"github.com/jaehoonkim/synapse/pkg/manager/model/service/v3"
+	sessions "github.com/jaehoonkim/synapse/pkg/manager/model/session/v3"
+	"github.com/jaehoonkim/synapse/pkg/manager/status/globvar"
+	"github.com/jaehoonkim/synapse/pkg/manager/status/state"
 	"github.com/labstack/echo/v4"
 	"github.com/pkg/errors"
 )
@@ -25,9 +25,9 @@ import (
 // @Produce     json
 // @Tags        manager/session
 // @Router      /manager/session [get]
-// @Param       q            query  string false "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       o            query  string false "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       p            query  string false "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       q            query  string false "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       o            query  string false "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       p            query  string false "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md"
 // @Success     200 {array} sessions.Session
 func (ctl ControlVanilla) FindSession(ctx echo.Context) error {
 	q, err := stmt.ConditionLexer.Parse(echoutil.QueryParam(ctx)["q"])

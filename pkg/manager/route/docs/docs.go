@@ -49,7 +49,7 @@ const docTemplate = `{
                             "type": "string"
                         },
                         "headers": {
-                            "x-sudory-agent-token": {
+                            "x-synapse-agent-token": {
                                 "type": "string"
                             }
                         }
@@ -84,7 +84,7 @@ const docTemplate = `{
                             }
                         },
                         "headers": {
-                            "x-sudory-agent-token": {
+                            "x-synapse-agent-token": {
                                 "type": "string"
                             }
                         }
@@ -122,7 +122,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "headers": {
-                            "x-sudory-agent-token": {
+                            "x-synapse-agent-token": {
                                 "type": "string"
                             }
                         }
@@ -150,19 +150,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -236,19 +236,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -842,19 +842,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1128,19 +1128,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1398,19 +1398,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1526,19 +1526,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1615,19 +1615,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1819,19 +1819,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1972,19 +1972,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -3347,11 +3347,11 @@ const docTemplate = `{
         "ClientAuth": {
             "description": "token for client api",
             "type": "apiKey",
-            "name": "x-sudory-agent-token",
+            "name": "x-synapse-agent-token",
             "in": "header"
         },
         "XAuthToken": {
-            "description": "limit for access sudory api",
+            "description": "limit for access synapse api",
             "type": "apiKey",
             "name": "x_auth_token",
             "in": "header"
@@ -3365,8 +3365,8 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "",
 	BasePath:         "",
 	Schemes:          []string{},
-	Title:            "SUDORY",
-	Description:      "this is a sudory manager.",
+	Title:            "SYNAPSE",
+	Description:      "this is a synapse manager.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }

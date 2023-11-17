@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/NexClipper/sudory/pkg/manager/config"
-	"github.com/NexClipper/sudory/pkg/manager/control"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/excute"
-	"github.com/NexClipper/sudory/pkg/manager/macro/echoutil"
-	"github.com/NexClipper/sudory/pkg/manager/macro/logs"
+	"github.com/jaehoonkim/synapse/pkg/manager/config"
+	"github.com/jaehoonkim/synapse/pkg/manager/control"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/echoutil"
+	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
 	"github.com/labstack/echo/v4"
 	"github.com/pkg/errors"
 )
@@ -21,7 +21,7 @@ func XAuthToken(cfg *config.Config) echo.MiddlewareFunc {
 				// x_auth_token
 				const (
 					key   = "x_auth_token"
-					value = "SUDORY"
+					value = "SYNAPSE"
 				)
 				header_value := c.Request().Header.Get(key)
 

@@ -1,4 +1,4 @@
-package sudoryagent
+package synapseagent
 
 import (
 	"context"
@@ -15,15 +15,15 @@ import (
 )
 
 var (
-	SudoryagentNamespace  = "default"
-	SudoryagentSecretName = "sudoryagent-credential"
+	SynapseagentNamespace  = "default"
+	SynapseagentSecretName = "synapseagent-credential"
 )
 
 func init() {
 	// get namespace
 	namespace, err := ioutil.ReadFile("/var/run/secrets/kubernetes.io/serviceaccount/namespace")
 	if err == nil {
-		SudoryagentNamespace = string(namespace)
+		SynapseagentNamespace = string(namespace)
 	}
 }
 
@@ -32,13 +32,13 @@ func (c *Client) Credential(verb string, params map[string]interface{}) (string,
 	defer cancel()
 
 	found := true
-	secret, err := c.k8sClient.GetK8sClientset().CoreV1().Secrets(SudoryagentNamespace).Get(ctx, SudoryagentSecretName, metav1.GetOptions{})
+	secret, err := c.k8sClient.GetK8sClientset().CoreV1().Secrets(SynapseagentNamespace).Get(ctx, SynapseagentSecretName, metav1.GetOptions{})
 	if err != nil {
 		if !errors.IsNotFound(err) {
 			return "", err
 		}
 		found = false
-		secret = newSecretForSudoryagent()
+		secret = newSecretForSynapseagent()
 	}
 
 	var result []string
@@ -66,13 +66,13 @@ func (c *Client) Credential(verb string, params map[string]interface{}) (string,
 
 	if !found {
 		// k8s create secret
-		_, err := c.k8sClient.GetK8sClientset().CoreV1().Secrets(SudoryagentNamespace).Create(ctx, secret, metav1.CreateOptions{})
+		_, err := c.k8sClient.GetK8sClientset().CoreV1().Secrets(SynapseagentNamespace).Create(ctx, secret, metav1.CreateOptions{})
 		if err != nil {
 			return "", err
 		}
 	} else {
 		// k8s update secret
-		_, err := c.k8sClient.GetK8sClientset().CoreV1().Secrets(SudoryagentNamespace).Update(ctx, secret, metav1.UpdateOptions{})
+		_, err := c.k8sClient.GetK8sClientset().CoreV1().Secrets(SynapseagentNamespace).Update(ctx, secret, metav1.UpdateOptions{})
 		if err != nil {
 			return "", err
 		}
@@ -245,15 +245,15 @@ func removeCredential(secret *corev1.Secret, params map[string]interface{}) ([]s
 	return keys, nil
 }
 
-func newSecretForSudoryagent() *corev1.Secret {
+func newSecretForSynapseagent() *corev1.Secret {
 	secret := &corev1.Secret{
 		TypeMeta: metav1.TypeMeta{
 			APIVersion: corev1.SchemeGroupVersion.String(),
 			Kind:       "Secret",
 		},
 		ObjectMeta: metav1.ObjectMeta{
-			Name:      SudoryagentSecretName,
-			Namespace: SudoryagentNamespace,
+			Name:      SynapseagentSecretName,
+			Namespace: SynapseagentNamespace,
 		},
 		Type: corev1.SecretTypeOpaque,
 		Data: map[string][]byte{},

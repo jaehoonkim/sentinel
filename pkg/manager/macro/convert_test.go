@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	. "github.com/NexClipper/sudory/pkg/manager/macro"
+	. "github.com/jaehoonkim/synapse/pkg/manager/macro"
 )
 
 func TestConvtKeyValuePairs(t *testing.T) {

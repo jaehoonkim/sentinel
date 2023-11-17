@@ -5,8 +5,8 @@ import (
 	"database/sql"
 	"sync"
 
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla"
-	"github.com/NexClipper/sudory/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
 	"github.com/pkg/errors"
 )
 
