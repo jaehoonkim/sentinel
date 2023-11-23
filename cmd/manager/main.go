@@ -250,16 +250,16 @@ func newGlobalVariablesCron(db *sql.DB, dialect excute.SqlExcutor) (func(), erro
 	const interval = 10 * time.Second
 
 	//환경설정 updater 생성
-	updator := globvar.NewGlobalVariablesUpdate(db, dialect)
+	updater := globvar.NewGlobalVariablesUpdate(db, dialect)
 	//환경변수 리스트 검사
-	if err := updator.WhiteListCheck(); err != nil {
+	if err := updater.WhiteListCheck(); err != nil {
 		//빠져있는 환경변수 추가
-		if err := updator.Merge(); err != nil {
+		if err := updater.Merge(); err != nil {
 			return nil, errors.Wrapf(err, "global variables init merge")
 		}
 	}
 	//환경변수 업데이트
-	if err := updator.Update(); err != nil {
+	if err := updater.Update(); err != nil {
 		return nil, errors.Wrapf(err, "global variables init update")
 	}
 
@@ -282,7 +282,7 @@ func newGlobalVariablesCron(db *sql.DB, dialect excute.SqlExcutor) (func(), erro
 	tickerClose := ticker.NewTicker(interval,
 		//global variables update
 		func() {
-			if err := updator.Update(); err != nil {
+			if err := updater.Update(); err != nil {
 				errorHandlers.OnError(errors.Wrapf(err, "global variables update"))
 			}
 		},
