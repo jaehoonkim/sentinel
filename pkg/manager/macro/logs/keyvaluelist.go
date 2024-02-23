@@ -3,7 +3,7 @@ package logs
 import (
 	"bytes"
 
-	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs/internal/serialize"
+	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs/internal/serialize"
 )
 
 // KVL

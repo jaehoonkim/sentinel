@@ -5,16 +5,16 @@ import (
 	"database/sql"
 	"time"
 
-	// "github.com/jaehoonkim/synapse/pkg/manager/control/vault"
+	// "github.com/jaehoonkim/morpheus/pkg/manager/control/vault"
 
 	"github.com/google/logger"
-	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla"
-	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
-	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
-	"github.com/jaehoonkim/synapse/pkg/manager/macro"
-	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
-	globvarv2 "github.com/jaehoonkim/synapse/pkg/manager/model/global_variables/v2"
-	"github.com/jaehoonkim/synapse/pkg/manager/status/state"
+	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/morpheus/pkg/manager/macro"
+	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
+	globvarv2 "github.com/jaehoonkim/morpheus/pkg/manager/model/global_variables/v2"
+	"github.com/jaehoonkim/morpheus/pkg/manager/status/state"
 	"github.com/pkg/errors"
 )
 

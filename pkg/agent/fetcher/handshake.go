@@ -7,10 +7,10 @@ import (
 
 	"github.com/golang-jwt/jwt/v4"
 
-	"github.com/jaehoonkim/synapse/pkg/agent/log"
-	"github.com/jaehoonkim/synapse/pkg/manager/model/auths/v2"
-	sessionv1 "github.com/jaehoonkim/synapse/pkg/manager/model/session/v1"
-	"github.com/jaehoonkim/synapse/pkg/version"
+	"github.com/jaehoonkim/morpheus/pkg/agent/log"
+	"github.com/jaehoonkim/morpheus/pkg/manager/model/auths/v2"
+	sessionv1 "github.com/jaehoonkim/morpheus/pkg/manager/model/session/v1"
+	"github.com/jaehoonkim/morpheus/pkg/version"
 )
 
 func (f *Fetcher) HandShake() error {
@@ -23,10 +23,10 @@ func (f *Fetcher) HandShake() error {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 	defer cancel()
 
-	if err := f.synapseAPI.Auth(ctx, body); err != nil {
+	if err := f.morpheusAPI.Auth(ctx, body); err != nil {
 		return err
 	}
-	sessionToken := f.synapseAPI.GetToken()
+	sessionToken := f.morpheusAPI.GetToken()
 	log.Debugf("Successed to handshake: received token(%s) for polling.", sessionToken)
 
 	f.ChangeAgentConfigFromToken()
@@ -38,7 +38,7 @@ func (f *Fetcher) HandShake() error {
 		log.Warnf("Failed to bind payload : %v\n", err)
 		return err
 	}
-	if err := writeFile(".synapse", []byte(claims.Uuid)); err != nil {
+	if err := writeFile(".morpheus", []byte(claims.Uuid)); err != nil {
 		return err
 	}
 

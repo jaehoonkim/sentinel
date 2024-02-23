@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/jaehoonkim/synapse/pkg/manager/macro/enigma"
+	"github.com/jaehoonkim/morpheus/pkg/manager/macro/enigma"
 )
 
 func TestEnigma_10(t *testing.T) {

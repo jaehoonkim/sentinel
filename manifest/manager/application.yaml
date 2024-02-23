@@ -1,109 +1,109 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: synapse-manager
-  namespace: synapse 
+  name: morpheus-manager
+  namespace: morpheus 
 spec:
   type: LoadBalancer
   ports:
     - port: 8099
       targetPort: 8099
   selector:
-    synapse: manager 
+    morpheus: manager 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: synapse-manager
+  name: morpheus-manager
   namespace: manager
 spec:
   selector:
     matchLabels:
-      synapse: manager
+      morpheus: manager
   replicas: 1 
   template:
     metadata:
       labels:
-        synapse: manager
+        morpheus: manager
     spec:
       containers:
-        - name: synapse-manager
-          image: green:32000/synapse-manager:0.0.1
+        - name: morpheus-manager
+          image: green:32000/morpheus-manager:0.0.1
           ports:
             - containerPort: 8099
           env:
-            - name: SYNAPSE_DB_HOST
+            - name: MORPHEUS_DB_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: synapse-configmap
+                  name: morpheus-configmap
                   key: db_host
-            - name: SYNAPSE_DB_PORT
+            - name: MORPHEUS_DB_PORT
               valueFrom:
                 configMapKeyRef:
-                  name: synapse-configmap
+                  name: morpheus-configmap
                   key: db_port
-            - name: SYNAPSE_DB_SCHEME
+            - name: MORPHEUS_DB_SCHEME
               valueFrom:
                 configMapKeyRef:
-                  name: synapse-configmap
+                  name: morpheus-configmap
                   key: db_scheme
-            - name: SYNAPSE_DB_EXPORT_PATH
+            - name: MORPHEUS_DB_EXPORT_PATH
               valueFrom:
                 configMapKeyRef:
-                  name: synapse-configmap
+                  name: morpheus-configmap
                   key: db_export_path
-            - name: SYNAPSE_DB_SERVER_USERNAME
+            - name: MORPHEUS_DB_SERVER_USERNAME
               valueFrom:
                 configMapKeyRef:
-                  name: synapse-configmap
+                  name: morpheus-configmap
                   key: db_server_username
-            - name: SYNAPSE_DB_SERVER_PASSWORD
+            - name: MORPHEUS_DB_SERVER_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: synapse-secret
+                  name: morpheus-secret
                   key: db_server_password
-            - name: SYNAPSE_LOG_SEVERITY
+            - name: MORPHEUS_LOG_SEVERITY
               valueFrom:
                 configMapKeyRef:
-                  name: synapse-configmap
+                  name: morpheus-configmap
                   key: log_severity
-            - name: SYNAPSE_LOG_SYSTEM_EVENT
+            - name: MORPHEUS_LOG_SYSTEM_EVENT
               valueFrom:
                 configMapKeyRef:
-                  name: synapse-configmap            
+                  name: morpheus-configmap            
                   key: log_system_event
-            - name: SYNAPSE_LOG_VERBOSE
+            - name: MORPHEUS_LOG_VERBOSE
               valueFrom:
                 configMapKeyRef:
-                  name: synapse-configmap 
+                  name: morpheus-configmap 
                   key: log_verbose
-            - name: SYNAPSE_LOG_VERBOSELEVEL
+            - name: MORPHEUS_LOG_VERBOSELEVEL
               valueFrom:
                 configMapKeyRef:
-                  name: synapse-configmap
+                  name: morpheus-configmap
                   key: log_verboselevel
-            - name: SYNAPSE_LOG_FILENAME
+            - name: MORPHEUS_LOG_FILENAME
               valueFrom:
                 configMapKeyRef:
-                  name: synapse-configmap
+                  name: morpheus-configmap
                   key: log_filename
-            - name: SYNAPSE_LOG_MAXSIZE
+            - name: MORPHEUS_LOG_MAXSIZE
               valueFrom:
                 configMapKeyRef:
-                  name: synapse-configmap
+                  name: morpheus-configmap
                   key: log_maxsize
-            - name: SYNAPSE_LOG_MAXAGE
+            - name: MORPHEUS_LOG_MAXAGE
               valueFrom:
                 configMapKeyRef:
-                  name: synapse-configmap
+                  name: morpheus-configmap
                   key: log_maxage
-            - name: SYNAPSE_LOG_MAXBACKUPS
+            - name: MORPHEUS_LOG_MAXBACKUPS
               valueFrom:
                 configMapKeyRef:
-                  name: synapse-configmap
+                  name: morpheus-configmap
                   key: log_maxbackups
-            - name: SYNAPSE_LOG_COMPRESS
+            - name: MORPHEUS_LOG_COMPRESS
               valueFrom:
                 configMapKeyRef:
-                  name: synapse-configmap
+                  name: morpheus-configmap
                   key: log_compress

@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata: 
-  name: synapse-controller
-  namespace: synapseagent
+  name: morpheus-controller
+  namespace: morpheusagent
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: synapse-controller
-  namespace: synapseagent
+  name: morpheus-controller
+  namespace: morpheusagent
 rules:
 - apiGroups: ["*"]
   resources: ["*"]
@@ -17,12 +17,12 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: synapse-controller
+  name: morpheus-controller
 subjects:
 - kind: ServiceAccount
-  name: synapse-controller
-  namespace: synapseagent 
+  name: morpheus-controller
+  namespace: morpheusagent 
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: synapse-controller
+  name: morpheus-controller

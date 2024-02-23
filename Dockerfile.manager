@@ -3,23 +3,23 @@ FROM alpine:latest   as common-build-stage
 LABEL version=0.0.1
 
 ENV WORKDIR=/app \
-    NAME=synapse-manager \
-    USER=synapse \
+    NAME=morpheus-manager \
+    USER=morpheus \
     USER_ID=1002 \
-    GROUP=project-synapse
+    GROUP=morpheus-provisioning
 
 WORKDIR ${WORKDIR}
 
 RUN apk update && apk add bash mariadb-client
 
 RUN mkdir -p ${WORKDIR}/conf/rules
-RUN mkdir -p ${WORKDIR}/migrations/synapse
+RUN mkdir -p ${WORKDIR}/migrations/morpheus
 
 
-COPY /bin/manager/synapse-manager ${WORKDIR}/
-COPY /conf/synapse-manager.yml ${WORKDIR}/conf/
+COPY /bin/manager/morpheus-manager ${WORKDIR}/
+COPY /conf/morpheus-manager.yml ${WORKDIR}/conf/
 COPY /conf/enigma.yml ${WORKDIR}/conf/rules/
-COPY /conf/script/migrations/synapse  ${WORKDIR}/conf/migrations/synapse
+COPY /conf/script/migrations/morpheus  ${WORKDIR}/conf/migrations/morpheus
 COPY /conf/script/manager/entrypoint.sh ${WORKDIR}/
 
 

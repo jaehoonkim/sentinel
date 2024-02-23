@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 	"time"
 
-	"github.com/jaehoonkim/synapse/pkg/agent/jq"
-	"github.com/jaehoonkim/synapse/pkg/agent/log"
-	"github.com/jaehoonkim/synapse/pkg/agent/service"
+	"github.com/jaehoonkim/morpheus/pkg/agent/jq"
+	"github.com/jaehoonkim/morpheus/pkg/agent/log"
+	"github.com/jaehoonkim/morpheus/pkg/agent/service"
 )
 
 type ServiceExecutor struct {

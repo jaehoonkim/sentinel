@@ -6,7 +6,7 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/jaehoonkim/synapse/pkg/manager/config"
+	"github.com/jaehoonkim/morpheus/pkg/manager/config"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )

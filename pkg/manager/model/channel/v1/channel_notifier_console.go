@@ -1,6 +1,6 @@
 package v1
 
-import metav1 "github.com/jaehoonkim/synapse/pkg/manager/model/meta/v1"
+import metav1 "github.com/jaehoonkim/morpheus/pkg/manager/model/meta/v1"
 
 type NotifierConsoleProperty struct{}
 

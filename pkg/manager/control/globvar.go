@@ -4,13 +4,13 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla"
-	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
-	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
-	"github.com/jaehoonkim/synapse/pkg/manager/macro/echoutil"
-	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
-	globvarv2 "github.com/jaehoonkim/synapse/pkg/manager/model/global_variables/v2"
-	"github.com/jaehoonkim/synapse/pkg/manager/status/state"
+	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/morpheus/pkg/manager/macro/echoutil"
+	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
+	globvarv2 "github.com/jaehoonkim/morpheus/pkg/manager/model/global_variables/v2"
+	"github.com/jaehoonkim/morpheus/pkg/manager/status/state"
 	"github.com/labstack/echo/v4"
 	"github.com/pkg/errors"
 )
@@ -21,9 +21,9 @@ import (
 // @Produce     json
 // @Tags        manager/global_variables
 // @Router      /manager/global_variables [get]
-// @Param       q            query  string false "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       o            query  string false "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       p            query  string false "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       q            query  string false "query  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       o            query  string false "order  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       p            query  string false "paging github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
 // @Success 200 {array} v2.GlobalVariables
 func (ctl ControlVanilla) FindGlobalVariables(ctx echo.Context) error {
 	q, err := stmt.ConditionLexer.Parse(echoutil.QueryParam(ctx)["q"])

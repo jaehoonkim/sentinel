@@ -11,7 +11,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/jaehoonkim/synapse/pkg/manager/macro/enigma"
+	"github.com/jaehoonkim/morpheus/pkg/manager/macro/enigma"
 	"github.com/jinzhu/configor"
 	"gopkg.in/yaml.v2"
 )

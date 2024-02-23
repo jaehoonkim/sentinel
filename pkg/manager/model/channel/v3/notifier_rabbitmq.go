@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla"
 )
 
 type RabbitMqConfig struct {

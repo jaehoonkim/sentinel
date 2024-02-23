@@ -15,7 +15,7 @@
 
 POST {{url}}{{test_path}} {{protocolver}}
 Content-Type: application/json
-x_auth_token: SYNAPSE
+x_auth_token: MORPHEUS
 
 {
   "tenant": "{{ tenant_default }}"
@@ -26,7 +26,7 @@ x_auth_token: SYNAPSE
 
 POST {{url}}{{test_path}} {{protocolver}}
 Content-Type: application/json
-x_auth_token: SYNAPSE
+x_auth_token: MORPHEUS
 
 {
   "tenant": "{{ tenant_foo }}"
@@ -37,7 +37,7 @@ x_auth_token: SYNAPSE
 
 POST {{url}}{{test_path}} {{protocolver}}
 Content-Type: application/json
-x_auth_token: SYNAPSE
+x_auth_token: MORPHEUS
 
 {
   "tenant": "{{ tenant_test }}"

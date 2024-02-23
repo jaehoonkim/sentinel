@@ -1,35 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: synapse-agent
-  namespace: synapseagent
+  name: morpheus-agent
+  namespace: morpheusagent
 spec:
   selector:
     matchLabels:
-      synapse:  agent
+      morpheus:  agent
   replicas: 1 
   template:
     metadata:
       labels:
-        synapse: agent
+        morpheus: agent
     spec:
-      serviceAccountName: synapse-controller
+      serviceAccountName: morpheus-controller
       containers:
-        - name: synapse-agent
-          image: green:32000/synapse-synapse-agent
+        - name: morpheus-agent
+          image: green:32000/morpheus-morpheus-agent
           env:
             - name: S_MANAGER_URL
               valueFrom:
                 configMapKeyRef:
-                  name: synapse-configmap
+                  name: morpheus-configmap
                   key: manager
             - name: S_CLUSTER_ID
               valueFrom:
                 configMapKeyRef:
-                  name: synapse-configmap
+                  name: morpheus-configmap
                   key: clusterid
             - name: S_TOKEN
               valueFrom:
                 configMapKeyRef:
-                  name: synapse-configmap
+                  name: morpheus-configmap
                   key: token

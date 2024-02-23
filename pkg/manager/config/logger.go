@@ -9,7 +9,7 @@ import (
 	"sync"
 
 	"github.com/google/logger"
-	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
+	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
 	"github.com/jinzhu/configor"
 	"github.com/pkg/errors"
 	"gopkg.in/natefinch/lumberjack.v2"
@@ -17,15 +17,15 @@ import (
 
 type LoggerConfig struct {
 	Logger struct {
-		Severity        string `env:"SYNAPSE_LOG_SEVERIY"           yaml:"severity,omitempty"`
-		SystemEvent     bool   `env:"SYNAPSE_LOG_SYSTEM_EVENT"      yaml:"system-event,omitempty"`
-		SystemEventName string `env:"SYNAPSE_LOG_SYSTEM_EVENT_NAME" yaml:"system-event-name,omitempty"`
-		Verbose         bool   `env:"SYNAPSE_LOG_VERBOSE"           yaml:"verbose,omitempty"`
-		Filename        string `env:"SYNAPSE_LOG_FILENAME"          yaml:"filename,omitempty"`
-		MaxSize         int    `env:"SYNAPSE_LOG_MAXSIZE"           yaml:"max-size,omitempty"`
-		MaxAge          int    `env:"SYNAPSE_LOG_MAXAGE"            yaml:"max-age,omitempty"`
-		MaxBackups      int    `env:"SYNAPSE_LOG_MAXBACKUPS"        yaml:"max-backups,omitempty"`
-		Compress        bool   `env:"SYNAPSE_LOG_COMPRESS"          yaml:"compress,omitempty"`
+		Severity        string `env:"MORPHEUS_LOG_SEVERIY"           yaml:"severity,omitempty"`
+		SystemEvent     bool   `env:"MORPHEUS_LOG_SYSTEM_EVENT"      yaml:"system-event,omitempty"`
+		SystemEventName string `env:"MORPHEUS_LOG_SYSTEM_EVENT_NAME" yaml:"system-event-name,omitempty"`
+		Verbose         bool   `env:"MORPHEUS_LOG_VERBOSE"           yaml:"verbose,omitempty"`
+		Filename        string `env:"MORPHEUS_LOG_FILENAME"          yaml:"filename,omitempty"`
+		MaxSize         int    `env:"MORPHEUS_LOG_MAXSIZE"           yaml:"max-size,omitempty"`
+		MaxAge          int    `env:"MORPHEUS_LOG_MAXAGE"            yaml:"max-age,omitempty"`
+		MaxBackups      int    `env:"MORPHEUS_LOG_MAXBACKUPS"        yaml:"max-backups,omitempty"`
+		Compress        bool   `env:"MORPHEUS_LOG_COMPRESS"          yaml:"compress,omitempty"`
 	}
 }
 
@@ -53,11 +53,11 @@ func init() {
 
 	flag.StringVar(&cfg.Logger.Severity, "log-severity", "debug", "severity of log severity=debug,[info|information],[warn|warning],error,fatal")
 	flag.BoolVar(&cfg.Logger.SystemEvent, "log-system-event", false, "enabled system event")
-	flag.StringVar(&cfg.Logger.SystemEventName, "log-system-eventname", "github.com/jaehoonkim/synapse", "system event name")
+	flag.StringVar(&cfg.Logger.SystemEventName, "log-system-eventname", "github.com/jaehoonkim/morpheus", "system event name")
 	flag.BoolVar(&cfg.Logger.Verbose, "log-verbose", false, "enabled verbose")
 
 	//file rotator (for lumberjack)
-	flag.StringVar(&cfg.Logger.Filename, "log-filename", "synapse.log", "log file name")
+	flag.StringVar(&cfg.Logger.Filename, "log-filename", "morpheus.log", "log file name")
 	flag.IntVar(&cfg.Logger.MaxSize, "log-max-size", 20, "maximum size in megabytes of the log file (MB)")
 	flag.IntVar(&cfg.Logger.MaxAge, "log-max-age", 30, "maximum number of days to retain old log files (DAY)")
 	flag.IntVar(&cfg.Logger.MaxBackups, "log-max-backups", 20, "maximum number of old log files to retain (COUNT)")

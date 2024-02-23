@@ -3,7 +3,7 @@ package service
 import (
 	"time"
 
-	crypto "github.com/jaehoonkim/synapse/pkg/manager/model/default_crypto_types/v2"
+	crypto "github.com/jaehoonkim/morpheus/pkg/manager/model/default_crypto_types/v2"
 )
 
 type serviceResultTableName struct{}

@@ -6,7 +6,7 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/jaehoonkim/synapse/pkg/version"
+	"github.com/jaehoonkim/morpheus/pkg/version"
 )
 
 // Config

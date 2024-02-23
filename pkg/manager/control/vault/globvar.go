@@ -1,10 +1,10 @@
 package vault
 
 // import (
-// 	"github.com/jaehoonkim/synapse/pkg/manager/database"
-// 	"github.com/jaehoonkim/synapse/pkg/manager/database/prepare"
-// 	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
-// 	globvarv1 "github.com/jaehoonkim/synapse/pkg/manager/model/global_variables/v1"
+// 	"github.com/jaehoonkim/morpheus/pkg/manager/database"
+// 	"github.com/jaehoonkim/morpheus/pkg/manager/database/prepare"
+// 	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
+// 	globvarv1 "github.com/jaehoonkim/morpheus/pkg/manager/model/global_variables/v1"
 // 	"github.com/pkg/errors"
 // 	"xorm.io/xorm"
 // )

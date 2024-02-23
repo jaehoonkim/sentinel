@@ -3,8 +3,8 @@ package v2_test
 import (
 	"testing"
 
-	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/ice_cream_maker"
-	v2 "github.com/jaehoonkim/synapse/pkg/manager/model/cluster/v2"
+	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/ice_cream_maker"
+	v2 "github.com/jaehoonkim/morpheus/pkg/manager/model/cluster/v2"
 )
 
 var objs = []interface{}{

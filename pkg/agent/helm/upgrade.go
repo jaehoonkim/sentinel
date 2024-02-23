@@ -10,7 +10,7 @@ import (
 	"helm.sh/helm/v3/pkg/chart/loader"
 	"helm.sh/helm/v3/pkg/release"
 
-	"github.com/jaehoonkim/synapse/pkg/agent/log"
+	"github.com/jaehoonkim/morpheus/pkg/agent/log"
 )
 
 func setDefaultUpgradeSettings(client *action.Upgrade) {

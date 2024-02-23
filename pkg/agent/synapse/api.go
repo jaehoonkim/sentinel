@@ -1,4 +1,4 @@
-package synapse
+package morpheus
 
 import (
 	"context"
@@ -9,15 +9,15 @@ import (
 
 	"github.com/golang-jwt/jwt/v4"
 
-	"github.com/jaehoonkim/synapse/pkg/agent/httpclient"
-	"github.com/jaehoonkim/synapse/pkg/agent/log"
-	"github.com/jaehoonkim/synapse/pkg/manager/model/auths/v2"
-	servicev3 "github.com/jaehoonkim/synapse/pkg/manager/model/service/v3"
-	servicev4 "github.com/jaehoonkim/synapse/pkg/manager/model/service/v4"
-	sessionv1 "github.com/jaehoonkim/synapse/pkg/manager/model/session/v1"
+	"github.com/jaehoonkim/morpheus/pkg/agent/httpclient"
+	"github.com/jaehoonkim/morpheus/pkg/agent/log"
+	"github.com/jaehoonkim/morpheus/pkg/manager/model/auths/v2"
+	servicev3 "github.com/jaehoonkim/morpheus/pkg/manager/model/service/v3"
+	servicev4 "github.com/jaehoonkim/morpheus/pkg/manager/model/service/v4"
+	sessionv1 "github.com/jaehoonkim/morpheus/pkg/manager/model/session/v1"
 )
 
-const synapseAuthTokenHeaderName = "x-synapse-agent-token"
+const morpheusAuthTokenHeaderName = "x-morpheus-agent-token"
 
 type SynapseAPI struct {
 	client    *httpclient.HttpClient
@@ -64,12 +64,12 @@ func (s *SynapseAPI) Auth(ctx context.Context, auth *auths.HttpReqAuth) error {
 	if err != nil {
 		return err
 	}
-	log.Debugf("synapse API in Auth : %s\n", s.client)
+	log.Debugf("morpheus API in Auth : %s\n", s.client)
 	result := s.client.Post("/client/auth").SetBody("application/json", b).Do(ctx)
 
 	// get session token
 	if headers := result.Headers(); headers != nil {
-		if token := headers.Get(synapseAuthTokenHeaderName); token != "" {
+		if token := headers.Get(morpheusAuthTokenHeaderName); token != "" {
 			s.authToken.Store(token)
 		}
 	}
@@ -90,12 +90,12 @@ func (s *SynapseAPI) GetServices(ctx context.Context) ([]servicev4.HttpRsp_Agent
 	}
 
 	result := s.client.Get("/client/service").
-		SetHeader(synapseAuthTokenHeaderName, token).
+		SetHeader(morpheusAuthTokenHeaderName, token).
 		Do(ctx)
 
 	// get session token
 	if headers := result.Headers(); headers != nil {
-		if token := headers.Get(synapseAuthTokenHeaderName); token != "" {
+		if token := headers.Get(morpheusAuthTokenHeaderName); token != "" {
 			s.authToken.Store(token)
 		}
 	}
@@ -132,14 +132,14 @@ func (s *SynapseAPI) UpdateServices(ctx context.Context, service *servicev4.Http
 	}
 
 	result := s.client.Put("/client/service").
-		SetHeader(synapseAuthTokenHeaderName, token).
+		SetHeader(morpheusAuthTokenHeaderName, token).
 		SetGzip(true).
 		SetBody("application/json", b).
 		Do(ctx)
 
 	// get session token
 	if headers := result.Headers(); headers != nil {
-		if token := headers.Get(synapseAuthTokenHeaderName); token != "" {
+		if token := headers.Get(morpheusAuthTokenHeaderName); token != "" {
 			s.authToken.Store(token)
 		}
 	}

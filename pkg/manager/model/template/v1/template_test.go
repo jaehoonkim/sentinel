@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/jaehoonkim/synapse/pkg/manager/macro/newist"
+	"github.com/jaehoonkim/morpheus/pkg/manager/macro/newist"
 )
 
 func TestTemplateJson(t *testing.T) {

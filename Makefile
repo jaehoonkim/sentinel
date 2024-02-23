@@ -1,4 +1,4 @@
-PACKAGE=github.com/jaehoonkim/synapse/pkg
+PACKAGE=github.com/jaehoonkim/morpheus/pkg
 VERSION=$(shell sed -n 's/VERSION=//p' properties.${target})
 COMMIT=$(shell git rev-parse HEAD)
 BUILD_DATE=$(shell date '+%Y-%m-%dT%H:%M:%S')
@@ -15,7 +15,7 @@ login:
 	docker login ${register} -u ${user}
 
 build:
-	env CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="$(LDFLAGS)" -o ./bin/${target}/synapse-${target} ./cmd/${target}
+	env CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags="$(LDFLAGS)" -o ./bin/${target}/morpheus-${target} ./cmd/${target}
 
 image:
 	docker build -t ${base}-${target}:latest -f Dockerfile.${target} .
@@ -26,5 +26,5 @@ push:
 	docker push ${base}-${target}:latest
 
 clean:
-	rm ./bin/manager/synapse-manager
-	rm ./bin/agent/synapse-agent
+	rm ./bin/manager/morpheus-manager
+	rm ./bin/agent/morpheus-agent

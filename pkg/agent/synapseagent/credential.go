@@ -1,4 +1,4 @@
-package synapseagent
+package morpheusagent
 
 import (
 	"context"
@@ -16,7 +16,7 @@ import (
 
 var (
 	SynapseagentNamespace  = "default"
-	SynapseagentSecretName = "synapseagent-credential"
+	SynapseagentSecretName = "morpheusagent-credential"
 )
 
 func init() {

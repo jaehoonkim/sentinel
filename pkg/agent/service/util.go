@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/jaehoonkim/synapse/pkg/agent/log"
-	servicev3 "github.com/jaehoonkim/synapse/pkg/manager/model/service/v3"
-	servicev4 "github.com/jaehoonkim/synapse/pkg/manager/model/service/v4"
+	"github.com/jaehoonkim/morpheus/pkg/agent/log"
+	servicev3 "github.com/jaehoonkim/morpheus/pkg/manager/model/service/v3"
+	servicev4 "github.com/jaehoonkim/morpheus/pkg/manager/model/service/v4"
 )
 
 type FailedConvertService struct {

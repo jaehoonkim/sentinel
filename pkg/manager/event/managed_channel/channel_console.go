@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	channelv2 "github.com/jaehoonkim/synapse/pkg/manager/model/channel/v3"
+	channelv2 "github.com/jaehoonkim/morpheus/pkg/manager/model/channel/v3"
 	"github.com/pkg/errors"
 )
 

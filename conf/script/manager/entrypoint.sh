@@ -1,7 +1,7 @@
 #!/bin/bash
 
 apprun() {
-	exec /app/synapseee-manager -config '/app/conf/synapse-manager.yml'
+	exec /app/morpheus-manager -config '/app/conf/morpheus-manager.yml'
 }
 
 apprun

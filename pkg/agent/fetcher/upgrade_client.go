@@ -18,9 +18,9 @@ import (
 	"k8s.io/apimachinery/pkg/watch"
 	watchtools "k8s.io/client-go/tools/watch"
 
-	"github.com/jaehoonkim/synapse/pkg/agent/k8s"
-	"github.com/jaehoonkim/synapse/pkg/agent/log"
-	"github.com/jaehoonkim/synapse/pkg/agent/service"
+	"github.com/jaehoonkim/morpheus/pkg/agent/k8s"
+	"github.com/jaehoonkim/morpheus/pkg/agent/log"
+	"github.com/jaehoonkim/morpheus/pkg/agent/service"
 )
 
 func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args map[string]interface{}) (err error) {
@@ -31,11 +31,11 @@ func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args m
 	// service processing status update
 	for {
 		up := service.CreateUpdateService(version, serviceId, 1, 0, service.StepStatusProcessing, "", t, time.Time{})
-		if err := f.synapseAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
+		if err := f.morpheusAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
 			log.Errorf("SynapseAgent Upgrade: failed to update service status(processing): error: %s\n", err.Error())
 
 			// retry and handshake if session expired
-			if f.synapseAPI.IsTokenExpired() {
+			if f.morpheusAPI.IsTokenExpired() {
 				f.RetryHandshake()
 			}
 			continue
@@ -51,11 +51,11 @@ func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args m
 
 			for {
 				up := service.CreateUpdateService(version, serviceId, 1, 0, service.StepStatusFail, "", t, time.Now())
-				if err := f.synapseAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
+				if err := f.morpheusAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
 					log.Errorf(err.Error())
 
 					// retry and handshake if session expired
-					if f.synapseAPI.IsTokenExpired() {
+					if f.morpheusAPI.IsTokenExpired() {
 						f.RetryHandshake()
 					}
 					continue
@@ -266,10 +266,10 @@ func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args m
 	// upgrade success
 	for {
 		up := service.CreateUpdateService(version, serviceId, 1, 0, service.StepStatusSuccess, "", t, time.Now())
-		if err := f.synapseAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
+		if err := f.morpheusAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
 			log.Errorf(err.Error())
 			// retry and handshake if session expired
-			if f.synapseAPI.IsTokenExpired() {
+			if f.morpheusAPI.IsTokenExpired() {
 				f.RetryHandshake()
 			}
 			continue

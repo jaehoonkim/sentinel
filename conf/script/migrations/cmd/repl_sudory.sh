@@ -5,16 +5,16 @@ pwd=$PWD
 
 
 # Show env vars
-grep -v '^#' .synapse.env
+grep -v '^#' .morpheus.env
 
 # Export env vars
-export $(grep -v '^#' .synapse.env | xargs)
+export $(grep -v '^#' .morpheus.env | xargs)
 
 # path="$(dirname "$0")"
 echo $pwd
 # echo $path
 
-cd ../synapse
+cd ../morpheus
 
 ../cmd/repl.sh
 

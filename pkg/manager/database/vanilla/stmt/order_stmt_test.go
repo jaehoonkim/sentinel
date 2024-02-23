@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
 )
 
 func TestOrderStmt(t *testing.T) {

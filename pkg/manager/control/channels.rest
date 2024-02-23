@@ -16,7 +16,7 @@
 
 POST {{url}}/manager/auth {{protocolver}}
 Content-Type: application/json
-x_auth_token: SYNAPSE
+x_auth_token: MORPHEUS
 
 {
   "tenant": "{{ tenant_pattern }}"

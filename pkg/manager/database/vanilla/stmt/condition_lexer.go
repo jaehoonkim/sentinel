@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"strings"
 
-	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/internal/sexp"
+	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/internal/sexp"
 	"github.com/pkg/errors"
 )
 

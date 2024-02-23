@@ -10,23 +10,23 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/jaehoonkim/synapse/pkg/agent/fetcher"
-	"github.com/jaehoonkim/synapse/pkg/agent/httpclient"
-	"github.com/jaehoonkim/synapse/pkg/agent/k8s"
-	"github.com/jaehoonkim/synapse/pkg/agent/log"
-	"github.com/jaehoonkim/synapse/pkg/agent/scheduler"
-	"github.com/jaehoonkim/synapse/pkg/version"
+	"github.com/jaehoonkim/morpheus/pkg/agent/fetcher"
+	"github.com/jaehoonkim/morpheus/pkg/agent/httpclient"
+	"github.com/jaehoonkim/morpheus/pkg/agent/k8s"
+	"github.com/jaehoonkim/morpheus/pkg/agent/log"
+	"github.com/jaehoonkim/morpheus/pkg/agent/scheduler"
+	"github.com/jaehoonkim/morpheus/pkg/version"
 )
 
-const APP_NAME = "synapse-agent"
+const APP_NAME = "morpheus-agent"
 
 func main() {
 	versionFlag := flag.Bool("version", false, "print the current version")
 
-	manager := flag.String("manager", "http://localhost:8099", "synapse manager url")
-	clusterid := flag.String("clusterid", "", "synapse agent's cluster id")
-	token := flag.String("token", "", "synapse agent's token for manager connection")
-	loglevel := flag.String("loglevel", "debug", "synapse agent's log level. One of: debug(defualt)|info|warn|error")
+	manager := flag.String("manager", "http://localhost:8099", "morpheus manager url")
+	clusterid := flag.String("clusterid", "", "morpheus agent's cluster id")
+	token := flag.String("token", "", "morpheus agent's token for manager connection")
+	loglevel := flag.String("loglevel", "debug", "morpheus agent's log level. One of: debug(defualt)|info|warn|error")
 
 	flag.Parse()
 
@@ -115,5 +115,5 @@ func main() {
 		log.Infof("Received Fetcher Done")
 	}
 
-	log.Infof("synapse-agent: end\n")
+	log.Infof("morpheus-agent: end\n")
 }

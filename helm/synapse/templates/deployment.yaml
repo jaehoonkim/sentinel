@@ -3,30 +3,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-synapse-agent
+  name: {{ .Release.Name }}-morpheus-agent
   namespace: {{ .Release.Namespace }}
   labels:
-    synapse: agent
+    morpheus: agent
 spec:
   selector:
     matchLabels:
-      synapse:  {{ .Release.Name }}-synapse-agent
+      morpheus:  {{ .Release.Name }}-morpheus-agent
   replicas: 1
   template:
     metadata:
       labels:
-        synapse: {{ .Release.Name }}-synapse-agent
+        morpheus: {{ .Release.Name }}-morpheus-agent
     spec:
-      serviceAccountName: {{ .Release.Name }}-synapseagent-controller
+      serviceAccountName: {{ .Release.Name }}-morpheusagent-controller
       containers:
-        - name: {{ .Release.Name }}-synapse-agent
+        - name: {{ .Release.Name }}-morpheus-agent
           image: "{{ .Values.agent.image }}"
           env:
             {{- range $key, $value := .Values.agent.environment_variable.data }}
             - name: {{ $key }}
               valueFrom:
                 configMapKeyRef:
-                  name: {{ $.Release.Name }}-synapse-agent-configmap
+                  name: {{ $.Release.Name }}-morpheus-agent-configmap
                   key: {{ $key }}
             {{- end -}}
 
@@ -36,20 +36,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-synapse-manager
+  name: {{ .Release.Name }}-morpheus-manager
   namespace: {{ .Release.Namespace }}
 spec:
   selector:
     matchLabels:
-      synapse: {{ .Release.Name }}-manager
+      morpheus: {{ .Release.Name }}-manager
   replicas: 1
   template:
     metadata:
       labels:
-        synapse: {{ .Release.Name }}-manager
+        morpheus: {{ .Release.Name }}-manager
     spec:
       containers:
-        - name: {{ .Release.Name }}-synapse-manager
+        - name: {{ .Release.Name }}-morpheus-manager
           image: {{ .Values.manager.image }}
           ports:
             - containerPort: {{ .Values.manager.containerPort }}
@@ -65,14 +65,14 @@ spec:
             - name: {{ $key }}
               valueFrom:
                 configMapKeyRef:
-                  name: {{ $.Release.Name }}-synapse-manager-configmap
+                  name: {{ $.Release.Name }}-morpheus-manager-configmap
                   key: {{ $key }}
             {{- end -}}
             {{- range $key, $value := .Values.manager.secret_variable.data }}
             - name: {{ $key }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ $.Release.Name }}-synapse-secret
+                  name: {{ $.Release.Name }}-morpheus-secret
                   key: {{ $key }}
                 {{- end }}
           livenessProbe:
@@ -83,13 +83,13 @@ spec:
           {{ if .Values.manager.managerrule.enabled}}
           volumeMounts:
             - mountPath: /app/conf/rules
-              name: {{ .Release.Name }}-synapse-manager-rules-volume
+              name: {{ .Release.Name }}-morpheus-manager-rules-volume
           {{- end }}
           {{- if .Values.manager.managerrule.enabled}}
       volumes:
         - configMap:
             defaultMode: 420
-            name: {{ .Release.Name }}-synapse-manager-rules-configmap
-          name: {{ .Release.Name }}-synapse-manager-rules-volume
+            name: {{ .Release.Name }}-morpheus-manager-rules-configmap
+          name: {{ .Release.Name }}-morpheus-manager-rules-volume
           {{- end}}
 {{- end }}

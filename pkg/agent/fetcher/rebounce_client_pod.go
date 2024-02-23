@@ -6,8 +6,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/jaehoonkim/synapse/pkg/agent/log"
-	"github.com/jaehoonkim/synapse/pkg/agent/service"
+	"github.com/jaehoonkim/morpheus/pkg/agent/log"
+	"github.com/jaehoonkim/morpheus/pkg/agent/service"
 )
 
 func (f *Fetcher) RebounceAgentPod(version service.Version, serviceId string) {
@@ -18,7 +18,7 @@ func (f *Fetcher) RebounceAgentPod(version service.Version, serviceId string) {
 	defer cancel()
 
 	up := service.CreateUpdateService(version, serviceId, 1, 0, service.StepStatusProcessing, "", t, time.Time{})
-	if err := f.synapseAPI.UpdateServices(ctx, service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
+	if err := f.morpheusAPI.UpdateServices(ctx, service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
 		log.Errorf("SynapseAgentPod Rebounce: failed to update service status(processing): error: %s\n", err.Error())
 	}
 
@@ -60,7 +60,7 @@ func (f *Fetcher) RebounceAgentPod(version service.Version, serviceId string) {
 	defer cancel2()
 
 	up = service.CreateUpdateService(version, serviceId, 1, 0, service.StepStatusSuccess, "SynapseAgent pod rebounce will be complete", t, time.Now())
-	if err := f.synapseAPI.UpdateServices(ctx2, service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
+	if err := f.morpheusAPI.UpdateServices(ctx2, service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
 		log.Errorf("SynapseAgentPod Rebounce: failed to update service status(success): error: %s\n", err.Error())
 	}
 

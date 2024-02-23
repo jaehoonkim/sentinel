@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/jaehoonkim/synapse/pkg/agent/httpclient"
-	"github.com/jaehoonkim/synapse/pkg/agent/log"
+	"github.com/jaehoonkim/morpheus/pkg/agent/httpclient"
+	"github.com/jaehoonkim/morpheus/pkg/agent/log"
 )
 
 const defaultQueryTimeout = 10 * time.Second

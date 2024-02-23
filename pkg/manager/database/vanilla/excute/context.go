@@ -4,7 +4,7 @@ import (
 	"context"
 	"database/sql"
 
-	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
 )
 
 type ConditionStmt = stmt.ConditionStmt

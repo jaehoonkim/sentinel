@@ -5,7 +5,7 @@ import (
 	"encoding/base64"
 	"fmt"
 
-	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
+	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
 	"github.com/pkg/errors"
 )
 

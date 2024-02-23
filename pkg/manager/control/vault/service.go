@@ -3,11 +3,11 @@ package vault
 // import (
 // 	"sort"
 
-// 	"github.com/jaehoonkim/synapse/pkg/manager/database"
-// 	"github.com/jaehoonkim/synapse/pkg/manager/database/prepare"
-// 	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
-// 	servicev1 "github.com/jaehoonkim/synapse/pkg/manager/model/service/v1"
-// 	stepv1 "github.com/jaehoonkim/synapse/pkg/manager/model/service_step/v1"
+// 	"github.com/jaehoonkim/morpheus/pkg/manager/database"
+// 	"github.com/jaehoonkim/morpheus/pkg/manager/database/prepare"
+// 	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
+// 	servicev1 "github.com/jaehoonkim/morpheus/pkg/manager/model/service/v1"
+// 	stepv1 "github.com/jaehoonkim/morpheus/pkg/manager/model/service_step/v1"
 // 	"github.com/pkg/errors"
 // 	"xorm.io/xorm"
 // )

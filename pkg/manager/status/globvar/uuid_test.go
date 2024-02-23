@@ -3,7 +3,7 @@ package globvar_test
 import (
 	"testing"
 
-	"github.com/jaehoonkim/synapse/pkg/manager/macro"
+	"github.com/jaehoonkim/morpheus/pkg/manager/macro"
 )
 
 func TestGenerateUuid(t *testing.T) {

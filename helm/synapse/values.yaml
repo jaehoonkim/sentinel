@@ -1,6 +1,6 @@
 agent:
   enabled: true
-  image: "jaehoon/synapse-agent:latest"
+  image: "jaehoon/morpheus-agent:latest"
   environment_variable:
     data:
       manager: "" #http://<IP>:<PORT>
@@ -11,33 +11,33 @@ manager:
   enabled: true
   service:
     service_type: "ClusterIP"
-  image: "jaehoon/synapse-manager:latest"
+  image: "jaehoon/morpheus-manager:latest"
   containerPort: 8099
   environment_variable:
     data:
-      SYNAPSE_DB_HOST: "mysql.db.svc.cluster.local"
-      SYNAPSE_DB_PORT: "3306"
-      SYNAPSE_DB_SCHEME: "synapse"
-      SYNAPSE_DB_EXPORT_PATH: "."
-      SYNAPSE_DB_SERVER_USERNAME: "synapse"
-      SYNAPSE_LOG_SEVERITY: "info"
-      SYNAPSE_LOG_SYSTEM_EVENT: "false"
-      SYNAPSE_LOG_VERBOSE: "true"
-      SYNAPSE_LOG_VERBOSELEVEL: "9"
-      SYNAPSE_LOG_FILENAME: "./synapse.log"
-      SYNAPSE_LOG_MAXSIZE: "10"
-      SYNAPSE_LOG_MAXAGE: "5"
-      SYNAPSE_LOG_MAXBACKUPS: "10"
-      SYNAPSE_LOG_COMPRESS: "false"
+      MORPHEUS_DB_HOST: "mysql.db.svc.cluster.local"
+      MORPHEUS_DB_PORT: "3306"
+      MORPHEUS_DB_SCHEME: "morpheus"
+      MORPHEUS_DB_EXPORT_PATH: "."
+      MORPHEUS_DB_SERVER_USERNAME: "morpheus"
+      MORPHEUS_LOG_SEVERITY: "info"
+      MORPHEUS_LOG_SYSTEM_EVENT: "false"
+      MORPHEUS_LOG_VERBOSE: "true"
+      MORPHEUS_LOG_VERBOSELEVEL: "9"
+      MORPHEUS_LOG_FILENAME: "./morpheus.log"
+      MORPHEUS_LOG_MAXSIZE: "10"
+      MORPHEUS_LOG_MAXAGE: "5"
+      MORPHEUS_LOG_MAXBACKUPS: "10"
+      MORPHEUS_LOG_COMPRESS: "false"
   secret_variable:
     data:
-      db_server_password: "synapse"
+      db_server_password: "morpheus"
   managerrule:
     enabled: false
     data:
      enigma.yml: |
        enigma:
-         synapse.default.crypto:
+         morpheus.default.crypto:
            block-method: none
            block-size: 0
            block-key:

@@ -10,16 +10,16 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
 	"github.com/gophercloud/utils/openstack/clientconfig"
-	"github.com/jaehoonkim/synapse/pkg/agent/alertmanager"
-	"github.com/jaehoonkim/synapse/pkg/agent/grafana"
-	"github.com/jaehoonkim/synapse/pkg/agent/helm"
-	"github.com/jaehoonkim/synapse/pkg/agent/jq"
-	"github.com/jaehoonkim/synapse/pkg/agent/k8s"
-	"github.com/jaehoonkim/synapse/pkg/agent/openstack"
-	"github.com/jaehoonkim/synapse/pkg/agent/p8s"
-	"github.com/jaehoonkim/synapse/pkg/agent/service"
-	"github.com/jaehoonkim/synapse/pkg/agent/synapseagent"
-	"github.com/jaehoonkim/synapse/pkg/manager/macro"
+	"github.com/jaehoonkim/morpheus/pkg/agent/alertmanager"
+	"github.com/jaehoonkim/morpheus/pkg/agent/grafana"
+	"github.com/jaehoonkim/morpheus/pkg/agent/helm"
+	"github.com/jaehoonkim/morpheus/pkg/agent/jq"
+	"github.com/jaehoonkim/morpheus/pkg/agent/k8s"
+	"github.com/jaehoonkim/morpheus/pkg/agent/morpheusagent"
+	"github.com/jaehoonkim/morpheus/pkg/agent/openstack"
+	"github.com/jaehoonkim/morpheus/pkg/agent/p8s"
+	"github.com/jaehoonkim/morpheus/pkg/agent/service"
+	"github.com/jaehoonkim/morpheus/pkg/manager/macro"
 )
 
 type CommandType int
@@ -47,7 +47,7 @@ func (ct CommandType) String() string {
 	} else if ct == CommandTypeAlertManager {
 		return "alertmanager"
 	} else if ct == CommandTypeSynapseagent {
-		return "synapse"
+		return "morpheus"
 	} else if ct == CommandTypeGrafana {
 		return "grafana"
 	} else if ct == CommandTypeOpenstack {
@@ -77,7 +77,7 @@ func NewCommander(command *service.StepCommand) (Commander, error) {
 		return NewJqCommander(command)
 	case "alertmanager":
 		return NewAlertManagerCommander(command)
-	case "synapse":
+	case "morpheus":
 		return NewSynapseagentCommander(command)
 	case "grafana":
 		return NewGrafanaCommander(command)
@@ -330,7 +330,7 @@ func (c *AlertManagerCommander) Run() (string, error) {
 }
 
 type SynapseagentCommander struct {
-	client *synapseagent.Client
+	client *morpheusagent.Client
 	api    string
 	verb   string
 	params map[string]interface{}
@@ -354,14 +354,14 @@ func (c *SynapseagentCommander) ParseCommand(command *service.StepCommand) error
 	mlist := strings.SplitN(command.Method, ".", 3)
 
 	if len(mlist) != 3 {
-		return fmt.Errorf("there is not enough method(%s) for synapseagent. want(3) but got(%d)", command.Method, len(mlist))
+		return fmt.Errorf("there is not enough method(%s) for morpheusagent. want(3) but got(%d)", command.Method, len(mlist))
 	}
 
 	c.api = mlist[1]
 	c.verb = mlist[2]
 	c.params = command.Args
 
-	client, err := synapseagent.NewClient()
+	client, err := morpheusagent.NewClient()
 	if err != nil {
 		return err
 	}
@@ -423,7 +423,7 @@ func (c *GrafanaCommander) ParseCommand(command *service.StepCommand) error {
 			return nil, err
 		}
 
-		secret, err := kc.GetK8sClientset().CoreV1().Secrets("synapseagent").Get(context.Background(), synapseagent.SynapseagentSecretName, metav1.GetOptions{})
+		secret, err := kc.GetK8sClientset().CoreV1().Secrets("morpheusagent").Get(context.Background(), morpheusagent.SynapseagentSecretName, metav1.GetOptions{})
 		if err != nil {
 			return nil, err
 		}
@@ -503,7 +503,7 @@ func (c *OpenstackCommander) ParseCommand(command *service.StepCommand) error {
 		return err
 	}
 
-	secret, err := kc.GetK8sClientset().CoreV1().Secrets(synapseagent.SynapseagentNamespace).Get(context.Background(), synapseagent.SynapseagentSecretName, metav1.GetOptions{})
+	secret, err := kc.GetK8sClientset().CoreV1().Secrets(morpheusagent.SynapseagentNamespace).Get(context.Background(), morpheusagent.SynapseagentSecretName, metav1.GetOptions{})
 	if err != nil {
 		return err
 	}

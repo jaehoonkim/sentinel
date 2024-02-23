@@ -6,11 +6,11 @@ import (
 	"encoding/json"
 	"reflect"
 
-	"github.com/jaehoonkim/synapse/pkg/manager/macro/enigma"
+	"github.com/jaehoonkim/morpheus/pkg/manager/macro/enigma"
 	"github.com/pkg/errors"
 )
 
-const DefaultCryptoName = "synapse.default.crypto"
+const DefaultCryptoName = "morpheus.default.crypto"
 
 func EnigmaEncode(bytes []byte) (out []byte, err error) {
 	if out, err = enigma.CipherSet(CiperKeySynapseDefaultCrypto.String()).Encode(bytes); err != nil {

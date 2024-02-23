@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/ice_cream_maker"
-	v2 "github.com/jaehoonkim/synapse/pkg/manager/model/service/v2_deprecated"
+	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/ice_cream_maker"
+	v2 "github.com/jaehoonkim/morpheus/pkg/manager/model/service/v2_deprecated"
 )
 
 var objs = []interface{}{

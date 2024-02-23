@@ -3,7 +3,7 @@ package ice_cream_maker_test
 import (
 	"testing"
 
-	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/ice_cream_maker"
+	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/ice_cream_maker"
 )
 
 func TestColumnPointers(t *testing.T) {

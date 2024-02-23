@@ -1,10 +1,10 @@
 package vault
 
 // import (
-// 	"github.com/jaehoonkim/synapse/pkg/manager/database"
-// 	"github.com/jaehoonkim/synapse/pkg/manager/database/prepare"
-// 	"github.com/jaehoonkim/synapse/pkg/manager/macro/logs"
-// 	commandv1 "github.com/jaehoonkim/synapse/pkg/manager/model/template_command/v1"
+// 	"github.com/jaehoonkim/morpheus/pkg/manager/database"
+// 	"github.com/jaehoonkim/morpheus/pkg/manager/database/prepare"
+// 	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
+// 	commandv1 "github.com/jaehoonkim/morpheus/pkg/manager/model/template_command/v1"
 // 	"github.com/pkg/errors"
 // )
 

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/jaehoonkim/synapse/pkg/agent/httpclient"
+	"github.com/jaehoonkim/morpheus/pkg/agent/httpclient"
 )
 
 const defaultApiTimeout = 10 * time.Second

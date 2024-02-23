@@ -21,6 +21,6 @@
 
 /bin
 
-synapse.log
+morpheus.log
 
 .DS_Store

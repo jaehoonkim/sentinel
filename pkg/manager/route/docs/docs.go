@@ -11,7 +11,7 @@ const docTemplate = `{
         "description": "{{escape .Description}}",
         "title": "{{.Title}}",
         "contact": {
-            "url": "https://github.com/jaehoonkim/synapse",
+            "url": "https://github.com/jaehoonkim/morpheus",
             "email": "jaehoon@gmail.io"
         },
         "version": "{{.Version}}"
@@ -49,7 +49,7 @@ const docTemplate = `{
                             "type": "string"
                         },
                         "headers": {
-                            "x-synapse-agent-token": {
+                            "x-morpheus-agent-token": {
                                 "type": "string"
                             }
                         }
@@ -84,7 +84,7 @@ const docTemplate = `{
                             }
                         },
                         "headers": {
-                            "x-synapse-agent-token": {
+                            "x-morpheus-agent-token": {
                                 "type": "string"
                             }
                         }
@@ -122,7 +122,7 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "headers": {
-                            "x-synapse-agent-token": {
+                            "x-morpheus-agent-token": {
                                 "type": "string"
                             }
                         }
@@ -150,19 +150,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -236,19 +236,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -842,19 +842,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1128,19 +1128,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1398,19 +1398,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1526,19 +1526,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1615,19 +1615,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1819,19 +1819,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -1972,19 +1972,19 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "string",
-                        "description": "query  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "query  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "q",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "order  github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "order  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "o",
                         "in": "query"
                     },
                     {
                         "type": "string",
-                        "description": "paging github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/README.md",
+                        "description": "paging github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md",
                         "name": "p",
                         "in": "query"
                     }
@@ -3347,11 +3347,11 @@ const docTemplate = `{
         "ClientAuth": {
             "description": "token for client api",
             "type": "apiKey",
-            "name": "x-synapse-agent-token",
+            "name": "x-morpheus-agent-token",
             "in": "header"
         },
         "XAuthToken": {
-            "description": "limit for access synapse api",
+            "description": "limit for access morpheus api",
             "type": "apiKey",
             "name": "x_auth_token",
             "in": "header"
@@ -3365,8 +3365,8 @@ var SwaggerInfo = &swag.Spec{
 	Host:             "",
 	BasePath:         "",
 	Schemes:          []string{},
-	Title:            "SYNAPSE",
-	Description:      "this is a synapse manager.",
+	Title:            "MORPHEUS",
+	Description:      "this is a morpheus manager.",
 	InfoInstanceName: "swagger",
 	SwaggerTemplate:  docTemplate,
 }

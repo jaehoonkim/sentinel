@@ -1,5 +1,5 @@
 enigma:
-  synapse.default.crypto:
+  morpheus.default.crypto:
     block-method: none
     block-size: 0
     block-key: 
@@ -7,7 +7,7 @@ enigma:
     cipher-salt: null
     padding: none
     strconv: plain
-  # synapse.default.crypto:
+  # morpheus.default.crypto:
   #   block-method: aes
   #   block-size: 128
   #   block-key: YnJvd24gZm94IGp1bXBzIG92ZXIgdGhlIGxhenkgZG9n # brown fox jumps over the lazy dog

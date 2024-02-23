@@ -1,18 +1,18 @@
 
-# synapse
+# morpheus
 
-synapse is a Kubernetes executor to help to manage multiple, multi-CSP backed Kubernetes clusters using standardized templates such as Kubernetes APis, Prometheus APIs and Helm commands. Using schedulers (such as cron or other cron services), users can automate the cluser management activities such as collecting Kubernetes events, status of nodes and pods, metrics & alerts of Prometheus. Also, we are working hard to provide addtional features such as custom-template with multiple steps, users can create thier own template with several Kuberntes APIs and http API calls to automate & standardize the DevOps operations. 
+morpheus is a Kubernetes executor to help to manage multiple, multi-CSP backed Kubernetes clusters using standardized templates such as Kubernetes APis, Prometheus APIs and Helm commands. Using schedulers (such as cron or other cron services), users can automate the cluser management activities such as collecting Kubernetes events, status of nodes and pods, metrics & alerts of Prometheus. Also, we are working hard to provide addtional features such as custom-template with multiple steps, users can create thier own template with several Kuberntes APIs and http API calls to automate & standardize the DevOps operations. 
 
-## Why synapse is different than others?
+## Why morpheus is different than others?
 
-synapse consists of a manager and a agent for an each Kubernetes cluster, however, synapse's agent is not a typical agent. No direct access from the manager to the agent API calls. The agent always polls the manager to inquire whether there is any assignment for the agent and fetch the assigned taks and execute/send the result back to the manager. Users can control how often the agent polls the manager using manager management API. 
+morpheus consists of a manager and a agent for an each Kubernetes cluster, however, morpheus's agent is not a typical agent. No direct access from the manager to the agent API calls. The agent always polls the manager to inquire whether there is any assignment for the agent and fetch the assigned taks and execute/send the result back to the manager. Users can control how often the agent polls the manager using manager management API. 
 
-synapse maintains standard templates to use Kubernetes & Prometheus APIs and users just need to pick the template and cluster(s) to get what they want. It's simple and resuable. 
+morpheus maintains standard templates to use Kubernetes & Prometheus APIs and users just need to pick the template and cluster(s) to get what they want. It's simple and resuable. 
 
 
 ## What are the available templates at this moment? 
 
-The list below is the template list synapse is supporting as of today and "create", "delete", "apply" will be added soon. 
+The list below is the template list morpheus is supporting as of today and "create", "delete", "apply" will be added soon. 
 
 ```
 alertmanager_silences_create
@@ -147,12 +147,12 @@ prometheus_query_range
 prometheus_rules
 prometheus_targets
 prometheus_targets/metadata
-synapse_agent_pod_rebounce
-synapse_agent_upgrade
-synapse_credential_add
-synapse_credential_get
-synapse_credential_remove
-synapse_credential_update
+morpheus_agent_pod_rebounce
+morpheus_agent_upgrade
+morpheus_credential_add
+morpheus_credential_get
+morpheus_credential_remove
+morpheus_credential_update
 
 ```
 
@@ -162,15 +162,15 @@ Use manifest files in this github to install Manager & Agent.
 
 ### Manager
 
-You need to have MariaDB 10.0 and above to install synapse manager. Recommand using bitnami Mariadb helm chart to install Mariadb in your Kubernetes cluster. Once you install Mariadb and get host/port/user informatin to configre in "environment.yaml". 
+You need to have MariaDB 10.0 and above to install morpheus manager. Recommand using bitnami Mariadb helm chart to install Mariadb in your Kubernetes cluster. Once you install Mariadb and get host/port/user informatin to configre in "environment.yaml". 
 
 ```yaml
 data:
   db_host: "XXX.XXX.XXX.XXX"
   db_port: "3306"
-  db_scheme: "synapse"
+  db_scheme: "morpheus"
   db_export_path: "."
-  db_server_username: "synapse"
+  db_server_username: "morpheus"
 ```
 
 Also use BASE64 to encrypt your password and populate in the Secret in the "environment.yaml" file. Also, configure "x_auth_token" value to use the token in the header of API request. 
@@ -178,8 +178,8 @@ Also use BASE64 to encrypt your password and populate in the Secret in the "envi
 apiVersion: v1
 kind: Secret
 metadata:
-  name: synapse-secret
-  namespace: synapse
+  name: morpheus-secret
+  namespace: morpheus
 type: Opaque
 data:
   db_server_password: 
@@ -194,19 +194,19 @@ $ kubectl apply -f application.yaml
 $ kubectl apply -f environment.yaml
 ```
 
-Check your installed synapse manager in synapse namespace. 
+Check your installed morpheus manager in morpheus namespace. 
 ```shell
-$ kubectl get pods -n synapse
-$ kubectl get service -n synapse
-$ kubectl get deployment -n synapse
+$ kubectl get pods -n morpheus
+$ kubectl get service -n morpheus
+$ kubectl get deployment -n morpheus
 ```
 
 ### Agent 
 
-To install synapse agent, you need to get cluster uuid and bear's token from synapse manager. 
+To install morpheus agent, you need to get cluster uuid and bear's token from morpheus manager. 
 
 ```shell
-POST http://<synapse_manager_url/manager/cluster
+POST http://<morpheus_manager_url/manager/cluster
 ```
 with the follwoing body - 
 ```json
@@ -236,7 +236,7 @@ Then, you will get uuid of your cluster. Here is the sample body of response -
 Next step is to get a bearer' token with the following APIs. 
 
 ```shell
-POST http://<synapse_manager_url/manager/cluster_token
+POST http://<morpheus_manager_url/manager/cluster_token
 ```
 with the following request body - 
 
@@ -261,8 +261,8 @@ Here is the sample response from the api.
 }
 ```
 
-synapse agent shall be installed at the Kubernetes cluster that you want to manage. 
-Configure these in environment.yaml for uuid and token for agent. You can limit synapse's roles by configuring cluster role in sa.yaml. With the following configuration, synapse will perform only for namespace and pods. You can configure "*" for all the resources for synapse to access & execute the commands. 
+morpheus agent shall be installed at the Kubernetes cluster that you want to manage. 
+Configure these in environment.yaml for uuid and token for agent. You can limit morpheus's roles by configuring cluster role in sa.yaml. With the following configuration, morpheus will perform only for namespace and pods. You can configure "*" for all the resources for morpheus to access & execute the commands. 
 
 ```yaml
 rules:
@@ -271,7 +271,7 @@ rules:
   verbs: ["get", "list", "watch"]
 ```
 
-Run these commands to install synapse agent once the configuration is done.
+Run these commands to install morpheus agent once the configuration is done.
 
 ```shell
 $ kubectl apply -f environment.yaml
@@ -296,21 +296,21 @@ $ make build target=manager
 
 image build(manager / agent)  
 ```shell
-$ make image base=jaehoon/synapse target=manager
+$ make image base=jaehoon/morpheus target=manager
 or
-$ make image base=jaehoon/synapse target=agent
+$ make image base=jaehoon/morpheus target=agent
 ```
 
 image push
 ```shell
-$ make push base=jaehoon/synapse target=manager
+$ make push base=jaehoon/morpheus target=manager
 ```
 
 ## Design
 
 how to use swagger?
 ```shell
-$ kubectl port-forward svc/synapse-synapse-manager -n synapse 8099
+$ kubectl port-forward svc/morpheus-morpheus-manager -n morpheus 8099
 http://127.0.0.1:8099/swagger/index.html
 ```
 

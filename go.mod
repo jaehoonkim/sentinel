@@ -1,4 +1,4 @@
-module github.com/jaehoonkim/synapse
+module github.com/jaehoonkim/morpheus
 
 go 1.21.3
 

@@ -4,7 +4,7 @@ package v1
 /*
 	ENUM(
 
-synapse.default.crypto
+morpheus.default.crypto
 )
 */
 type CiperKey int

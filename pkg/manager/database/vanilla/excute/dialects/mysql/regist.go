@@ -1,9 +1,9 @@
 package excute
 
 import (
-	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/excute"
-	"github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt"
-	_ "github.com/jaehoonkim/synapse/pkg/manager/database/vanilla/stmt/dialects/mysql"
+	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
+	_ "github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/dialects/mysql"
 )
 
 const (

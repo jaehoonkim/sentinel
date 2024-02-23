@@ -6,9 +6,9 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/jaehoonkim/synapse/pkg/agent/executor"
-	"github.com/jaehoonkim/synapse/pkg/agent/log"
-	"github.com/jaehoonkim/synapse/pkg/agent/service"
+	"github.com/jaehoonkim/morpheus/pkg/agent/executor"
+	"github.com/jaehoonkim/morpheus/pkg/agent/log"
+	"github.com/jaehoonkim/morpheus/pkg/agent/service"
 )
 
 const defaultMaxProcessLimit = 10

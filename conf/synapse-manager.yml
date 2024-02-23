@@ -1,4 +1,4 @@
-appname: synapse-manager
+appname: morpheus-manager
 
 host:
   port: 8099
@@ -12,9 +12,9 @@ database:
   protocol: 'tcp'
   host: '127.0.0.1'
   port: '3306'
-  dbname: 'synapse'
-  username: 'synapse'
-  password: 'synapse'
+  dbname: 'morpheus'
+  username: 'morpheus'
+  password: 'morpheus'
   maxopenconns: 15
   maxidleconns: 5
   maxconnlifetime: 1
@@ -22,15 +22,15 @@ database:
   loglevel: warn
 
 migrate:
-  source: 'conf/script/migrations/synapse'
+  source: 'conf/script/migrations/morpheus'
 
 logger:
   severity: 'debug'
   system-event: false
-  system-event-name: 'project-synapse/synapse'
+  system-event-name: 'project-morpheus/morpheus'
   verbose: false
   verbose-level: 9
-  filename: 'synapse.log'
+  filename: 'morpheus.log'
   max-size: 10
   max-age: 30
   max-backups: 20

@@ -1,10 +1,10 @@
-package synapseagent
+package morpheusagent
 
 import (
 	"fmt"
 	"time"
 
-	"github.com/jaehoonkim/synapse/pkg/agent/k8s"
+	"github.com/jaehoonkim/morpheus/pkg/agent/k8s"
 )
 
 const defaultTimeout = 10 * time.Second
