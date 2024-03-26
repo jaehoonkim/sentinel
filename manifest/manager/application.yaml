@@ -15,7 +15,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: morpheus-manager
-  namespace: manager
+  namespace: morpheus
 spec:
   selector:
     matchLabels:
@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: morpheus-manager
-          image: morpheus-manager:0.0.1
+          image: jaehoon/morpheus-manager:latest
           ports:
             - containerPort: 8099
           env:

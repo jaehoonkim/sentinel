@@ -9,7 +9,7 @@ metadata:
   name: morpheus-configmap
   namespace: morpheus
 data:
-  db_host: ""
+  db_host: "192.168.1.10"
   db_port: "3306"
   db_scheme: "morpheus"
   db_export_path: "."
@@ -31,4 +31,4 @@ metadata:
   namespace: morpheus
 type: Opaque
 data:
-  db_server_password: ""
+  db_server_password: "bW9ycGhldXM="
