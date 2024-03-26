@@ -22,7 +22,7 @@ database:
   loglevel: warn
 
 migrate:
-  source: 'conf/script/migrations/morpheus'
+  source: 'conf/migrations/morpheus'
 
 logger:
   severity: 'debug'

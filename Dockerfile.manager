@@ -23,7 +23,7 @@ COPY /conf/script/migrations/morpheus  ${WORKDIR}/conf/migrations/morpheus
 COPY /conf/script/manager/entrypoint.sh ${WORKDIR}/
 
 
-RUN chmod +x  ${WORKDIR}/docker-entrypoint.sh
+RUN chmod +x  ${WORKDIR}/entrypoint.sh
 
 RUN addgroup ${GROUP} && \
     adduser -D ${USER} -g ${GROUP} -u ${USER_ID} && \

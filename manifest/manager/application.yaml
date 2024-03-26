@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: morpheus-manager
-          image: green:32000/morpheus-manager:0.0.1
+          image: morpheus-manager:0.0.1
           ports:
             - containerPort: 8099
           env:
