@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
 )
 
 func TestPaginationLexer(t *testing.T) {

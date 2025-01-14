@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	v3 "github.com/jaehoonkim/morpheus/pkg/manager/model/service/v3"
+	v3 "github.com/jaehoonkim/sentinel/pkg/manager/model/service/v3"
 )
 
 // HttpRsp_AgentServicePolling

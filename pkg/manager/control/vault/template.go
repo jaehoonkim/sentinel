@@ -4,19 +4,19 @@ import (
 	"context"
 	"sort"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
-	"github.com/jaehoonkim/morpheus/pkg/manager/model/template/v2"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/sentinel/pkg/manager/model/template/v2"
 	"github.com/pkg/errors"
 )
 
 // import (
-// 	"github.com/jaehoonkim/morpheus/pkg/manager/database"
-// 	"github.com/jaehoonkim/morpheus/pkg/manager/database/prepare"
-// 	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
+// 	"github.com/jaehoonkim/sentinel/pkg/manager/database"
+// 	"github.com/jaehoonkim/sentinel/pkg/manager/database/prepare"
+// 	"github.com/jaehoonkim/sentinel/pkg/manager/macro/logs"
 // 	"github.com/pkg/errors"
 
-// 	templatev1 "github.com/jaehoonkim/morpheus/pkg/manager/model/template/v1"
+// 	templatev1 "github.com/jaehoonkim/sentinel/pkg/manager/model/template/v1"
 // )
 
 // //Template

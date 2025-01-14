@@ -1,24 +1,24 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: morpheus
+  name: sentinel
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: morpheus-configmap
-  namespace: morpheus
+  name: sentinel-configmap
+  namespace: sentinel
 data:
   db_host: "192.168.1.10"
   db_port: "3306"
-  db_scheme: "morpheus"
+  db_scheme: "sentinel"
   db_export_path: "."
-  db_server_username: "morpheus"
+  db_server_username: "sentinel"
   log_severity: "info"
   log_system_event: "false"
   log_verbose: "true"
   log_verboselevel: "9"
-  log_filename: "./morpheus.log"
+  log_filename: "./sentinel.log"
   log_maxsize: "10"
   log_maxage: "5"
   log_maxbackups: "10"
@@ -27,8 +27,8 @@ data:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: morpheus-secret
-  namespace: morpheus
+  name: sentinel-secret
+  namespace: sentinel
 type: Opaque
 data:
   db_server_password: "bW9ycGhldXM="

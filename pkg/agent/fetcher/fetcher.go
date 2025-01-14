@@ -9,11 +9,11 @@ import (
 	"github.com/golang-jwt/jwt/v4"
 	"github.com/panta/machineid"
 
-	"github.com/jaehoonkim/morpheus/pkg/agent/log"
-	"github.com/jaehoonkim/morpheus/pkg/agent/morpheus"
-	"github.com/jaehoonkim/morpheus/pkg/agent/scheduler"
-	"github.com/jaehoonkim/morpheus/pkg/agent/service"
-	sessionv1 "github.com/jaehoonkim/morpheus/pkg/manager/model/session/v1"
+	"github.com/jaehoonkim/sentinel/pkg/agent/log"
+	"github.com/jaehoonkim/sentinel/pkg/agent/sentinel"
+	"github.com/jaehoonkim/sentinel/pkg/agent/scheduler"
+	"github.com/jaehoonkim/sentinel/pkg/agent/service"
+	sessionv1 "github.com/jaehoonkim/sentinel/pkg/manager/model/session/v1"
 )
 
 const (
@@ -25,7 +25,7 @@ type Fetcher struct {
 	bearerToken     string
 	machineID       string
 	clusterId       string
-	morpheusAPI     *morpheus.SynapseAPI
+	morpheusAPI     *sentinel.SynapseAPI
 	ticker          *time.Ticker
 	pollingInterval int
 	scheduler       *scheduler.Scheduler
@@ -39,7 +39,7 @@ func NewFetcher(bearerToken, manager, clusterId string, scheduler *scheduler.Sch
 	}
 	id = strings.ReplaceAll(id, "-", "")
 
-	api, err := morpheus.NewSynapseAPI(manager)
+	api, err := sentinel.NewSynapseAPI(manager)
 	log.Debugf("api in fetcher.go : %s\n", *api)
 	if err != nil {
 		return nil, err
@@ -203,10 +203,10 @@ func (f *Fetcher) CatchSynapseAgentService(services map[string]service.ServiceIn
 					method := step.Command.Method
 
 					switch method {
-					case "morpheus.agent_pod.rebounce":
+					case "sentinel.agent_pod.rebounce":
 						exist = true
 						f.RebounceAgentPod(ver, svcv1.Id)
-					case "morpheus.agent.upgrade":
+					case "sentinel.agent.upgrade":
 						exist = true
 						f.UpgradeAgent(ver, svcv1.Id, step.Command.Args)
 					}
@@ -222,10 +222,10 @@ func (f *Fetcher) CatchSynapseAgentService(services map[string]service.ServiceIn
 					method := step.Command
 
 					switch method {
-					case "morpheus.agent_pod.rebounce":
+					case "sentinel.agent_pod.rebounce":
 						exist = true
 						f.RebounceAgentPod(ver, svcv2.Id)
-					case "morpheus.agent.upgrade":
+					case "sentinel.agent.upgrade":
 						exist = true
 						f.UpgradeAgent(ver, svcv2.Id, step.Inputs.GetInputs())
 					}

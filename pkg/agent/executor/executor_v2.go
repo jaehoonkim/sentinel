@@ -3,8 +3,8 @@ package executor
 import (
 	"time"
 
-	"github.com/jaehoonkim/morpheus/pkg/agent/log"
-	"github.com/jaehoonkim/morpheus/pkg/agent/service"
+	"github.com/jaehoonkim/sentinel/pkg/agent/log"
+	"github.com/jaehoonkim/sentinel/pkg/agent/service"
 )
 
 type ServiceExecutorV2 struct {

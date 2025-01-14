@@ -1,16 +1,16 @@
-// @title MORPHEUS
+// @title SENTINEL
 // @version 0.0.1
-// @description this is a morpheus manager.
-// @contact.url https://github.com/jaehoonkim/morpheus
+// @description this is a sentinel manager.
+// @contact.url https://github.com/jaehoonkim/sentinel
 // @contact.email jaehoon@gmail.io
 // @securityDefinitions.apikey ClientAuth
 // @in header
-// @name x-morpheus-agent-token
+// @name x-sentinel-agent-token
 // @description token for client api
 // @securityDefinitions.apikey XAuthToken
 // @in header
 // @name x_auth_token
-// @description limit for access morpheus api
+// @description limit for access sentinel api
 package route
 
 import (
@@ -23,19 +23,19 @@ import (
 	"syscall"
 	"time"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/config"
-	"github.com/jaehoonkim/morpheus/pkg/manager/control"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
-	mysqlFlavor "github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute/dialects/mysql"
-	pprof "github.com/jaehoonkim/morpheus/pkg/manager/route/pprof"
-	"github.com/jaehoonkim/morpheus/pkg/version"
+	"github.com/jaehoonkim/sentinel/pkg/manager/config"
+	"github.com/jaehoonkim/sentinel/pkg/manager/control"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute"
+	mysqlFlavor "github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute/dialects/mysql"
+	pprof "github.com/jaehoonkim/sentinel/pkg/manager/route/pprof"
+	"github.com/jaehoonkim/sentinel/pkg/version"
 	"github.com/pkg/errors"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/swaggo/echo-swagger"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/route/docs"
+	"github.com/jaehoonkim/sentinel/pkg/manager/route/docs"
 )
 
 func init() {
@@ -105,7 +105,7 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 	{
 		// /client/auth*
 		e.POST("/agent/auth", ctl.AuthAgent)
-		e.POST("/morpheus/agent/auth", ctl.AuthAgent)
+		e.POST("/sentinel/agent/auth", ctl.AuthAgent)
 
 		group := e.Group("")
 		// @Security ClientSessionToken
@@ -113,8 +113,8 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 		// /client/service*
 		group.GET("/agent/service", ctl.PollingService)
 		group.PUT("/agent/service", ctl.UpdateService)
-		group.GET("/morpheus/agent/service", ctl.PollingService)
-		group.PUT("/morpheus/agent/service", ctl.UpdateService)
+		group.GET("/sentinel/agent/service", ctl.PollingService)
+		group.PUT("/sentinel/agent/service", ctl.UpdateService)
 	}
 
 	{
@@ -123,31 +123,31 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 
 		// /manager/auth*
 		group.POST("/manager/tenant", ctl.Tenant)
-		group.POST("/morpheus/manager/tenant", ctl.Tenant)
+		group.POST("/sentinel/manager/tenant", ctl.Tenant)
 
 		// /manager/template_recipe*
 		group.GET("/manager/template_recipe", ctl.FindTemplateRecipe)
-		group.GET("/morpheus/manager/template_recipe", ctl.FindTemplateRecipe)
+		group.GET("/sentinel/manager/template_recipe", ctl.FindTemplateRecipe)
 
 		// /manager/template*
 		group.GET("/manager/template", ctl.FindTemplate)
 		group.GET("/manager/template/:uuid", ctl.GetTemplate)
-		group.GET("/morpheus/manager/template", ctl.FindTemplate)
-		group.GET("/morpheus/manager/template/:uuid", ctl.GetTemplate)
+		group.GET("/sentinel/manager/template", ctl.FindTemplate)
+		group.GET("/sentinel/manager/template/:uuid", ctl.GetTemplate)
 
 		// /manager/template_command*
 		group.GET("/manager/template_command", ctl.FindTemplateCommand)
 		group.GET("/manager/template_command/:uuid", ctl.GetTemplateCommand)
-		group.GET("/morpheus/manager/template_command", ctl.FindTemplateCommand)
-		group.GET("/morpheus/manager/template_command/:uuid", ctl.GetTemplateCommand)
+		group.GET("/sentinel/manager/template_command", ctl.FindTemplateCommand)
+		group.GET("/sentinel/manager/template_command/:uuid", ctl.GetTemplateCommand)
 
 		// /manager/global_variables*
 		group.GET("/manager/global_variables", ctl.FindGlobalVariables)
 		group.GET("/manager/global_variables/:uuid", ctl.GetGlobalVariables)
 		group.PUT("/manager/global_variables/:uuid", ctl.UpdateGlobalVariablesValue)
-		group.GET("/morpheus/manager/global_variables", ctl.FindGlobalVariables)
-		group.GET("/morpheus/manager/global_variables/:uuid", ctl.GetGlobalVariables)
-		group.PUT("/morpheus/manager/global_variables/:uuid", ctl.UpdateGlobalVariablesValue)
+		group.GET("/sentinel/manager/global_variables", ctl.FindGlobalVariables)
+		group.GET("/sentinel/manager/global_variables/:uuid", ctl.GetGlobalVariables)
+		group.PUT("/sentinel/manager/global_variables/:uuid", ctl.UpdateGlobalVariablesValue)
 
 	}
 
@@ -163,33 +163,33 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 		group.PUT("/manager/cluster/:uuid/polling/regular", ctl.UpdateClusterPollingRegular)
 		group.PUT("/manager/cluster/:uuid/polling/smart", ctl.UpdateClusterPollingSmart)
 		group.DELETE("/manager/cluster/:uuid", ctl.DeleteCluster)
-		group.GET("/morpheus/manager/cluster", ctl.FindCluster)
-		group.GET("/morpheus/manager/cluster/:uuid", ctl.GetCluster)
-		group.POST("/morpheus/manager/cluster", ctl.CreateCluster)
-		group.PUT("/morpheus/manager/cluster/:uuid", ctl.UpdateCluster)
-		group.PUT("/morpheus/manager/cluster/:uuid/polling/regular", ctl.UpdateClusterPollingRegular)
-		group.PUT("/morpheus/manager/cluster/:uuid/polling/smart", ctl.UpdateClusterPollingSmart)
-		group.DELETE("/morpheus/manager/cluster/:uuid", ctl.DeleteCluster)
+		group.GET("/sentinel/manager/cluster", ctl.FindCluster)
+		group.GET("/sentinel/manager/cluster/:uuid", ctl.GetCluster)
+		group.POST("/sentinel/manager/cluster", ctl.CreateCluster)
+		group.PUT("/sentinel/manager/cluster/:uuid", ctl.UpdateCluster)
+		group.PUT("/sentinel/manager/cluster/:uuid/polling/regular", ctl.UpdateClusterPollingRegular)
+		group.PUT("/sentinel/manager/cluster/:uuid/polling/smart", ctl.UpdateClusterPollingSmart)
+		group.DELETE("/sentinel/manager/cluster/:uuid", ctl.DeleteCluster)
 
 		// /manager/service*
 		group.GET("/manager/service", ctl.FindService)
 		group.GET("/manager/service/:uuid", ctl.GetService)
 		group.POST("/manager/service", ctl.CreateService)
 		group.GET("/manager/service/:uuid/result", ctl.GetServiceResult)
-		group.GET("/morpheus/manager/service", ctl.FindService)
-		group.GET("/morpheus/manager/service/:uuid", ctl.GetService)
-		group.POST("/morpheus/manager/service", ctl.CreateService)
-		group.GET("/morpheus/manager/service/:uuid/result", ctl.GetServiceResult)
+		group.GET("/sentinel/manager/service", ctl.FindService)
+		group.GET("/sentinel/manager/service/:uuid", ctl.GetService)
+		group.POST("/sentinel/manager/service", ctl.CreateService)
+		group.GET("/sentinel/manager/service/:uuid/result", ctl.GetServiceResult)
 
 		// /manager/session*
 		group.GET("/manager/session", ctl.FindSession)
 		group.GET("/manager/session/:uuid", ctl.GetSession)
 		group.DELETE("/manager/session/:uuid", ctl.DeleteSession)
 		group.GET("/manager/session/cluster/:cluster_uuid/alive", ctl.AliveClusterSession)
-		group.GET("/morpheus/manager/session", ctl.FindSession)
-		group.GET("/morpheus/manager/session/:uuid", ctl.GetSession)
-		group.DELETE("/morpheus/manager/session/:uuid", ctl.DeleteSession)
-		group.GET("/morpheus/manager/session/cluster/:cluster_uuid/alive", ctl.AliveClusterSession)
+		group.GET("/sentinel/manager/session", ctl.FindSession)
+		group.GET("/sentinel/manager/session/:uuid", ctl.GetSession)
+		group.DELETE("/sentinel/manager/session/:uuid", ctl.DeleteSession)
+		group.GET("/sentinel/manager/session/cluster/:cluster_uuid/alive", ctl.AliveClusterSession)
 
 		// /manager/cluster_token*
 		group.GET("/manager/cluster_token", ctl.FindClusterToken)
@@ -199,13 +199,13 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 		group.POST("/manager/cluster_token", ctl.CreateClusterToken)
 		group.PUT("/manager/cluster_token/:uuid/refresh", ctl.RefreshClusterTokenTime)
 		group.PUT("/manager/cluster_token/:uuid/expire", ctl.ExpireClusterToken)
-		group.GET("/morpheus/manager/cluster_token", ctl.FindClusterToken)
-		group.GET("/morpheus/manager/cluster_token/:uuid", ctl.GetClusterToken)
-		group.PUT("/morpheus/manager/cluster_token/:uuid/label", ctl.UpdateClusterTokenLabel)
-		group.DELETE("/morpheus/manager/cluster_token/:uuid", ctl.DeleteClusterToken)
-		group.POST("/morpheus/manager/cluster_token", ctl.CreateClusterToken)
-		group.PUT("/morpheus/manager/cluster_token/:uuid/refresh", ctl.RefreshClusterTokenTime)
-		group.PUT("/morpheus/manager/cluster_token/:uuid/expire", ctl.ExpireClusterToken)
+		group.GET("/sentinel/manager/cluster_token", ctl.FindClusterToken)
+		group.GET("/sentinel/manager/cluster_token/:uuid", ctl.GetClusterToken)
+		group.PUT("/sentinel/manager/cluster_token/:uuid/label", ctl.UpdateClusterTokenLabel)
+		group.DELETE("/sentinel/manager/cluster_token/:uuid", ctl.DeleteClusterToken)
+		group.POST("/sentinel/manager/cluster_token", ctl.CreateClusterToken)
+		group.PUT("/sentinel/manager/cluster_token/:uuid/refresh", ctl.RefreshClusterTokenTime)
+		group.PUT("/sentinel/manager/cluster_token/:uuid/expire", ctl.ExpireClusterToken)
 
 		// /manager/channels*
 		group.POST("/manager/channels", ctl.CreateChannel)
@@ -213,11 +213,11 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 		group.GET("/manager/channels/:uuid", ctl.GetChannel)
 		group.PUT("/manager/channels/:uuid", ctl.UpdateChannel)
 		group.DELETE("/manager/channels/:uuid", ctl.DeleteChannel)
-		group.POST("/morpheus/manager/channels", ctl.CreateChannel)
-		group.GET("/morpheus/manager/channels", ctl.FindChannel)
-		group.GET("/morpheus/manager/channels/:uuid", ctl.GetChannel)
-		group.PUT("/morpheus/manager/channels/:uuid", ctl.UpdateChannel)
-		group.DELETE("/morpheus/manager/channels/:uuid", ctl.DeleteChannel)
+		group.POST("/sentinel/manager/channels", ctl.CreateChannel)
+		group.GET("/sentinel/manager/channels", ctl.FindChannel)
+		group.GET("/sentinel/manager/channels/:uuid", ctl.GetChannel)
+		group.PUT("/sentinel/manager/channels/:uuid", ctl.UpdateChannel)
+		group.DELETE("/sentinel/manager/channels/:uuid", ctl.DeleteChannel)
 
 		// /manager/channels/:uuid/notifiers/*
 		group.GET("/manager/channels/:uuid/notifiers/edge", ctl.GetChannelNotifierEdge)
@@ -225,31 +225,31 @@ func New(cfg *config.Config, db *sql.DB) *Route {
 		group.PUT("/manager/channels/:uuid/notifiers/rabbitmq", ctl.UpdateChannelNotifierRabbitMq)
 		group.PUT("/manager/channels/:uuid/notifiers/webhook", ctl.UpdateChannelNotifierWebhook)
 		group.PUT("/manager/channels/:uuid/notifiers/slackhook", ctl.UpdateChannelNotifierSlackhook)
-		group.GET("/morpheus/manager/channels/:uuid/notifiers/edge", ctl.GetChannelNotifierEdge)
-		group.PUT("/morpheus/manager/channels/:uuid/notifiers/console", ctl.UpdateChannelNotifierConsole)
-		group.PUT("/morpheus/manager/channels/:uuid/notifiers/rabbitmq", ctl.UpdateChannelNotifierRabbitMq)
-		group.PUT("/morpheus/manager/channels/:uuid/notifiers/webhook", ctl.UpdateChannelNotifierWebhook)
-		group.PUT("/morpheus/manager/channels/:uuid/notifiers/slackhook", ctl.UpdateChannelNotifierSlackhook)
+		group.GET("/sentinel/manager/channels/:uuid/notifiers/edge", ctl.GetChannelNotifierEdge)
+		group.PUT("/sentinel/manager/channels/:uuid/notifiers/console", ctl.UpdateChannelNotifierConsole)
+		group.PUT("/sentinel/manager/channels/:uuid/notifiers/rabbitmq", ctl.UpdateChannelNotifierRabbitMq)
+		group.PUT("/sentinel/manager/channels/:uuid/notifiers/webhook", ctl.UpdateChannelNotifierWebhook)
+		group.PUT("/sentinel/manager/channels/:uuid/notifiers/slackhook", ctl.UpdateChannelNotifierSlackhook)
 
 		// /manager/channels/status
 		group.GET("/manager/channels/status", ctl.FindChannelStatus)
-		group.GET("/morpheus/manager/channels/status", ctl.FindChannelStatus)
+		group.GET("/sentinel/manager/channels/status", ctl.FindChannelStatus)
 
 		// /manager/channels/:uuid/status*
 		group.GET("/manager/channels/:uuid/status", ctl.ListChannelStatus)
 		group.DELETE("/manager/channels/:uuid/status/purge", ctl.PurgeChannelStatus)
 		group.PUT("/manager/channels/:uuid/status/option", ctl.UpdateChannelStatusOption)
 		group.GET("/manager/channels/:uuid/status/option", ctl.GetChannelStatusOption)
-		group.GET("/morpheus/manager/channels/:uuid/status", ctl.ListChannelStatus)
-		group.DELETE("/morpheus/manager/channels/:uuid/status/purge", ctl.PurgeChannelStatus)
-		group.PUT("/morpheus/manager/channels/:uuid/status/option", ctl.UpdateChannelStatusOption)
-		group.GET("/morpheus/manager/channels/:uuid/status/option", ctl.GetChannelStatusOption)
+		group.GET("/sentinel/manager/channels/:uuid/status", ctl.ListChannelStatus)
+		group.DELETE("/sentinel/manager/channels/:uuid/status/purge", ctl.PurgeChannelStatus)
+		group.PUT("/sentinel/manager/channels/:uuid/status/option", ctl.UpdateChannelStatusOption)
+		group.GET("/sentinel/manager/channels/:uuid/status/option", ctl.GetChannelStatusOption)
 
 		// /manager/channels/:uuid/format*
 		group.GET("/manager/channels/:uuid/format", ctl.GetChannelFormat)
 		group.PUT("/manager/channels/:uuid/format", ctl.UpdateChannelFormat)
-		group.GET("/morpheus/manager/channels/:uuid/format", ctl.GetChannelFormat)
-		group.PUT("/morpheus/manager/channels/:uuid/format", ctl.UpdateChannelFormat)
+		group.GET("/sentinel/manager/channels/:uuid/format", ctl.GetChannelFormat)
+		group.PUT("/sentinel/manager/channels/:uuid/format", ctl.UpdateChannelFormat)
 
 	}
 

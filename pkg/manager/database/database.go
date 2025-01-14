@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"time"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/config"
+	"github.com/jaehoonkim/sentinel/pkg/manager/config"
 	"github.com/pkg/errors"
 
 	_ "github.com/go-sql-driver/mysql"

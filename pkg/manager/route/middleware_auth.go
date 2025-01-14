@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/config"
-	"github.com/jaehoonkim/morpheus/pkg/manager/control"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/echoutil"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
+	"github.com/jaehoonkim/sentinel/pkg/manager/config"
+	"github.com/jaehoonkim/sentinel/pkg/manager/control"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/echoutil"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/logs"
 	"github.com/labstack/echo/v4"
 	"github.com/pkg/errors"
 )
@@ -21,7 +21,7 @@ func XAuthToken(cfg *config.Config) echo.MiddlewareFunc {
 				// x_auth_token
 				const (
 					key   = "x_auth_token"
-					value = "MORPHEUS"
+					value = "SENTINEL"
 				)
 				header_value := c.Request().Header.Get(key)
 

@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
-	channelv2 "github.com/jaehoonkim/morpheus/pkg/manager/model/channel/v3"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/logs"
+	channelv2 "github.com/jaehoonkim/sentinel/pkg/manager/model/channel/v3"
 	"github.com/pkg/errors"
 )
 

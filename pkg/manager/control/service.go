@@ -9,19 +9,19 @@ import (
 	"sort"
 	"time"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/control/vault"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/sqlex"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
-	"github.com/jaehoonkim/morpheus/pkg/manager/status/state"
+	"github.com/jaehoonkim/sentinel/pkg/manager/control/vault"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/sqlex"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/sentinel/pkg/manager/status/state"
 	"github.com/qri-io/jsonschema"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/echoutil"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/echoutil"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/logs"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/model/service/v4"
-	"github.com/jaehoonkim/morpheus/pkg/manager/model/template/v3"
+	"github.com/jaehoonkim/sentinel/pkg/manager/model/service/v4"
+	"github.com/jaehoonkim/sentinel/pkg/manager/model/template/v3"
 
 	"github.com/labstack/echo/v4"
 	"github.com/pkg/errors"
@@ -176,9 +176,9 @@ func (ctl ControlVanilla) CreateService(ctx echo.Context) error {
 // @Produce     json
 // @Tags        manager/service
 // @Router      /manager/service [get]
-// @Param       q           query string false "query  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       o           query string false "order  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       p           query string false "paging github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       q           query string false "query  github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       o           query string false "order  github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       p           query string false "paging github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt/README.md"
 // @Success     200 {array} service.HttpRsp_Service
 func (ctl ControlVanilla) FindService(ctx echo.Context) (err error) {
 	q, err := stmt.ConditionLexer.Parse(echoutil.QueryParam(ctx)["q"])

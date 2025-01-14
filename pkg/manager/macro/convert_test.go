@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	. "github.com/jaehoonkim/morpheus/pkg/manager/macro"
+	. "github.com/jaehoonkim/sentinel/pkg/manager/macro"
 )
 
 func TestConvtKeyValuePairs(t *testing.T) {

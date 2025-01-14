@@ -18,9 +18,9 @@ import (
 	"k8s.io/apimachinery/pkg/watch"
 	watchtools "k8s.io/client-go/tools/watch"
 
-	"github.com/jaehoonkim/morpheus/pkg/agent/k8s"
-	"github.com/jaehoonkim/morpheus/pkg/agent/log"
-	"github.com/jaehoonkim/morpheus/pkg/agent/service"
+	"github.com/jaehoonkim/sentinel/pkg/agent/k8s"
+	"github.com/jaehoonkim/sentinel/pkg/agent/log"
+	"github.com/jaehoonkim/sentinel/pkg/agent/service"
 )
 
 func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args map[string]interface{}) (err error) {

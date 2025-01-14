@@ -5,9 +5,9 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/ice_cream_maker"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/slicestrings"
-	"github.com/jaehoonkim/morpheus/pkg/manager/model/tenants/v3"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/ice_cream_maker"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/slicestrings"
+	"github.com/jaehoonkim/sentinel/pkg/manager/model/tenants/v3"
 )
 
 var (

@@ -7,10 +7,10 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}-morpheus-manager
+  name: {{ $fullName }}-sentinel-manager
   namespace: {{ .Release.Namespace }}
   labels:
-    morpheus: {{ .Release.Name }}-manager
+    sentinel: {{ .Release.Name }}-manager
 {{- if .Values.manager.ingress.labels }}
 {{ toYaml .Values.manager.ingress.labels | indent 4 }}
 {{- end }}
@@ -41,7 +41,7 @@ spec:
             pathType: {{ $ingressPathType }}
             backend:
               service:
-                name: {{ $fullName }}-morpheus-manager
+                name: {{ $fullName }}-sentinel-manager
                 port:
                   number: {{ $servicePort }}
   {{- end }}
@@ -50,7 +50,7 @@ spec:
         paths:
           - backend:
               service:
-                name: {{ $fullName }}-morpheus-manager
+                name: {{ $fullName }}-sentinel-manager
                 port:
                   number: {{ $servicePort }}
             {{- if $ingressPath }}

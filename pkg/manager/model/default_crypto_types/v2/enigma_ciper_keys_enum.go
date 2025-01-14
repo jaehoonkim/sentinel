@@ -16,7 +16,7 @@ const (
 	CiperKeySynapseDefaultCrypto CiperKey = iota
 )
 
-const _CiperKeyName = "morpheus.default.crypto"
+const _CiperKeyName = "sentinel.default.crypto"
 
 var _CiperKeyNames = []string{
 	_CiperKeyName[0:21],

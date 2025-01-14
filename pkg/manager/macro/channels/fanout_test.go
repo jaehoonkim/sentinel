@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/channels"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/channels"
 )
 
 func TestNewFanout(t *testing.T) {

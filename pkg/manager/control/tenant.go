@@ -8,12 +8,12 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v4"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
-	"github.com/jaehoonkim/morpheus/pkg/manager/model/auths/v2"
-	"github.com/jaehoonkim/morpheus/pkg/manager/model/tenants/v3"
-	"github.com/jaehoonkim/morpheus/pkg/manager/status/globvar"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/logs"
+	"github.com/jaehoonkim/sentinel/pkg/manager/model/auths/v2"
+	"github.com/jaehoonkim/sentinel/pkg/manager/model/tenants/v3"
+	"github.com/jaehoonkim/sentinel/pkg/manager/status/globvar"
 	"github.com/labstack/echo/v4"
 	"github.com/pkg/errors"
 )

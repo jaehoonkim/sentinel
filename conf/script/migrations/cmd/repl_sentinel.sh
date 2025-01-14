@@ -5,16 +5,16 @@ pwd=$PWD
 
 
 # Show env vars
-grep -v '^#' .morpheus.env
+grep -v '^#' .sentinel.env
 
 # Export env vars
-export $(grep -v '^#' .morpheus.env | xargs)
+export $(grep -v '^#' .sentinel.env | xargs)
 
 # path="$(dirname "$0")"
 echo $pwd
 # echo $path
 
-cd ../morpheus
+cd ../sentinel
 
 ../cmd/repl.sh
 

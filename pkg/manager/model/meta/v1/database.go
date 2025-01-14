@@ -3,7 +3,7 @@ package v1
 import (
 	"time"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro"
 )
 
 // database meta info

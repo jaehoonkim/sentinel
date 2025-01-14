@@ -1,6 +1,6 @@
 package stmt
 
-import "github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
+import "github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
 
 const (
 	__DIALECT__ = "mysql"

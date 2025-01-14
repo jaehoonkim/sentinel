@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"sort"
 
-	metav1 "github.com/jaehoonkim/morpheus/pkg/manager/model/meta/v1"
-	commandv1 "github.com/jaehoonkim/morpheus/pkg/manager/model/template_command/v1"
+	metav1 "github.com/jaehoonkim/sentinel/pkg/manager/model/meta/v1"
+	commandv1 "github.com/jaehoonkim/sentinel/pkg/manager/model/template_command/v1"
 )
 
 // Template Property

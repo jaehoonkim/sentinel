@@ -1,109 +1,109 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: morpheus-manager
-  namespace: morpheus 
+  name: sentinel-manager
+  namespace: sentinel 
 spec:
   type: LoadBalancer
   ports:
     - port: 8099
       targetPort: 8099
   selector:
-    morpheus: manager 
+    sentinel: manager 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: morpheus-manager
-  namespace: morpheus
+  name: sentinel-manager
+  namespace: sentinel
 spec:
   selector:
     matchLabels:
-      morpheus: manager
+      sentinel: manager
   replicas: 1 
   template:
     metadata:
       labels:
-        morpheus: manager
+        sentinel: manager
     spec:
       containers:
-        - name: morpheus-manager
-          image: jaehoon/morpheus-manager:latest
+        - name: sentinel-manager
+          image: jaehoon/sentinel-manager:latest
           ports:
             - containerPort: 8099
           env:
             - name: MORPHEUS_DB_HOST
               valueFrom:
                 configMapKeyRef:
-                  name: morpheus-configmap
+                  name: sentinel-configmap
                   key: db_host
             - name: MORPHEUS_DB_PORT
               valueFrom:
                 configMapKeyRef:
-                  name: morpheus-configmap
+                  name: sentinel-configmap
                   key: db_port
             - name: MORPHEUS_DB_SCHEME
               valueFrom:
                 configMapKeyRef:
-                  name: morpheus-configmap
+                  name: sentinel-configmap
                   key: db_scheme
             - name: MORPHEUS_DB_EXPORT_PATH
               valueFrom:
                 configMapKeyRef:
-                  name: morpheus-configmap
+                  name: sentinel-configmap
                   key: db_export_path
             - name: MORPHEUS_DB_SERVER_USERNAME
               valueFrom:
                 configMapKeyRef:
-                  name: morpheus-configmap
+                  name: sentinel-configmap
                   key: db_server_username
             - name: MORPHEUS_DB_SERVER_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: morpheus-secret
+                  name: sentinel-secret
                   key: db_server_password
             - name: MORPHEUS_LOG_SEVERITY
               valueFrom:
                 configMapKeyRef:
-                  name: morpheus-configmap
+                  name: sentinel-configmap
                   key: log_severity
             - name: MORPHEUS_LOG_SYSTEM_EVENT
               valueFrom:
                 configMapKeyRef:
-                  name: morpheus-configmap            
+                  name: sentinel-configmap            
                   key: log_system_event
             - name: MORPHEUS_LOG_VERBOSE
               valueFrom:
                 configMapKeyRef:
-                  name: morpheus-configmap 
+                  name: sentinel-configmap 
                   key: log_verbose
             - name: MORPHEUS_LOG_VERBOSELEVEL
               valueFrom:
                 configMapKeyRef:
-                  name: morpheus-configmap
+                  name: sentinel-configmap
                   key: log_verboselevel
             - name: MORPHEUS_LOG_FILENAME
               valueFrom:
                 configMapKeyRef:
-                  name: morpheus-configmap
+                  name: sentinel-configmap
                   key: log_filename
             - name: MORPHEUS_LOG_MAXSIZE
               valueFrom:
                 configMapKeyRef:
-                  name: morpheus-configmap
+                  name: sentinel-configmap
                   key: log_maxsize
             - name: MORPHEUS_LOG_MAXAGE
               valueFrom:
                 configMapKeyRef:
-                  name: morpheus-configmap
+                  name: sentinel-configmap
                   key: log_maxage
             - name: MORPHEUS_LOG_MAXBACKUPS
               valueFrom:
                 configMapKeyRef:
-                  name: morpheus-configmap
+                  name: sentinel-configmap
                   key: log_maxbackups
             - name: MORPHEUS_LOG_COMPRESS
               valueFrom:
                 configMapKeyRef:
-                  name: morpheus-configmap
+                  name: sentinel-configmap
                   key: log_compress

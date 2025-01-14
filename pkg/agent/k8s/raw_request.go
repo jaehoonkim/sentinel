@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/jaehoonkim/morpheus/pkg/agent/log"
+	"github.com/jaehoonkim/sentinel/pkg/agent/log"
 )
 
 type rawRequest struct {

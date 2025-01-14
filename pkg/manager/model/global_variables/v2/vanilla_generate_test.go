@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/ice_cream_maker"
-	v2 "github.com/jaehoonkim/morpheus/pkg/manager/model/global_variables/v2"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/ice_cream_maker"
+	v2 "github.com/jaehoonkim/sentinel/pkg/manager/model/global_variables/v2"
 )
 
 var objs = []interface{}{

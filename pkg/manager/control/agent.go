@@ -10,31 +10,31 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jaehoonkim/morpheus/pkg/agent/log"
-	"github.com/jaehoonkim/morpheus/pkg/manager/control/vault"
-	"github.com/jaehoonkim/morpheus/pkg/manager/event/managed_channel"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro"
+	"github.com/jaehoonkim/sentinel/pkg/agent/log"
+	"github.com/jaehoonkim/sentinel/pkg/manager/control/vault"
+	"github.com/jaehoonkim/sentinel/pkg/manager/event/managed_channel"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro"
 	"github.com/pkg/errors"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/sqlex"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/sqlex"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
 
 	"github.com/golang-jwt/jwt/v4"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/echoutil"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
-	"github.com/jaehoonkim/morpheus/pkg/manager/model/auths/v2"
-	channelv3 "github.com/jaehoonkim/morpheus/pkg/manager/model/channel/v3"
-	clusterv3 "github.com/jaehoonkim/morpheus/pkg/manager/model/cluster/v3"
-	clusterinfov2 "github.com/jaehoonkim/morpheus/pkg/manager/model/cluster_infomation/v2"
-	"github.com/jaehoonkim/morpheus/pkg/manager/model/cluster_token/v3"
-	cryptov2 "github.com/jaehoonkim/morpheus/pkg/manager/model/default_crypto_types/v2"
-	servicev3 "github.com/jaehoonkim/morpheus/pkg/manager/model/service/v3"
-	servicev4 "github.com/jaehoonkim/morpheus/pkg/manager/model/service/v4"
-	sessions "github.com/jaehoonkim/morpheus/pkg/manager/model/session/v3"
-	"github.com/jaehoonkim/morpheus/pkg/manager/model/tenants/v3"
-	"github.com/jaehoonkim/morpheus/pkg/manager/status/globvar"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/echoutil"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/logs"
+	"github.com/jaehoonkim/sentinel/pkg/manager/model/auths/v2"
+	channelv3 "github.com/jaehoonkim/sentinel/pkg/manager/model/channel/v3"
+	clusterv3 "github.com/jaehoonkim/sentinel/pkg/manager/model/cluster/v3"
+	clusterinfov2 "github.com/jaehoonkim/sentinel/pkg/manager/model/cluster_infomation/v2"
+	"github.com/jaehoonkim/sentinel/pkg/manager/model/cluster_token/v3"
+	cryptov2 "github.com/jaehoonkim/sentinel/pkg/manager/model/default_crypto_types/v2"
+	servicev3 "github.com/jaehoonkim/sentinel/pkg/manager/model/service/v3"
+	servicev4 "github.com/jaehoonkim/sentinel/pkg/manager/model/service/v4"
+	sessions "github.com/jaehoonkim/sentinel/pkg/manager/model/session/v3"
+	"github.com/jaehoonkim/sentinel/pkg/manager/model/tenants/v3"
+	"github.com/jaehoonkim/sentinel/pkg/manager/status/globvar"
 
 	"github.com/labstack/echo/v4"
 )
@@ -46,7 +46,7 @@ import (
 // @Tags        agent/service
 // @Router      /agent/service [get]
 // @Success     200 {array}  servicev4.HttpRsp_AgentServicePolling
-// @Header      200 {string} x-morpheus-agent-token
+// @Header      200 {string} x-sentinel-agent-token
 func (ctl ControlVanilla) PollingService(ctx echo.Context) error {
 
 	//get token claims
@@ -468,7 +468,7 @@ func (ctl ControlVanilla) PollingService(ctx echo.Context) error {
 // @Router      /agent/service [put]
 // @Param       body body servicev4.HttpReq_AgentServiceUpdate true "HttpReq_AgentServiceUpdate"
 // @Success     200
-// @Header      200 {string} x-morpheus-agent-token
+// @Header      200 {string} x-sentinel-agent-token
 func (ctl ControlVanilla) UpdateService(ctx echo.Context) (err error) {
 	type temp struct {
 		Version string `json:"version,omitempty"`
@@ -944,7 +944,7 @@ func (ctl ControlVanilla) UpdateService(ctx echo.Context) (err error) {
 // @Router      /agent/auth [post]
 // @Param       body body auths.HttpReqAuth true "HttpReqAuth"
 // @Success     200 {string} ok
-// @Header      200 {string} x-morpheus-agent-token
+// @Header      200 {string} x-sentinel-agent-token
 func (ctl ControlVanilla) AuthAgent(ctx echo.Context) (err error) {
 	auth := new(auths.HttpReqAuth)
 	err = func() (err error) {

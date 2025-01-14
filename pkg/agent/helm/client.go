@@ -7,7 +7,7 @@ import (
 	"helm.sh/helm/v3/pkg/action"
 	"helm.sh/helm/v3/pkg/cli"
 
-	"github.com/jaehoonkim/morpheus/pkg/agent/log"
+	"github.com/jaehoonkim/sentinel/pkg/agent/log"
 )
 
 const defaultMaxHistory = 20

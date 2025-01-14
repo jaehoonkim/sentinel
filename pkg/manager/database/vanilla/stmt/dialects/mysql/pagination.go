@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
 	"github.com/pkg/errors"
 )
 

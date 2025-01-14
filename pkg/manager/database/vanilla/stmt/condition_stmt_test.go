@@ -4,8 +4,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
-	_ "github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/dialects/mysql"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
+	_ "github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt/dialects/mysql"
 )
 
 func TestConditionStmt(t *testing.T) {

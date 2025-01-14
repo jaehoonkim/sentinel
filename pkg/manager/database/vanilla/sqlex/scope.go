@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"time"
 
-	vanilla "github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
+	vanilla "github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
 	"github.com/pkg/errors"
 )
 

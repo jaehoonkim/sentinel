@@ -5,12 +5,12 @@ import (
 	"database/sql"
 	"time"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
-	channelv3 "github.com/jaehoonkim/morpheus/pkg/manager/model/channel/v3"
-	"github.com/jaehoonkim/morpheus/pkg/manager/status/state"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
+	channelv3 "github.com/jaehoonkim/sentinel/pkg/manager/model/channel/v3"
+	"github.com/jaehoonkim/sentinel/pkg/manager/status/state"
 	"github.com/pkg/errors"
 )
 

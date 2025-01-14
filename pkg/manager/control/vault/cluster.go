@@ -3,19 +3,19 @@ package vault
 import (
 	"context"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
-	"github.com/jaehoonkim/morpheus/pkg/manager/model/auths/v2"
-	clusters "github.com/jaehoonkim/morpheus/pkg/manager/model/cluster/v3"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/sentinel/pkg/manager/model/auths/v2"
+	clusters "github.com/jaehoonkim/sentinel/pkg/manager/model/cluster/v3"
 	"github.com/pkg/errors"
 )
 
 // import (
-// 	"github.com/jaehoonkim/morpheus/pkg/manager/database"
-// 	"github.com/jaehoonkim/morpheus/pkg/manager/database/prepare"
-// 	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
-// 	clusterv1 "github.com/jaehoonkim/morpheus/pkg/manager/model/cluster/v1"
+// 	"github.com/jaehoonkim/sentinel/pkg/manager/database"
+// 	"github.com/jaehoonkim/sentinel/pkg/manager/database/prepare"
+// 	"github.com/jaehoonkim/sentinel/pkg/manager/macro/logs"
+// 	clusterv1 "github.com/jaehoonkim/sentinel/pkg/manager/model/cluster/v1"
 // 	"github.com/pkg/errors"
 // 	"xorm.io/xorm"
 // )

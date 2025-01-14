@@ -3,7 +3,7 @@ package excute
 import (
 	"context"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
 )
 
 type FakeResolver struct {

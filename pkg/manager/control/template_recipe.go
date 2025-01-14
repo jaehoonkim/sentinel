@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/echoutil"
-	recipev2 "github.com/jaehoonkim/morpheus/pkg/manager/model/template_recipe/v2"
-	"github.com/jaehoonkim/morpheus/pkg/manager/status/state"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/echoutil"
+	recipev2 "github.com/jaehoonkim/sentinel/pkg/manager/model/template_recipe/v2"
+	"github.com/jaehoonkim/sentinel/pkg/manager/status/state"
 	"github.com/labstack/echo/v4"
 	"github.com/pkg/errors"
 )

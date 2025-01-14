@@ -8,20 +8,20 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/control/vault"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/sqlex"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/sentinel/pkg/manager/control/vault"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/sqlex"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
 
 	"github.com/itchyny/gojq"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/echoutil"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
-	channelv3 "github.com/jaehoonkim/morpheus/pkg/manager/model/channel/v3"
-	"github.com/jaehoonkim/morpheus/pkg/manager/model/tenants/v3"
-	"github.com/jaehoonkim/morpheus/pkg/manager/status/globvar"
-	"github.com/jaehoonkim/morpheus/pkg/manager/status/state"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/echoutil"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/logs"
+	channelv3 "github.com/jaehoonkim/sentinel/pkg/manager/model/channel/v3"
+	"github.com/jaehoonkim/sentinel/pkg/manager/model/tenants/v3"
+	"github.com/jaehoonkim/sentinel/pkg/manager/status/globvar"
+	"github.com/jaehoonkim/sentinel/pkg/manager/status/state"
 	"github.com/labstack/echo/v4"
 	"github.com/pkg/errors"
 )
@@ -134,9 +134,9 @@ func (ctl ControlVanilla) CreateChannel(ctx echo.Context) (err error) {
 // @Produce     json
 // @Tags        manager/channels
 // @Router      /manager/channels [get]
-// @Param       q            query  string false "query  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       o            query  string false "order  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       p            query  string false "paging github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       q            query  string false "query  github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       o            query  string false "order  github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       p            query  string false "paging github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt/README.md"
 // @Success     200 {array} v3.HttpRsp_ManagedChannel
 func (ctl ControlVanilla) FindChannel(ctx echo.Context) (err error) {
 	q, err := stmt.ConditionLexer.Parse(echoutil.QueryParam(ctx)["q"])
@@ -1456,9 +1456,9 @@ func (ctl ControlVanilla) PurgeChannelStatus(ctx echo.Context) (err error) {
 // @Produce     json
 // @Tags        manager/channels
 // @Router      /manager/channels/status [get]
-// @Param       q            query  string false "query  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       o            query  string false "order  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       p            query  string false "paging github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       q            query  string false "query  github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       o            query  string false "order  github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       p            query  string false "paging github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt/README.md"
 // @Success     200 {array} v3.HttpRsp_ManagedChannel_ChannelStatus
 func (ctl ControlVanilla) FindChannelStatus(ctx echo.Context) error {
 	q, err := stmt.ConditionLexer.Parse(echoutil.QueryParam(ctx)["q"])

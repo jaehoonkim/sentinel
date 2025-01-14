@@ -15,7 +15,7 @@
 
 POST {{url}}{{test_path}} {{protocolver}}
 Content-Type: application/json
-x_auth_token: MORPHEUS
+x_auth_token: SENTINEL
 
 {
   "tenant": "{{ tenant_default }}"
@@ -26,7 +26,7 @@ x_auth_token: MORPHEUS
 
 POST {{url}}{{test_path}} {{protocolver}}
 Content-Type: application/json
-x_auth_token: MORPHEUS
+x_auth_token: SENTINEL
 
 {
   "tenant": "{{ tenant_foo }}"
@@ -37,7 +37,7 @@ x_auth_token: MORPHEUS
 
 POST {{url}}{{test_path}} {{protocolver}}
 Content-Type: application/json
-x_auth_token: MORPHEUS
+x_auth_token: SENTINEL
 
 {
   "tenant": "{{ tenant_test }}"

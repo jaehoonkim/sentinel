@@ -1,6 +1,6 @@
 agent:
   enabled: true
-  image: "jaehoon/morpheus-agent:latest"
+  image: "jaehoon/sentinel-agent:latest"
   environment_variable:
     data:
       manager: "" #http://<IP>:<PORT>
@@ -11,33 +11,33 @@ manager:
   enabled: true
   service:
     service_type: "ClusterIP"
-  image: "jaehoon/morpheus-manager:latest"
+  image: "jaehoon/sentinel-manager:latest"
   containerPort: 8099
   environment_variable:
     data:
       MORPHEUS_DB_HOST: "mysql.db.svc.cluster.local"
       MORPHEUS_DB_PORT: "3306"
-      MORPHEUS_DB_SCHEME: "morpheus"
+      MORPHEUS_DB_SCHEME: "sentinel"
       MORPHEUS_DB_EXPORT_PATH: "."
-      MORPHEUS_DB_SERVER_USERNAME: "morpheus"
+      MORPHEUS_DB_SERVER_USERNAME: "sentinel"
       MORPHEUS_LOG_SEVERITY: "info"
       MORPHEUS_LOG_SYSTEM_EVENT: "false"
       MORPHEUS_LOG_VERBOSE: "true"
       MORPHEUS_LOG_VERBOSELEVEL: "9"
-      MORPHEUS_LOG_FILENAME: "./morpheus.log"
+      MORPHEUS_LOG_FILENAME: "./sentinel.log"
       MORPHEUS_LOG_MAXSIZE: "10"
       MORPHEUS_LOG_MAXAGE: "5"
       MORPHEUS_LOG_MAXBACKUPS: "10"
       MORPHEUS_LOG_COMPRESS: "false"
   secret_variable:
     data:
-      db_server_password: "morpheus"
+      db_server_password: "sentinel"
   managerrule:
     enabled: false
     data:
      enigma.yml: |
        enigma:
-         morpheus.default.crypto:
+         sentinel.default.crypto:
            block-method: none
            block-size: 0
            block-key:

@@ -3,7 +3,7 @@ package macro_test
 import (
 	"testing"
 
-	. "github.com/jaehoonkim/morpheus/pkg/manager/macro"
+	. "github.com/jaehoonkim/sentinel/pkg/manager/macro"
 )
 
 func TestStringJoin(t *testing.T) {

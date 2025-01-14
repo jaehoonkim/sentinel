@@ -3,7 +3,7 @@ package clusterinfos
 import (
 	"time"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla"
 )
 
 type ClusterInformation struct {

@@ -3,23 +3,23 @@ FROM alpine:latest   as common-build-stage
 LABEL version=0.0.1
 
 ENV WORKDIR=/app \
-    NAME=morpheus-manager \
-    USER=morpheus \
+    NAME=sentinel-manager \
+    USER=sentinel \
     USER_ID=1002 \
-    GROUP=morpheus-provisioning
+    GROUP=sentinel-provisioning
 
 WORKDIR ${WORKDIR}
 
 RUN apk update && apk add bash mariadb-client
 
 RUN mkdir -p ${WORKDIR}/conf/rules
-RUN mkdir -p ${WORKDIR}/migrations/morpheus
+RUN mkdir -p ${WORKDIR}/migrations/sentinel
 
 
-COPY /bin/manager/morpheus-manager ${WORKDIR}/
-COPY /conf/morpheus-manager.yml ${WORKDIR}/conf/
+COPY /bin/manager/sentinel-manager ${WORKDIR}/
+COPY /conf/sentinel-manager.yml ${WORKDIR}/conf/
 COPY /conf/enigma.yml ${WORKDIR}/conf/rules/
-COPY /conf/script/migrations/morpheus  ${WORKDIR}/conf/migrations/morpheus
+COPY /conf/script/migrations/sentinel  ${WORKDIR}/conf/migrations/sentinel
 COPY /conf/script/manager/entrypoint.sh ${WORKDIR}/
 
 

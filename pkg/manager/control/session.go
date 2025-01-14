@@ -4,17 +4,17 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/echoutil"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
-	clusterinfos "github.com/jaehoonkim/morpheus/pkg/manager/model/cluster_infomation/v2"
-	"github.com/jaehoonkim/morpheus/pkg/manager/model/service/v3"
-	sessions "github.com/jaehoonkim/morpheus/pkg/manager/model/session/v3"
-	"github.com/jaehoonkim/morpheus/pkg/manager/status/globvar"
-	"github.com/jaehoonkim/morpheus/pkg/manager/status/state"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/echoutil"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/logs"
+	clusterinfos "github.com/jaehoonkim/sentinel/pkg/manager/model/cluster_infomation/v2"
+	"github.com/jaehoonkim/sentinel/pkg/manager/model/service/v3"
+	sessions "github.com/jaehoonkim/sentinel/pkg/manager/model/session/v3"
+	"github.com/jaehoonkim/sentinel/pkg/manager/status/globvar"
+	"github.com/jaehoonkim/sentinel/pkg/manager/status/state"
 	"github.com/labstack/echo/v4"
 	"github.com/pkg/errors"
 )
@@ -25,9 +25,9 @@ import (
 // @Produce     json
 // @Tags        manager/session
 // @Router      /manager/session [get]
-// @Param       q            query  string false "query  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       o            query  string false "order  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       p            query  string false "paging github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       q            query  string false "query  github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       o            query  string false "order  github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       p            query  string false "paging github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt/README.md"
 // @Success     200 {array} sessions.Session
 func (ctl ControlVanilla) FindSession(ctx echo.Context) error {
 	q, err := stmt.ConditionLexer.Parse(echoutil.QueryParam(ctx)["q"])

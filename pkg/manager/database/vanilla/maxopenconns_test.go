@@ -11,14 +11,14 @@ import (
 	"time"
 
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/sqlex"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/sqlex"
 )
 
 func TestMaxOpenConns(t *testing.T) {
 	const (
 		dialect    = "mysql"
-		connstring = "morpheus:morpheus@tcp(127.0.0.1:3306)/morpheus?charset=utf8mb4&parseTime=True&loc=Local"
+		connstring = "sentinel:sentinel@tcp(127.0.0.1:3306)/sentinel?charset=utf8mb4&parseTime=True&loc=Local"
 	)
 	var db *sql.DB
 	db, err := sql.Open(dialect, connstring)

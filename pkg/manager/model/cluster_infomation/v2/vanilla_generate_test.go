@@ -4,8 +4,8 @@ import (
 	"os"
 	"testing"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/ice_cream_maker"
-	clusterinfos "github.com/jaehoonkim/morpheus/pkg/manager/model/cluster_infomation/v2"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/ice_cream_maker"
+	clusterinfos "github.com/jaehoonkim/sentinel/pkg/manager/model/cluster_infomation/v2"
 )
 
 var objs = []interface{}{

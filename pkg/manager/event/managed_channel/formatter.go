@@ -6,7 +6,7 @@ import (
 	"sync"
 
 	"github.com/itchyny/gojq"
-	channelv2 "github.com/jaehoonkim/morpheus/pkg/manager/model/channel/v2"
+	channelv2 "github.com/jaehoonkim/sentinel/pkg/manager/model/channel/v2"
 )
 
 type Formatter interface {

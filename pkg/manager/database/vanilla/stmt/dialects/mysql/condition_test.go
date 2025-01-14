@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
 )
 
 func TestNewCondition(t *testing.T) {

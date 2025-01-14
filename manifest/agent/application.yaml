@@ -1,35 +1,35 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: morpheus-agent
+  name: sentinel-agent
   namespace: morpheusagent
 spec:
   selector:
     matchLabels:
-      morpheus:  agent
+      sentinel:  agent
   replicas: 1 
   template:
     metadata:
       labels:
-        morpheus: agent
+        sentinel: agent
     spec:
-      serviceAccountName: morpheus-controller
+      serviceAccountName: sentinel-controller
       containers:
-        - name: morpheus-agent
-          image: green:32000/morpheus-morpheus-agent
+        - name: sentinel-agent
+          image: green:32000/sentinel-sentinel-agent
           env:
             - name: S_MANAGER_URL
               valueFrom:
                 configMapKeyRef:
-                  name: morpheus-configmap
+                  name: sentinel-configmap
                   key: manager
             - name: S_CLUSTER_ID
               valueFrom:
                 configMapKeyRef:
-                  name: morpheus-configmap
+                  name: sentinel-configmap
                   key: clusterid
             - name: S_TOKEN
               valueFrom:
                 configMapKeyRef:
-                  name: morpheus-configmap
+                  name: sentinel-configmap
                   key: token

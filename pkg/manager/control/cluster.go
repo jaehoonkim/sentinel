@@ -6,16 +6,16 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/sqlex"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/echoutil"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
-	clusterv3 "github.com/jaehoonkim/morpheus/pkg/manager/model/cluster/v3"
-	tenants "github.com/jaehoonkim/morpheus/pkg/manager/model/tenants/v3"
-	"github.com/jaehoonkim/morpheus/pkg/manager/status/state"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/sqlex"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/echoutil"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/logs"
+	clusterv3 "github.com/jaehoonkim/sentinel/pkg/manager/model/cluster/v3"
+	tenants "github.com/jaehoonkim/sentinel/pkg/manager/model/tenants/v3"
+	"github.com/jaehoonkim/sentinel/pkg/manager/status/state"
 	"github.com/labstack/echo/v4"
 	"github.com/pkg/errors"
 )
@@ -113,9 +113,9 @@ func (ctl ControlVanilla) CreateCluster(ctx echo.Context) (err error) {
 // @Produce     json
 // @Tags        manager/cluster
 // @Router      /manager/cluster [get]
-// @Param       q            query  string false "query  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       o            query  string false "order  github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
-// @Param       p            query  string false "paging github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       q            query  string false "query  github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       o            query  string false "order  github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt/README.md"
+// @Param       p            query  string false "paging github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt/README.md"
 // @Success     200 {array} v3.HttpRsp_Cluster
 func (ctl ControlVanilla) FindCluster(ctx echo.Context) (err error) {
 	q, err := stmt.ConditionLexer.Parse(echoutil.QueryParam(ctx)["q"])

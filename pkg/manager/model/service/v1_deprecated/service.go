@@ -5,9 +5,9 @@ import (
 	"sort"
 	"time"
 
-	cryptov1 "github.com/jaehoonkim/morpheus/pkg/manager/model/default_crypto_types/v1"
-	metav1 "github.com/jaehoonkim/morpheus/pkg/manager/model/meta/v1"
-	stepv1 "github.com/jaehoonkim/morpheus/pkg/manager/model/service_step/v1"
+	cryptov1 "github.com/jaehoonkim/sentinel/pkg/manager/model/default_crypto_types/v1"
+	metav1 "github.com/jaehoonkim/sentinel/pkg/manager/model/meta/v1"
+	stepv1 "github.com/jaehoonkim/sentinel/pkg/manager/model/service_step/v1"
 )
 
 type Status int32

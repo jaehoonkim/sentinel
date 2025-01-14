@@ -3,7 +3,7 @@ package v1
 import (
 	"encoding/json"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/enigma"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/enigma"
 	"github.com/pkg/errors"
 )
 

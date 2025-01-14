@@ -1,7 +1,7 @@
 #!/bin/bash
 
 apprun() {
-	exec /app/morpheus-manager -config '/app/conf/morpheus-manager.yml'
+	exec /app/sentinel-manager -config '/app/conf/sentinel-manager.yml'
 }
 
 apprun

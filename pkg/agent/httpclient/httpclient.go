@@ -18,7 +18,7 @@ import (
 
 	"github.com/hashicorp/go-retryablehttp"
 
-	"github.com/jaehoonkim/morpheus/pkg/agent/log"
+	"github.com/jaehoonkim/sentinel/pkg/agent/log"
 )
 
 type HttpClient struct {

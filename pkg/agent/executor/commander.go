@@ -10,16 +10,16 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
 	"github.com/gophercloud/utils/openstack/clientconfig"
-	"github.com/jaehoonkim/morpheus/pkg/agent/alertmanager"
-	"github.com/jaehoonkim/morpheus/pkg/agent/grafana"
-	"github.com/jaehoonkim/morpheus/pkg/agent/helm"
-	"github.com/jaehoonkim/morpheus/pkg/agent/jq"
-	"github.com/jaehoonkim/morpheus/pkg/agent/k8s"
-	"github.com/jaehoonkim/morpheus/pkg/agent/morpheusagent"
-	"github.com/jaehoonkim/morpheus/pkg/agent/openstack"
-	"github.com/jaehoonkim/morpheus/pkg/agent/p8s"
-	"github.com/jaehoonkim/morpheus/pkg/agent/service"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro"
+	"github.com/jaehoonkim/sentinel/pkg/agent/alertmanager"
+	"github.com/jaehoonkim/sentinel/pkg/agent/grafana"
+	"github.com/jaehoonkim/sentinel/pkg/agent/helm"
+	"github.com/jaehoonkim/sentinel/pkg/agent/jq"
+	"github.com/jaehoonkim/sentinel/pkg/agent/k8s"
+	"github.com/jaehoonkim/sentinel/pkg/agent/morpheusagent"
+	"github.com/jaehoonkim/sentinel/pkg/agent/openstack"
+	"github.com/jaehoonkim/sentinel/pkg/agent/p8s"
+	"github.com/jaehoonkim/sentinel/pkg/agent/service"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro"
 )
 
 type CommandType int
@@ -47,7 +47,7 @@ func (ct CommandType) String() string {
 	} else if ct == CommandTypeAlertManager {
 		return "alertmanager"
 	} else if ct == CommandTypeSynapseagent {
-		return "morpheus"
+		return "sentinel"
 	} else if ct == CommandTypeGrafana {
 		return "grafana"
 	} else if ct == CommandTypeOpenstack {
@@ -77,7 +77,7 @@ func NewCommander(command *service.StepCommand) (Commander, error) {
 		return NewJqCommander(command)
 	case "alertmanager":
 		return NewAlertManagerCommander(command)
-	case "morpheus":
+	case "sentinel":
 		return NewSynapseagentCommander(command)
 	case "grafana":
 		return NewGrafanaCommander(command)

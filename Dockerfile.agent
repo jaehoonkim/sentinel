@@ -3,7 +3,7 @@ LABEL version=0.1.0
 
 RUN apk update && apk add --no-cache openssh-client bash dbus
 
-COPY ./bin/agent/morpheus-agent /
+COPY ./bin/agent/sentinel-agent /
 COPY ./conf/script/agent/entrypoint.sh /
 
 ENV S_MANAGER_URL ""

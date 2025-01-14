@@ -1,4 +1,4 @@
-package morpheus
+package sentinel
 
 import (
 	"context"
@@ -9,15 +9,15 @@ import (
 
 	"github.com/golang-jwt/jwt/v4"
 
-	"github.com/jaehoonkim/morpheus/pkg/agent/httpclient"
-	"github.com/jaehoonkim/morpheus/pkg/agent/log"
-	"github.com/jaehoonkim/morpheus/pkg/manager/model/auths/v2"
-	servicev3 "github.com/jaehoonkim/morpheus/pkg/manager/model/service/v3"
-	servicev4 "github.com/jaehoonkim/morpheus/pkg/manager/model/service/v4"
-	sessionv1 "github.com/jaehoonkim/morpheus/pkg/manager/model/session/v1"
+	"github.com/jaehoonkim/sentinel/pkg/agent/httpclient"
+	"github.com/jaehoonkim/sentinel/pkg/agent/log"
+	"github.com/jaehoonkim/sentinel/pkg/manager/model/auths/v2"
+	servicev3 "github.com/jaehoonkim/sentinel/pkg/manager/model/service/v3"
+	servicev4 "github.com/jaehoonkim/sentinel/pkg/manager/model/service/v4"
+	sessionv1 "github.com/jaehoonkim/sentinel/pkg/manager/model/session/v1"
 )
 
-const morpheusAuthTokenHeaderName = "x-morpheus-agent-token"
+const morpheusAuthTokenHeaderName = "x-sentinel-agent-token"
 
 type SynapseAPI struct {
 	client    *httpclient.HttpClient
@@ -64,7 +64,7 @@ func (s *SynapseAPI) Auth(ctx context.Context, auth *auths.HttpReqAuth) error {
 	if err != nil {
 		return err
 	}
-	log.Debugf("morpheus API in Auth : %s\n", s.client)
+	log.Debugf("sentinel API in Auth : %s\n", s.client)
 	result := s.client.Post("/client/auth").SetBody("application/json", b).Do(ctx)
 
 	// get session token

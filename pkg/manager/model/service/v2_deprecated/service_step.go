@@ -5,8 +5,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla"
-	cryptov2 "github.com/jaehoonkim/morpheus/pkg/manager/model/default_crypto_types/v2"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla"
+	cryptov2 "github.com/jaehoonkim/sentinel/pkg/manager/model/default_crypto_types/v2"
 )
 
 type ServiceStep_essential struct {

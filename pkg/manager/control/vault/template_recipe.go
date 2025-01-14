@@ -1,12 +1,12 @@
 package vault
 
 // import (
-// 	"github.com/jaehoonkim/morpheus/pkg/manager/database"
-// 	"github.com/jaehoonkim/morpheus/pkg/manager/database/prepare"
-// 	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
+// 	"github.com/jaehoonkim/sentinel/pkg/manager/database"
+// 	"github.com/jaehoonkim/sentinel/pkg/manager/database/prepare"
+// 	"github.com/jaehoonkim/sentinel/pkg/manager/macro/logs"
 // 	"github.com/pkg/errors"
 
-// 	recipev1 "github.com/jaehoonkim/morpheus/pkg/manager/model/template_recipe/v1"
+// 	recipev1 "github.com/jaehoonkim/sentinel/pkg/manager/model/template_recipe/v1"
 // )
 
 // //TemplateRecipe

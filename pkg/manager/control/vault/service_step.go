@@ -1,8 +1,8 @@
 package vault
 
 // import (
-// 	"github.com/jaehoonkim/morpheus/pkg/manager/database"
-// 	stepv1 "github.com/jaehoonkim/morpheus/pkg/manager/model/service_step/v1"
+// 	"github.com/jaehoonkim/sentinel/pkg/manager/database"
+// 	stepv1 "github.com/jaehoonkim/sentinel/pkg/manager/model/service_step/v1"
 // 	"github.com/pkg/errors"
 // 	"xorm.io/xorm"
 // )

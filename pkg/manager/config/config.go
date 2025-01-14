@@ -5,7 +5,7 @@ import (
 )
 
 type Config struct {
-	APPName string `default:"morpheus-manager"`
+	APPName string `default:"sentinel-manager"`
 
 	Host       Host       `yaml:"host"`
 	Database   Database   `yaml:"database"`

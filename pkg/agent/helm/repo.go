@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/jaehoonkim/morpheus/pkg/agent/helm/repo"
+	"github.com/jaehoonkim/sentinel/pkg/agent/helm/repo"
 )
 
 func (c *Client) RepoAdd(args map[string]interface{}) (string, error) {

@@ -1,7 +1,7 @@
 package v2
 
 import (
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla"
 )
 
 type NotifierSlackhook_essential struct {

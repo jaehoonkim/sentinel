@@ -3,7 +3,7 @@ package globvar
 import (
 	"time"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/logs"
 	"github.com/pkg/errors"
 )
 

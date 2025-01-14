@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"github.com/google/logger"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/echoutil"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/echoutil"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/logs"
 	"github.com/labstack/echo/v4"
 )
 

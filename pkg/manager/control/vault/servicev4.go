@@ -4,11 +4,11 @@ import (
 	"context"
 	"sort"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
-	service "github.com/jaehoonkim/morpheus/pkg/manager/model/service/v4"
-	"github.com/jaehoonkim/morpheus/pkg/manager/status/state"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
+	service "github.com/jaehoonkim/sentinel/pkg/manager/model/service/v4"
+	"github.com/jaehoonkim/sentinel/pkg/manager/status/state"
 	"github.com/pkg/errors"
 )
 

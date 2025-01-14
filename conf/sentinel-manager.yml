@@ -1,4 +1,4 @@
-appname: morpheus-manager
+appname: sentinel-manager
 
 host:
   port: 8099
@@ -12,9 +12,9 @@ database:
   protocol: 'tcp'
   host: '127.0.0.1'
   port: '3306'
-  dbname: 'morpheus'
-  username: 'morpheus'
-  password: 'morpheus'
+  dbname: 'sentinel'
+  username: 'sentinel'
+  password: 'sentinel'
   maxopenconns: 15
   maxidleconns: 5
   maxconnlifetime: 1
@@ -22,15 +22,15 @@ database:
   loglevel: warn
 
 migrate:
-  source: 'conf/migrations/morpheus'
+  source: 'conf/migrations/sentinel'
 
 logger:
   severity: 'debug'
   system-event: false
-  system-event-name: 'project-morpheus/morpheus'
+  system-event-name: 'project-sentinel/sentinel'
   verbose: false
   verbose-level: 9
-  filename: 'morpheus.log'
+  filename: 'sentinel.log'
   max-size: 10
   max-age: 30
   max-backups: 20

@@ -1,4 +1,4 @@
-module github.com/jaehoonkim/morpheus
+module github.com/jaehoonkim/sentinel
 
 go 1.21.3
 

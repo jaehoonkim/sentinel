@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	vanilla "github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/ice_cream_maker"
+	vanilla "github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/ice_cream_maker"
 )
 
 func TestColumnTags(t *testing.T) {

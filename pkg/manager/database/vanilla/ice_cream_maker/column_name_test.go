@@ -3,7 +3,7 @@ package ice_cream_maker_test
 import (
 	"testing"
 
-	vanilla "github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/ice_cream_maker"
+	vanilla "github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/ice_cream_maker"
 )
 
 func TestColumnNames(t *testing.T) {

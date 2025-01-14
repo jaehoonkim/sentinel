@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/enigma"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/enigma"
 	"gopkg.in/yaml.v2"
 )
 

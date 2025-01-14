@@ -1,6 +1,6 @@
 package v1
 
-import metav1 "github.com/jaehoonkim/morpheus/pkg/manager/model/meta/v1"
+import metav1 "github.com/jaehoonkim/sentinel/pkg/manager/model/meta/v1"
 
 type NotifierStatusProperty struct {
 	NotifierType string `json:"notifier_type,omitempty" xorm:"'notifier_type' varchar(255) notnull index"` //

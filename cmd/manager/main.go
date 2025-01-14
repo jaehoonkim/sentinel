@@ -14,23 +14,23 @@ import (
 
 	"github.com/golang-migrate/migrate/v4"
 	"github.com/google/logger"
-	"github.com/jaehoonkim/morpheus/pkg/manager/config"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
-	mysqlFlavor "github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute/dialects/mysql"
-	"github.com/jaehoonkim/morpheus/pkg/manager/event/managed_channel"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/enigma"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
-	dctv1 "github.com/jaehoonkim/morpheus/pkg/manager/model/default_crypto_types/v1"
-	"github.com/jaehoonkim/morpheus/pkg/manager/route"
-	"github.com/jaehoonkim/morpheus/pkg/manager/status/globvar"
-	"github.com/jaehoonkim/morpheus/pkg/manager/status/ticker"
-	"github.com/jaehoonkim/morpheus/pkg/version"
+	"github.com/jaehoonkim/sentinel/pkg/manager/config"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute"
+	mysqlFlavor "github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute/dialects/mysql"
+	"github.com/jaehoonkim/sentinel/pkg/manager/event/managed_channel"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/enigma"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/logs"
+	dctv1 "github.com/jaehoonkim/sentinel/pkg/manager/model/default_crypto_types/v1"
+	"github.com/jaehoonkim/sentinel/pkg/manager/route"
+	"github.com/jaehoonkim/sentinel/pkg/manager/status/globvar"
+	"github.com/jaehoonkim/sentinel/pkg/manager/status/ticker"
+	"github.com/jaehoonkim/sentinel/pkg/version"
 	"github.com/jinzhu/configor"
 	"github.com/pkg/errors"
 )
 
-const APP_NAME = "morpheus-manager"
+const APP_NAME = "sentinel-manager"
 
 func init() {
 	println("init timezone UTC")
@@ -47,7 +47,7 @@ func main() {
 	flag.StringVar(&cfg.Database.Password, "db-passwd", "", "Database's password")
 	flag.StringVar(&cfg.Database.DBName, "db-dbname", "", "Database's dbname")
 
-	configPath := flag.String("config", "./conf/morpheus-manager.yml", "Path to morpheus-manager's config file")
+	configPath := flag.String("config", "./conf/sentinel-manager.yml", "Path to sentinel-manager's config file")
 
 	flag.Parse()
 

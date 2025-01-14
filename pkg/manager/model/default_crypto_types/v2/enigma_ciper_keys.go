@@ -4,7 +4,7 @@ package v2
 /*
 	ENUM(
 
-morpheus.default.crypto
+sentinel.default.crypto
 )
 */
 type CiperKey int

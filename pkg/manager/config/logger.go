@@ -9,7 +9,7 @@ import (
 	"sync"
 
 	"github.com/google/logger"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/logs"
 	"github.com/jinzhu/configor"
 	"github.com/pkg/errors"
 	"gopkg.in/natefinch/lumberjack.v2"
@@ -53,11 +53,11 @@ func init() {
 
 	flag.StringVar(&cfg.Logger.Severity, "log-severity", "debug", "severity of log severity=debug,[info|information],[warn|warning],error,fatal")
 	flag.BoolVar(&cfg.Logger.SystemEvent, "log-system-event", false, "enabled system event")
-	flag.StringVar(&cfg.Logger.SystemEventName, "log-system-eventname", "github.com/jaehoonkim/morpheus", "system event name")
+	flag.StringVar(&cfg.Logger.SystemEventName, "log-system-eventname", "github.com/jaehoonkim/sentinel", "system event name")
 	flag.BoolVar(&cfg.Logger.Verbose, "log-verbose", false, "enabled verbose")
 
 	//file rotator (for lumberjack)
-	flag.StringVar(&cfg.Logger.Filename, "log-filename", "morpheus.log", "log file name")
+	flag.StringVar(&cfg.Logger.Filename, "log-filename", "sentinel.log", "log file name")
 	flag.IntVar(&cfg.Logger.MaxSize, "log-max-size", 20, "maximum size in megabytes of the log file (MB)")
 	flag.IntVar(&cfg.Logger.MaxAge, "log-max-age", 30, "maximum number of days to retain old log files (DAY)")
 	flag.IntVar(&cfg.Logger.MaxBackups, "log-max-backups", 20, "maximum number of old log files to retain (COUNT)")

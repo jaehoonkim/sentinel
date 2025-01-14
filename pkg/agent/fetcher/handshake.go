@@ -7,10 +7,10 @@ import (
 
 	"github.com/golang-jwt/jwt/v4"
 
-	"github.com/jaehoonkim/morpheus/pkg/agent/log"
-	"github.com/jaehoonkim/morpheus/pkg/manager/model/auths/v2"
-	sessionv1 "github.com/jaehoonkim/morpheus/pkg/manager/model/session/v1"
-	"github.com/jaehoonkim/morpheus/pkg/version"
+	"github.com/jaehoonkim/sentinel/pkg/agent/log"
+	"github.com/jaehoonkim/sentinel/pkg/manager/model/auths/v2"
+	sessionv1 "github.com/jaehoonkim/sentinel/pkg/manager/model/session/v1"
+	"github.com/jaehoonkim/sentinel/pkg/version"
 )
 
 func (f *Fetcher) HandShake() error {
@@ -38,7 +38,7 @@ func (f *Fetcher) HandShake() error {
 		log.Warnf("Failed to bind payload : %v\n", err)
 		return err
 	}
-	if err := writeFile(".morpheus", []byte(claims.Uuid)); err != nil {
+	if err := writeFile(".sentinel", []byte(claims.Uuid)); err != nil {
 		return err
 	}
 

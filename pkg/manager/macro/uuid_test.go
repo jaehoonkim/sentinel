@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/google/uuid"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro"
 )
 
 func TestNewUuid(t *testing.T) {

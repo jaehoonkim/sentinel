@@ -1,18 +1,18 @@
 
-# morpheus
+# sentinel
 
-morpheus is a Kubernetes executor to help to manage multiple, multi-CSP backed Kubernetes clusters using standardized templates such as Kubernetes APis, Prometheus APIs and Helm commands. Using schedulers (such as cron or other cron services), users can automate the cluser management activities such as collecting Kubernetes events, status of nodes and pods, metrics & alerts of Prometheus. Also, we are working hard to provide addtional features such as custom-template with multiple steps, users can create thier own template with several Kuberntes APIs and http API calls to automate & standardize the DevOps operations. 
+sentinel is a Kubernetes executor to help to manage multiple, multi-CSP backed Kubernetes clusters using standardized templates such as Kubernetes APis, Prometheus APIs and Helm commands. Using schedulers (such as cron or other cron services), users can automate the cluser management activities such as collecting Kubernetes events, status of nodes and pods, metrics & alerts of Prometheus. Also, we are working hard to provide addtional features such as custom-template with multiple steps, users can create thier own template with several Kuberntes APIs and http API calls to automate & standardize the DevOps operations. 
 
-## Why morpheus is different than others?
+## Why sentinel is different than others?
 
-morpheus consists of a manager and a agent for an each Kubernetes cluster, however, morpheus's agent is not a typical agent. No direct access from the manager to the agent API calls. The agent always polls the manager to inquire whether there is any assignment for the agent and fetch the assigned taks and execute/send the result back to the manager. Users can control how often the agent polls the manager using manager management API. 
+sentinel consists of a manager and a agent for an each Kubernetes cluster, however, sentinel's agent is not a typical agent. No direct access from the manager to the agent API calls. The agent always polls the manager to inquire whether there is any assignment for the agent and fetch the assigned taks and execute/send the result back to the manager. Users can control how often the agent polls the manager using manager management API. 
 
-morpheus maintains standard templates to use Kubernetes & Prometheus APIs and users just need to pick the template and cluster(s) to get what they want. It's simple and resuable. 
+sentinel maintains standard templates to use Kubernetes & Prometheus APIs and users just need to pick the template and cluster(s) to get what they want. It's simple and resuable. 
 
 
 ## What are the available templates at this moment? 
 
-The list below is the template list morpheus is supporting as of today and "create", "delete", "apply" will be added soon. 
+The list below is the template list sentinel is supporting as of today and "create", "delete", "apply" will be added soon. 
 
 ```
 alertmanager_silences_create
@@ -162,15 +162,15 @@ Use manifest files in this github to install Manager & Agent.
 
 ### Manager
 
-You need to have MariaDB 10.0 and above to install morpheus manager. Recommand using bitnami Mariadb helm chart to install Mariadb in your Kubernetes cluster. Once you install Mariadb and get host/port/user informatin to configre in "environment.yaml". 
+You need to have MariaDB 10.0 and above to install sentinel manager. Recommand using bitnami Mariadb helm chart to install Mariadb in your Kubernetes cluster. Once you install Mariadb and get host/port/user informatin to configre in "environment.yaml". 
 
 ```yaml
 data:
   db_host: "XXX.XXX.XXX.XXX"
   db_port: "3306"
-  db_scheme: "morpheus"
+  db_scheme: "sentinel"
   db_export_path: "."
-  db_server_username: "morpheus"
+  db_server_username: "sentinel"
 ```
 
 Also use BASE64 to encrypt your password and populate in the Secret in the "environment.yaml" file. Also, configure "x_auth_token" value to use the token in the header of API request. 
@@ -178,8 +178,8 @@ Also use BASE64 to encrypt your password and populate in the Secret in the "envi
 apiVersion: v1
 kind: Secret
 metadata:
-  name: morpheus-secret
-  namespace: morpheus
+  name: sentinel-secret
+  namespace: sentinel
 type: Opaque
 data:
   db_server_password: 
@@ -194,16 +194,16 @@ $ kubectl apply -f application.yaml
 $ kubectl apply -f environment.yaml
 ```
 
-Check your installed morpheus manager in morpheus namespace. 
+Check your installed sentinel manager in sentinel namespace. 
 ```shell
-$ kubectl get pods -n morpheus
-$ kubectl get service -n morpheus
-$ kubectl get deployment -n morpheus
+$ kubectl get pods -n sentinel
+$ kubectl get service -n sentinel
+$ kubectl get deployment -n sentinel
 ```
 
 ### Agent 
 
-To install morpheus agent, you need to get cluster uuid and bear's token from morpheus manager. 
+To install sentinel agent, you need to get cluster uuid and bear's token from sentinel manager. 
 
 ```shell
 POST http://<morpheus_manager_url/manager/cluster
@@ -261,8 +261,8 @@ Here is the sample response from the api.
 }
 ```
 
-morpheus agent shall be installed at the Kubernetes cluster that you want to manage. 
-Configure these in environment.yaml for uuid and token for agent. You can limit morpheus's roles by configuring cluster role in sa.yaml. With the following configuration, morpheus will perform only for namespace and pods. You can configure "*" for all the resources for morpheus to access & execute the commands. 
+sentinel agent shall be installed at the Kubernetes cluster that you want to manage. 
+Configure these in environment.yaml for uuid and token for agent. You can limit sentinel's roles by configuring cluster role in sa.yaml. With the following configuration, sentinel will perform only for namespace and pods. You can configure "*" for all the resources for sentinel to access & execute the commands. 
 
 ```yaml
 rules:
@@ -271,7 +271,7 @@ rules:
   verbs: ["get", "list", "watch"]
 ```
 
-Run these commands to install morpheus agent once the configuration is done.
+Run these commands to install sentinel agent once the configuration is done.
 
 ```shell
 $ kubectl apply -f environment.yaml
@@ -296,21 +296,21 @@ $ make build target=manager
 
 image build(manager / agent)  
 ```shell
-$ make image base=jaehoon/morpheus target=manager
+$ make image base=jaehoon/sentinel target=manager
 or
-$ make image base=jaehoon/morpheus target=agent
+$ make image base=jaehoon/sentinel target=agent
 ```
 
 image push
 ```shell
-$ make push base=jaehoon/morpheus target=manager
+$ make push base=jaehoon/sentinel target=manager
 ```
 
 ## Design
 
 how to use swagger?
 ```shell
-$ kubectl port-forward svc/morpheus-morpheus-manager -n morpheus 8099
+$ kubectl port-forward svc/sentinel-sentinel-manager -n sentinel 8099
 http://127.0.0.1:8099/swagger/index.html
 ```
 

@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: morpheus
+  name: sentinel
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: morpheus-configmap
+  name: sentinel-configmap
   namespace: morpheusagent
 data:
   manager: "http://146.190.1.148:8099"

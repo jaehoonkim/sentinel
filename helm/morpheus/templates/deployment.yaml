@@ -3,30 +3,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-morpheus-agent
+  name: {{ .Release.Name }}-sentinel-agent
   namespace: {{ .Release.Namespace }}
   labels:
-    morpheus: agent
+    sentinel: agent
 spec:
   selector:
     matchLabels:
-      morpheus:  {{ .Release.Name }}-morpheus-agent
+      sentinel:  {{ .Release.Name }}-sentinel-agent
   replicas: 1
   template:
     metadata:
       labels:
-        morpheus: {{ .Release.Name }}-morpheus-agent
+        sentinel: {{ .Release.Name }}-sentinel-agent
     spec:
       serviceAccountName: {{ .Release.Name }}-morpheusagent-controller
       containers:
-        - name: {{ .Release.Name }}-morpheus-agent
+        - name: {{ .Release.Name }}-sentinel-agent
           image: "{{ .Values.agent.image }}"
           env:
             {{- range $key, $value := .Values.agent.environment_variable.data }}
             - name: {{ $key }}
               valueFrom:
                 configMapKeyRef:
-                  name: {{ $.Release.Name }}-morpheus-agent-configmap
+                  name: {{ $.Release.Name }}-sentinel-agent-configmap
                   key: {{ $key }}
             {{- end -}}
 
@@ -36,20 +36,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Release.Name }}-morpheus-manager
+  name: {{ .Release.Name }}-sentinel-manager
   namespace: {{ .Release.Namespace }}
 spec:
   selector:
     matchLabels:
-      morpheus: {{ .Release.Name }}-manager
+      sentinel: {{ .Release.Name }}-manager
   replicas: 1
   template:
     metadata:
       labels:
-        morpheus: {{ .Release.Name }}-manager
+        sentinel: {{ .Release.Name }}-manager
     spec:
       containers:
-        - name: {{ .Release.Name }}-morpheus-manager
+        - name: {{ .Release.Name }}-sentinel-manager
           image: {{ .Values.manager.image }}
           ports:
             - containerPort: {{ .Values.manager.containerPort }}
@@ -65,14 +65,14 @@ spec:
             - name: {{ $key }}
               valueFrom:
                 configMapKeyRef:
-                  name: {{ $.Release.Name }}-morpheus-manager-configmap
+                  name: {{ $.Release.Name }}-sentinel-manager-configmap
                   key: {{ $key }}
             {{- end -}}
             {{- range $key, $value := .Values.manager.secret_variable.data }}
             - name: {{ $key }}
               valueFrom:
                 secretKeyRef:
-                  name: {{ $.Release.Name }}-morpheus-secret
+                  name: {{ $.Release.Name }}-sentinel-secret
                   key: {{ $key }}
                 {{- end }}
           livenessProbe:
@@ -83,13 +83,13 @@ spec:
           {{ if .Values.manager.managerrule.enabled}}
           volumeMounts:
             - mountPath: /app/conf/rules
-              name: {{ .Release.Name }}-morpheus-manager-rules-volume
+              name: {{ .Release.Name }}-sentinel-manager-rules-volume
           {{- end }}
           {{- if .Values.manager.managerrule.enabled}}
       volumes:
         - configMap:
             defaultMode: 420
-            name: {{ .Release.Name }}-morpheus-manager-rules-configmap
-          name: {{ .Release.Name }}-morpheus-manager-rules-volume
+            name: {{ .Release.Name }}-sentinel-manager-rules-configmap
+          name: {{ .Release.Name }}-sentinel-manager-rules-volume
           {{- end}}
 {{- end }}

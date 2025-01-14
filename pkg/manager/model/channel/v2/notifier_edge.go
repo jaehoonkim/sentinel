@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla"
 )
 
 type NotifierEdge_essential struct {

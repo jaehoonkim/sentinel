@@ -9,12 +9,12 @@ import (
 
 	"github.com/google/logger"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/control/vault"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/excute"
-	"github.com/jaehoonkim/morpheus/pkg/manager/database/vanilla/stmt"
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/logs"
-	channelv3 "github.com/jaehoonkim/morpheus/pkg/manager/model/channel/v3"
-	"github.com/jaehoonkim/morpheus/pkg/manager/status/globvar"
+	"github.com/jaehoonkim/sentinel/pkg/manager/control/vault"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/excute"
+	"github.com/jaehoonkim/sentinel/pkg/manager/database/vanilla/stmt"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/logs"
+	channelv3 "github.com/jaehoonkim/sentinel/pkg/manager/model/channel/v3"
+	"github.com/jaehoonkim/sentinel/pkg/manager/status/globvar"
 	"github.com/pkg/errors"
 )
 

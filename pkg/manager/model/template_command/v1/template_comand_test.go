@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/jaehoonkim/morpheus/pkg/manager/macro/newist"
+	"github.com/jaehoonkim/sentinel/pkg/manager/macro/newist"
 )
 
 func TestTemplateCommandJson(t *testing.T) {

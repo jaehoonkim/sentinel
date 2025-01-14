@@ -1,7 +1,7 @@
 package v1
 
 import (
-	metav1 "github.com/jaehoonkim/morpheus/pkg/manager/model/meta/v1"
+	metav1 "github.com/jaehoonkim/sentinel/pkg/manager/model/meta/v1"
 )
 
 // Cluster Property
