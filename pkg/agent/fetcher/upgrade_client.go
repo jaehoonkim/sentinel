@@ -31,11 +31,11 @@ func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args m
 	// service processing status update
 	for {
 		up := service.CreateUpdateService(version, serviceId, 1, 0, service.StepStatusProcessing, "", t, time.Time{})
-		if err := f.morpheusAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
+		if err := f.sentinelAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
 			log.Errorf("SynapseAgent Upgrade: failed to update service status(processing): error: %s\n", err.Error())
 
 			// retry and handshake if session expired
-			if f.morpheusAPI.IsTokenExpired() {
+			if f.sentinelAPI.IsTokenExpired() {
 				f.RetryHandshake()
 			}
 			continue
@@ -51,11 +51,11 @@ func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args m
 
 			for {
 				up := service.CreateUpdateService(version, serviceId, 1, 0, service.StepStatusFail, "", t, time.Now())
-				if err := f.morpheusAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
+				if err := f.sentinelAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
 					log.Errorf(err.Error())
 
 					// retry and handshake if session expired
-					if f.morpheusAPI.IsTokenExpired() {
+					if f.sentinelAPI.IsTokenExpired() {
 						f.RetryHandshake()
 					}
 					continue
@@ -266,10 +266,10 @@ func (f *Fetcher) UpgradeAgent(version service.Version, serviceId string, args m
 	// upgrade success
 	for {
 		up := service.CreateUpdateService(version, serviceId, 1, 0, service.StepStatusSuccess, "", t, time.Now())
-		if err := f.morpheusAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
+		if err := f.sentinelAPI.UpdateServices(context.Background(), service.ConvertServiceStepUpdateAgentToManager(up)); err != nil {
 			log.Errorf(err.Error())
 			// retry and handshake if session expired
-			if f.morpheusAPI.IsTokenExpired() {
+			if f.sentinelAPI.IsTokenExpired() {
 				f.RetryHandshake()
 			}
 			continue

@@ -17,7 +17,7 @@ import (
 	sessionv1 "github.com/jaehoonkim/sentinel/pkg/manager/model/session/v1"
 )
 
-const morpheusAuthTokenHeaderName = "x-sentinel-agent-token"
+const sentinelAuthTokenHeaderName = "x-sentinel-agent-token"
 
 type SynapseAPI struct {
 	client    *httpclient.HttpClient
@@ -69,7 +69,7 @@ func (s *SynapseAPI) Auth(ctx context.Context, auth *auths.HttpReqAuth) error {
 
 	// get session token
 	if headers := result.Headers(); headers != nil {
-		if token := headers.Get(morpheusAuthTokenHeaderName); token != "" {
+		if token := headers.Get(sentinelAuthTokenHeaderName); token != "" {
 			s.authToken.Store(token)
 		}
 	}
@@ -90,12 +90,12 @@ func (s *SynapseAPI) GetServices(ctx context.Context) ([]servicev4.HttpRsp_Agent
 	}
 
 	result := s.client.Get("/client/service").
-		SetHeader(morpheusAuthTokenHeaderName, token).
+		SetHeader(sentinelAuthTokenHeaderName, token).
 		Do(ctx)
 
 	// get session token
 	if headers := result.Headers(); headers != nil {
-		if token := headers.Get(morpheusAuthTokenHeaderName); token != "" {
+		if token := headers.Get(sentinelAuthTokenHeaderName); token != "" {
 			s.authToken.Store(token)
 		}
 	}
@@ -132,14 +132,14 @@ func (s *SynapseAPI) UpdateServices(ctx context.Context, service *servicev4.Http
 	}
 
 	result := s.client.Put("/client/service").
-		SetHeader(morpheusAuthTokenHeaderName, token).
+		SetHeader(sentinelAuthTokenHeaderName, token).
 		SetGzip(true).
 		SetBody("application/json", b).
 		Do(ctx)
 
 	// get session token
 	if headers := result.Headers(); headers != nil {
-		if token := headers.Get(morpheusAuthTokenHeaderName); token != "" {
+		if token := headers.Get(sentinelAuthTokenHeaderName); token != "" {
 			s.authToken.Store(token)
 		}
 	}

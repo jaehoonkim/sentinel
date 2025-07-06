@@ -23,10 +23,10 @@ func (f *Fetcher) HandShake() error {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 	defer cancel()
 
-	if err := f.morpheusAPI.Auth(ctx, body); err != nil {
+	if err := f.sentinelAPI.Auth(ctx, body); err != nil {
 		return err
 	}
-	sessionToken := f.morpheusAPI.GetToken()
+	sessionToken := f.sentinelAPI.GetToken()
 	log.Debugf("Successed to handshake: received token(%s) for polling.", sessionToken)
 
 	f.ChangeAgentConfigFromToken()

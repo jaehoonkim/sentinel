@@ -147,12 +147,12 @@ prometheus_query_range
 prometheus_rules
 prometheus_targets
 prometheus_targets/metadata
-morpheus_agent_pod_rebounce
-morpheus_agent_upgrade
-morpheus_credential_add
-morpheus_credential_get
-morpheus_credential_remove
-morpheus_credential_update
+sentinel_agent_pod_rebounce
+sentinel_agent_upgrade
+sentinel_credential_add
+sentinel_credential_get
+sentinel_credential_remove
+sentinel_credential_update
 
 ```
 
@@ -206,7 +206,7 @@ $ kubectl get deployment -n sentinel
 To install sentinel agent, you need to get cluster uuid and bear's token from sentinel manager. 
 
 ```shell
-POST http://<morpheus_manager_url/manager/cluster
+POST http://<sentinel_manager_url/manager/cluster
 ```
 with the follwoing body - 
 ```json
@@ -236,7 +236,7 @@ Then, you will get uuid of your cluster. Here is the sample body of response -
 Next step is to get a bearer' token with the following APIs. 
 
 ```shell
-POST http://<morpheus_manager_url/manager/cluster_token
+POST http://<sentinel_manager_url/manager/cluster_token
 ```
 with the following request body - 
 

@@ -17,15 +17,15 @@ import (
 
 type LoggerConfig struct {
 	Logger struct {
-		Severity        string `env:"MORPHEUS_LOG_SEVERIY"           yaml:"severity,omitempty"`
-		SystemEvent     bool   `env:"MORPHEUS_LOG_SYSTEM_EVENT"      yaml:"system-event,omitempty"`
-		SystemEventName string `env:"MORPHEUS_LOG_SYSTEM_EVENT_NAME" yaml:"system-event-name,omitempty"`
-		Verbose         bool   `env:"MORPHEUS_LOG_VERBOSE"           yaml:"verbose,omitempty"`
-		Filename        string `env:"MORPHEUS_LOG_FILENAME"          yaml:"filename,omitempty"`
-		MaxSize         int    `env:"MORPHEUS_LOG_MAXSIZE"           yaml:"max-size,omitempty"`
-		MaxAge          int    `env:"MORPHEUS_LOG_MAXAGE"            yaml:"max-age,omitempty"`
-		MaxBackups      int    `env:"MORPHEUS_LOG_MAXBACKUPS"        yaml:"max-backups,omitempty"`
-		Compress        bool   `env:"MORPHEUS_LOG_COMPRESS"          yaml:"compress,omitempty"`
+		Severity        string `env:"SENTINEL_LOG_SEVERIY"           yaml:"severity,omitempty"`
+		SystemEvent     bool   `env:"SENTINEL_LOG_SYSTEM_EVENT"      yaml:"system-event,omitempty"`
+		SystemEventName string `env:"SENTINEL_LOG_SYSTEM_EVENT_NAME" yaml:"system-event-name,omitempty"`
+		Verbose         bool   `env:"SENTINEL_LOG_VERBOSE"           yaml:"verbose,omitempty"`
+		Filename        string `env:"SENTINEL_LOG_FILENAME"          yaml:"filename,omitempty"`
+		MaxSize         int    `env:"SENTINEL_LOG_MAXSIZE"           yaml:"max-size,omitempty"`
+		MaxAge          int    `env:"SENTINEL_LOG_MAXAGE"            yaml:"max-age,omitempty"`
+		MaxBackups      int    `env:"SENTINEL_LOG_MAXBACKUPS"        yaml:"max-backups,omitempty"`
+		Compress        bool   `env:"SENTINEL_LOG_COMPRESS"          yaml:"compress,omitempty"`
 	}
 }
 

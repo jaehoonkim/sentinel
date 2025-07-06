@@ -17,7 +17,7 @@ spec:
       labels:
         sentinel: {{ .Release.Name }}-sentinel-agent
     spec:
-      serviceAccountName: {{ .Release.Name }}-morpheusagent-controller
+      serviceAccountName: {{ .Release.Name }}-sentinelagent-controller
       containers:
         - name: {{ .Release.Name }}-sentinel-agent
           image: "{{ .Values.agent.image }}"

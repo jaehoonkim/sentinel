@@ -15,7 +15,7 @@ import (
 	"github.com/jaehoonkim/sentinel/pkg/agent/helm"
 	"github.com/jaehoonkim/sentinel/pkg/agent/jq"
 	"github.com/jaehoonkim/sentinel/pkg/agent/k8s"
-	"github.com/jaehoonkim/sentinel/pkg/agent/morpheusagent"
+	"github.com/jaehoonkim/sentinel/pkg/agent/sentinelagent"
 	"github.com/jaehoonkim/sentinel/pkg/agent/openstack"
 	"github.com/jaehoonkim/sentinel/pkg/agent/p8s"
 	"github.com/jaehoonkim/sentinel/pkg/agent/service"
@@ -330,7 +330,7 @@ func (c *AlertManagerCommander) Run() (string, error) {
 }
 
 type SynapseagentCommander struct {
-	client *morpheusagent.Client
+	client *sentinelagent.Client
 	api    string
 	verb   string
 	params map[string]interface{}
@@ -354,14 +354,14 @@ func (c *SynapseagentCommander) ParseCommand(command *service.StepCommand) error
 	mlist := strings.SplitN(command.Method, ".", 3)
 
 	if len(mlist) != 3 {
-		return fmt.Errorf("there is not enough method(%s) for morpheusagent. want(3) but got(%d)", command.Method, len(mlist))
+		return fmt.Errorf("there is not enough method(%s) for sentinelagent. want(3) but got(%d)", command.Method, len(mlist))
 	}
 
 	c.api = mlist[1]
 	c.verb = mlist[2]
 	c.params = command.Args
 
-	client, err := morpheusagent.NewClient()
+	client, err := sentinelagent.NewClient()
 	if err != nil {
 		return err
 	}
@@ -423,7 +423,7 @@ func (c *GrafanaCommander) ParseCommand(command *service.StepCommand) error {
 			return nil, err
 		}
 
-		secret, err := kc.GetK8sClientset().CoreV1().Secrets("morpheusagent").Get(context.Background(), morpheusagent.SynapseagentSecretName, metav1.GetOptions{})
+		secret, err := kc.GetK8sClientset().CoreV1().Secrets("sentinelagent").Get(context.Background(), sentinelagent.SynapseagentSecretName, metav1.GetOptions{})
 		if err != nil {
 			return nil, err
 		}
@@ -503,7 +503,7 @@ func (c *OpenstackCommander) ParseCommand(command *service.StepCommand) error {
 		return err
 	}
 
-	secret, err := kc.GetK8sClientset().CoreV1().Secrets(morpheusagent.SynapseagentNamespace).Get(context.Background(), morpheusagent.SynapseagentSecretName, metav1.GetOptions{})
+	secret, err := kc.GetK8sClientset().CoreV1().Secrets(sentinelagent.SynapseagentNamespace).Get(context.Background(), sentinelagent.SynapseagentSecretName, metav1.GetOptions{})
 	if err != nil {
 		return err
 	}

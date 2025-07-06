@@ -25,10 +25,10 @@ func New(c *Config, configPath string) (*Config, error) {
 }
 
 type Host struct {
-	Port                   int32  `env:"MORPHEUS_HOST_PORT"             yaml:"port"             default:"8099"`
-	TlsEnable              bool   `env:"MORPHEUS_HOST_TLS_ENABLE"       yaml:"tls-enable"       default:"false"`
-	TlsCertificateFilename string `env:"MORPHEUS_HOST_TLS_CRT_FILENAME" yaml:"tls-crt-filename" default:"manager.crt"`
-	TlsPrivateKeyFilename  string `env:"MORPHEUS_HOST_TLS_KEY_FILENAME" yaml:"tls-key-filename" default:"manager.key"`
+	Port                   int32  `env:"SENTINEL_HOST_PORT"             yaml:"port"             default:"8099"`
+	TlsEnable              bool   `env:"SENTINEL_HOST_TLS_ENABLE"       yaml:"tls-enable"       default:"false"`
+	TlsCertificateFilename string `env:"SENTINEL_HOST_TLS_CRT_FILENAME" yaml:"tls-crt-filename" default:"manager.crt"`
+	TlsPrivateKeyFilename  string `env:"SENTINEL_HOST_TLS_KEY_FILENAME" yaml:"tls-key-filename" default:"manager.key"`
 
 	XAuthToken bool `default:"false"`
 }
@@ -36,11 +36,11 @@ type Host struct {
 type Database struct {
 	Type            string `default:"mysql"`
 	Protocol        string `default:"tcp"`
-	Host            string `env:"MORPHEUS_DB_HOST"`
-	Port            string `env:"MORPHEUS_DB_PORT"`
-	DBName          string `env:"MORPHEUS_DB_SCHEME"`
-	Username        string `env:"MORPHEUS_DB_SERVER_USERNAME"`
-	Password        string `env:"MORPHEUS_DB_SERVER_PASSWORD"`
+	Host            string `env:"SENTINEL_DB_HOST"`
+	Port            string `env:"SENTINEL_DB_PORT"`
+	DBName          string `env:"SENTINEL_DB_SCHEME"`
+	Username        string `env:"SENTINEL_DB_SERVER_USERNAME"`
+	Password        string `env:"SENTINEL_DB_SERVER_PASSWORD"`
 	MaxOpenConns    int    `default:"15"`
 	MaxIdleConns    int    `default:"5"`
 	MaxConnLifeTime int    `default:"1"`
@@ -53,6 +53,6 @@ type Migrate struct {
 }
 
 type CORSConfig struct {
-	AllowOrigins string `env:"MORPHEUS_CORSCONFIG_ALLOW_ORIGINS" yaml:"allow-origins,omitempty"`
-	AllowMethods string `env:"MORPHEUS_CORSCONFIG_ALLOW_METHODS" yaml:"allow-methods,omitempty"`
+	AllowOrigins string `env:"SENTINEL_CORSCONFIG_ALLOW_ORIGINS" yaml:"allow-origins,omitempty"`
+	AllowMethods string `env:"SENTINEL_CORSCONFIG_ALLOW_METHODS" yaml:"allow-methods,omitempty"`
 }

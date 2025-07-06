@@ -32,77 +32,77 @@ spec:
           ports:
             - containerPort: 8099
           env:
-            - name: MORPHEUS_DB_HOST
+            - name: SENTINEL_DB_HOST
               valueFrom:
                 configMapKeyRef:
                   name: sentinel-configmap
                   key: db_host
-            - name: MORPHEUS_DB_PORT
+            - name: SENTINEL_DB_PORT
               valueFrom:
                 configMapKeyRef:
                   name: sentinel-configmap
                   key: db_port
-            - name: MORPHEUS_DB_SCHEME
+            - name: SENTINEL_DB_SCHEME
               valueFrom:
                 configMapKeyRef:
                   name: sentinel-configmap
                   key: db_scheme
-            - name: MORPHEUS_DB_EXPORT_PATH
+            - name: SENTINEL_DB_EXPORT_PATH
               valueFrom:
                 configMapKeyRef:
                   name: sentinel-configmap
                   key: db_export_path
-            - name: MORPHEUS_DB_SERVER_USERNAME
+            - name: SENTINEL_DB_SERVER_USERNAME
               valueFrom:
                 configMapKeyRef:
                   name: sentinel-configmap
                   key: db_server_username
-            - name: MORPHEUS_DB_SERVER_PASSWORD
+            - name: SENTINEL_DB_SERVER_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: sentinel-secret
                   key: db_server_password
-            - name: MORPHEUS_LOG_SEVERITY
+            - name: SENTINEL_LOG_SEVERITY
               valueFrom:
                 configMapKeyRef:
                   name: sentinel-configmap
                   key: log_severity
-            - name: MORPHEUS_LOG_SYSTEM_EVENT
+            - name: SENTINEL_LOG_SYSTEM_EVENT
               valueFrom:
                 configMapKeyRef:
                   name: sentinel-configmap            
                   key: log_system_event
-            - name: MORPHEUS_LOG_VERBOSE
+            - name: SENTINEL_LOG_VERBOSE
               valueFrom:
                 configMapKeyRef:
                   name: sentinel-configmap 
                   key: log_verbose
-            - name: MORPHEUS_LOG_VERBOSELEVEL
+            - name: SENTINEL_LOG_VERBOSELEVEL
               valueFrom:
                 configMapKeyRef:
                   name: sentinel-configmap
                   key: log_verboselevel
-            - name: MORPHEUS_LOG_FILENAME
+            - name: SENTINEL_LOG_FILENAME
               valueFrom:
                 configMapKeyRef:
                   name: sentinel-configmap
                   key: log_filename
-            - name: MORPHEUS_LOG_MAXSIZE
+            - name: SENTINEL_LOG_MAXSIZE
               valueFrom:
                 configMapKeyRef:
                   name: sentinel-configmap
                   key: log_maxsize
-            - name: MORPHEUS_LOG_MAXAGE
+            - name: SENTINEL_LOG_MAXAGE
               valueFrom:
                 configMapKeyRef:
                   name: sentinel-configmap
                   key: log_maxage
-            - name: MORPHEUS_LOG_MAXBACKUPS
+            - name: SENTINEL_LOG_MAXBACKUPS
               valueFrom:
                 configMapKeyRef:
                   name: sentinel-configmap
                   key: log_maxbackups
-            - name: MORPHEUS_LOG_COMPRESS
+            - name: SENTINEL_LOG_COMPRESS
               valueFrom:
                 configMapKeyRef:
                   name: sentinel-configmap

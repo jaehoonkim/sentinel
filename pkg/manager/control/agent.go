@@ -1086,7 +1086,7 @@ func (ctl ControlVanilla) AuthAgent(ctx echo.Context) (err error) {
 	}
 
 	//save token to header
-	ctx.Response().Header().Set(__HTTP_HEADER_X_MORPHEUS_AGENT_TOKEN__, token_string)
+	ctx.Response().Header().Set(__HTTP_HEADER_X_SENTINEL_AGENT_TOKEN__, token_string)
 
 	//invoke event (client-auth-accept)
 	const event_name = "agent-auth-accept"
@@ -1113,11 +1113,11 @@ func (ctl ControlVanilla) AuthAgent(ctx echo.Context) (err error) {
 // }
 
 func (ctl ControlVanilla) VerifyClientSessionToken(ctx echo.Context) (err error) {
-	token := ctx.Request().Header.Get(__HTTP_HEADER_X_MORPHEUS_AGENT_TOKEN__)
+	token := ctx.Request().Header.Get(__HTTP_HEADER_X_SENTINEL_AGENT_TOKEN__)
 	err = func() (err error) {
 		if len(token) == 0 {
 			return errors.Wrapf(ErrorInvalidRequestParameter, "missing request header%v", logs.KVL(
-				"header", __HTTP_HEADER_X_MORPHEUS_AGENT_TOKEN__,
+				"header", __HTTP_HEADER_X_SENTINEL_AGENT_TOKEN__,
 			))
 		}
 
@@ -1131,7 +1131,7 @@ func (ctl ControlVanilla) VerifyClientSessionToken(ctx echo.Context) (err error)
 
 		if _, ok := jwt_token.Claims.(*sessions.ClientSessionPayload); !ok || !jwt_token.Valid {
 			return errors.Errorf("jwt verify%v", logs.KVL(
-				"header", __HTTP_HEADER_X_MORPHEUS_AGENT_TOKEN__,
+				"header", __HTTP_HEADER_X_SENTINEL_AGENT_TOKEN__,
 				"token", token,
 			))
 		}
@@ -1145,14 +1145,14 @@ func (ctl ControlVanilla) VerifyClientSessionToken(ctx echo.Context) (err error)
 }
 
 func (ctl ControlVanilla) RefreshClientSessionToken(ctx echo.Context) (err error) {
-	token := ctx.Request().Header.Get(__HTTP_HEADER_X_MORPHEUS_AGENT_TOKEN__)
+	token := ctx.Request().Header.Get(__HTTP_HEADER_X_SENTINEL_AGENT_TOKEN__)
 	var jwt_token *jwt.Token
 	claims := new(sessions.ClientSessionPayload)
 	err = func() (err error) {
 		if len(token) == 0 {
 			return errors.Wrapf(ErrorInvalidRequestParameter, "missing request header%s",
 				logs.KVL(
-					"key", __HTTP_HEADER_X_MORPHEUS_AGENT_TOKEN__,
+					"key", __HTTP_HEADER_X_SENTINEL_AGENT_TOKEN__,
 				))
 		}
 
@@ -1251,7 +1251,7 @@ func (ctl ControlVanilla) RefreshClientSessionToken(ctx echo.Context) (err error
 	}
 
 	//save client session-token to header
-	ctx.Response().Header().Set(__HTTP_HEADER_X_MORPHEUS_AGENT_TOKEN__, new_token_string)
+	ctx.Response().Header().Set(__HTTP_HEADER_X_SENTINEL_AGENT_TOKEN__, new_token_string)
 
 	session := sessions.Session{}
 	session.Uuid = claims.Uuid
@@ -1317,10 +1317,10 @@ func usedJwtSigningMethod(token jwt.Token, init jwt.SigningMethod) jwt.SigningMe
 
 // func GetSynapseAgentTokenClaims(ctx echo.Context) (claims *sessionv3.ClientSessionPayload, err error) {
 // 	var token string
-// 	if token = ctx.Request().Header.Get(__HTTP_HEADER_X_MORPHEUS_AGENT_TOKEN__); len(token) == 0 {
+// 	if token = ctx.Request().Header.Get(__HTTP_HEADER_X_SENTINEL_AGENT_TOKEN__); len(token) == 0 {
 // 		err = errors.Errorf("missing request header%s",
 // 			logs.KVL(
-// 				"key", __HTTP_HEADER_X_MORPHEUS_AGENT_TOKEN__,
+// 				"key", __HTTP_HEADER_X_SENTINEL_AGENT_TOKEN__,
 // 			))
 // 		return
 // 	}
@@ -1369,7 +1369,7 @@ func usedJwtSigningMethod(token jwt.Token, init jwt.SigningMethod) jwt.SigningMe
 
 // 	err = fn()
 // 	err = errors.Wrapf(err, "failed to parse header token%v", logs.KVL(
-// 		"header_token", __HTTP_HEADER_X_MORPHEUS_AGENT_TOKEN__,
+// 		"header_token", __HTTP_HEADER_X_SENTINEL_AGENT_TOKEN__,
 // 		"token", token,
 // 	))
 // 	return

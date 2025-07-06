@@ -25,7 +25,7 @@ type Fetcher struct {
 	bearerToken     string
 	machineID       string
 	clusterId       string
-	morpheusAPI     *sentinel.SynapseAPI
+	sentinelAPI     *sentinel.SynapseAPI
 	ticker          *time.Ticker
 	pollingInterval int
 	scheduler       *scheduler.Scheduler
@@ -49,7 +49,7 @@ func NewFetcher(bearerToken, manager, clusterId string, scheduler *scheduler.Sch
 		bearerToken:     bearerToken,
 		machineID:       id,
 		clusterId:       clusterId,
-		morpheusAPI:     api,
+		sentinelAPI:     api,
 		ticker:          time.NewTicker(defaultPollingInterval * time.Second),
 		pollingInterval: defaultPollingInterval,
 		scheduler:       scheduler,
@@ -105,12 +105,12 @@ func (f *Fetcher) poll() {
 	defer cancel()
 
 	// get services from manager
-	respData, err := f.morpheusAPI.GetServices(ctx)
+	respData, err := f.sentinelAPI.GetServices(ctx)
 	if err != nil {
 		log.Errorf("Failed to polling: error: %s\n", err.Error())
 
 		// if session token is expired, retry handshake
-		if f.morpheusAPI.IsTokenExpired() {
+		if f.sentinelAPI.IsTokenExpired() {
 			f.ticker.Stop()
 			f.RetryHandshake()
 		}
@@ -135,7 +135,7 @@ func (f *Fetcher) poll() {
 		f.UpdateFailedToConvertServices(failed)
 	}
 
-	// catch morpheusagent service
+	// catch sentinelagent service
 	if ok := f.CatchSynapseAgentService(recvServices); ok {
 		return
 	}
@@ -146,7 +146,7 @@ func (f *Fetcher) poll() {
 
 func (f *Fetcher) ChangeAgentConfigFromToken() {
 	claims := new(sessionv1.ClientSessionPayload)
-	jwt_token, _, err := jwt.NewParser().ParseUnverified(f.morpheusAPI.GetToken(), claims)
+	jwt_token, _, err := jwt.NewParser().ParseUnverified(f.sentinelAPI.GetToken(), claims)
 	if _, ok := jwt_token.Claims.(*sessionv1.ClientSessionPayload); !ok || err != nil {
 		log.Warnf("Failed to bind payload : %v\n", err)
 		return
@@ -177,7 +177,7 @@ func (f *Fetcher) UpdateServiceProcess() {
 			ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 			defer cancel()
 
-			if err := f.morpheusAPI.UpdateServices(ctx, serv); err != nil {
+			if err := f.sentinelAPI.UpdateServices(ctx, serv); err != nil {
 				switch serv.Version {
 				case "v3":
 					log.Errorf("Failed to update service on manager : service_uuid:%s, error:%s\n", serv.V3.Uuid, err.Error())
@@ -279,7 +279,7 @@ func (f *Fetcher) UpdateFailedToConvertServices(failed []service.FailedConvertSe
 		ctx, cancel := context.WithTimeout(context.Background(), time.Second*10)
 		defer cancel()
 
-		if err := f.morpheusAPI.UpdateServices(ctx, serv); err != nil {
+		if err := f.sentinelAPI.UpdateServices(ctx, serv); err != nil {
 			switch serv.Version {
 			case "v3":
 				log.Errorf("Failed to update service on manager : service_uuid:%s, error:%s\n", serv.V3.Uuid, err.Error())

@@ -1,4 +1,4 @@
-package morpheusagent
+package sentinelagent
 
 import (
 	"fmt"
